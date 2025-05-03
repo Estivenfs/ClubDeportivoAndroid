@@ -19,6 +19,7 @@ class BarraInferiorActivity : AppCompatActivity() {
             startActivity(Intent(this, MenuPrincipalActivity::class.java))
         }
 
+
         btnNuevoCliente.setOnClickListener {
             startActivity(Intent(this, NuevoClienteActivity::class.java))
         }
