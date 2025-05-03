@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1B1B1B">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottom_bar"
+        android:padding="24dp"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Registrar actividad"
+                android:textSize="28sp"
+                android:textColor="#D0BA12"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="24dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Actividades ya registradas"
+                android:textSize="22sp"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                android:layout_marginBottom="12dp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_border"
+                android:padding="16dp"
+                android:layout_marginBottom="12dp">
+
+                <TextView
+                    android:id="@+id/textNombreActividad"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Gimnasio"
+                    android:textSize="18sp"
+                    android:textColor="#FFFFFF" />
+
+                <ImageView
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/btnatras"
+                    android:rotation="90"
+                    />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginBottom="24dp">
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Modificar"
+                    android:backgroundTint="#D0BA12"
+                    android:textColor="#1B1B1B"
+                    android:layout_marginEnd="8dp" />
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Eliminar"
+                    android:backgroundTint="#D0BA12"
+                    android:textColor="#1B1B1B"
+                    android:layout_marginStart="8dp" />
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/inputNombreActividad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nombre de la actividad"
+                android:background="@drawable/rounded_border"
+                android:padding="12dp"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#ADADAD"
+                android:layout_marginBottom="12dp" />
+
+            <EditText
+                android:id="@+id/inputProfesor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Profesor responsable"
+                android:background="@drawable/rounded_border"
+                android:padding="12dp"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#ADADAD"
+                android:layout_marginBottom="12dp" />
+
+            <EditText
+                android:id="@+id/inputHorario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Horario (ej. Lunes 18hs)"
+                android:background="@drawable/rounded_border"
+                android:padding="12dp"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#ADADAD"
+                android:layout_marginBottom="24dp" />
+
+            <Button
+                android:id="@+id/btnRegistrarActividad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Registrar Actividad"
+                android:backgroundTint="#D0BA12"
+                android:textColor="#1B1B1B" />
+        </LinearLayout>
+    </ScrollView>
+
+    <include
+        android:id="@+id/bottom_bar"
+        layout="@layout/activity_barra_inferior"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true" />
+</RelativeLayout>

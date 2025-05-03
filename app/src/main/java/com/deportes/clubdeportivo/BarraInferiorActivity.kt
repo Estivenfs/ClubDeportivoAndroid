@@ -1,0 +1,27 @@
+package com.deportes.clubdeportivo
+
+import android.content.Intent
+import android.os.Bundle
+import android.widget.ImageButton
+import androidx.appcompat.app.AppCompatActivity
+
+class BarraInferiorActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_barra_inferior)
+
+        val btnMenu = findViewById<ImageButton>(R.id.btnMenu)
+        val btnNuevoCliente = findViewById<ImageButton>(R.id.btnNuevoCliente)
+        val btnConsultas = findViewById<ImageButton>(R.id.btnConsultas)
+        val btnPagos = findViewById<ImageButton>(R.id.btnPagos)
+
+        btnMenu.setOnClickListener {
+            startActivity(Intent(this, MenuPrincipalActivity::class.java))
+        }
+
+        btnNuevoCliente.setOnClickListener {
+            startActivity(Intent(this, NuevoClienteActivity::class.java))
+        }
+
+    }
+}
