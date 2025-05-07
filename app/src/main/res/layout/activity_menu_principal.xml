@@ -1,79 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1B1B1B"
-    android:padding="24dp">
+    android:background="#1B1B1B">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <!-- Contenido desplazable -->
+    <ScrollView
+        android:id="@+id/scrollContenido"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:padding="24dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/barraInferior"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hola, Administrador"
+                android:textColor="#D0BA12"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginTop="24dp"
+                android:shadowColor="#66000000"
+                android:shadowDx="0"
+                android:shadowDy="4"
+                android:shadowRadius="4" />
+
+            <Button
+                android:id="@+id/btnNuevoCliente"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Registrar NUEVO CLIENTE"
+                android:layout_marginTop="24dp"
+                android:backgroundTint="#D0BA12"
+                android:textColor="#1B1B1B" />
+
+            <Button
+                android:id="@+id/btnRegistrarActividad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Registrar ACTIVIDAD"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="#D0BA12"
+                android:textColor="#1B1B1B" />
+
+            <Button
+                android:id="@+id/btnConsultas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="CONSULTAS"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="#D0BA12"
+                android:textColor="#1B1B1B" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="PAGOS"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="#D0BA12"
+                android:textColor="#1B1B1B" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="GESTIÓN DE CLIENTES"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="#D0BA12"
+                android:textColor="#1B1B1B" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/logout_button"
+                android:backgroundTint="#FFFFFF"
+                android:text="Cerrar sesión"
+                android:textColor="#D0BA12" />
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Menú fijo inferior -->
+    <include
+        android:id="@+id/barraInferior"
+        layout="@layout/activity_barra_inferior"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center_horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Hola, Administrador"
-            android:textColor="#D0BA12"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_marginTop="24dp"
-            android:shadowColor="#66000000"
-            android:shadowDx="0"
-            android:shadowDy="4"
-            android:shadowRadius="4" />
-
-        <Button
-            android:id="@+id/btnNuevoCliente"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Registrar NUEVO CLIENTE"
-            android:layout_marginTop="24dp"
-            android:backgroundTint="#D0BA12"
-            android:textColor="#1B1B1B" />
-
-        <Button
-            android:id="@+id/btnRegistrarActividad"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Registrar ACTIVIDAD"
-            android:layout_marginTop="16dp"
-            android:backgroundTint="#D0BA12"
-            android:textColor="#1B1B1B" />
-
-        <Button
-            android:id="@+id/btnConsultas"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="CONSULTAS"
-            android:layout_marginTop="16dp"
-            android:backgroundTint="#D0BA12"
-            android:textColor="#1B1B1B" />
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="PAGOS"
-            android:layout_marginTop="16dp"
-            android:backgroundTint="#D0BA12"
-            android:textColor="#1B1B1B" />
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="GESTIÓN DE CLIENTES"
-            android:layout_marginTop="16dp"
-            android:backgroundTint="#D0BA12"
-            android:textColor="#1B1B1B" />
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Cerrar sesión"
-            android:layout_marginTop="32dp"
-            android:backgroundTint="#FFFFFF"
-            android:textColor="#D0BA12"
-            android:background="@drawable/logout_button" />
-    </LinearLayout>
-</ScrollView>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
