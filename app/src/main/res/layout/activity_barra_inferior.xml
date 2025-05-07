@@ -1,51 +1,54 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/bottom_bar"
     android:layout_width="match_parent"
-    android:layout_height="70dp"
-    android:layout_alignParentBottom="true"
-    android:background="#1B1B1B"
-    android:orientation="horizontal"
-    android:padding="8dp"
-    android:weightSum="4">
-
-    <ImageButton
-        android:id="@+id/btnMenu"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:background="?attr/selectableItemBackground"
-        android:contentDescription="Menú principal"
-        android:src="@drawable/home" />
+    android:layout_height="match_parent">
 
 
-    <ImageButton
-        android:id="@+id/btnNuevoCliente"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:background="?attr/selectableItemBackground"
-        android:contentDescription="Registrar nuevo cliente"
-        android:scaleX="1"
-        android:scaleY="1"
-        android:src="@drawable/registrar_cliente" />
+    <LinearLayout
+        android:id="@+id/bottom_bar"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:background="#1B1B1B"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        android:weightSum="4">
 
-    <ImageButton
-        android:id="@+id/btnConsultas"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:background="?attr/selectableItemBackground"
-        android:contentDescription="Cons"
-        android:src="@drawable/consultas" />
+        <ImageButton
+            android:id="@+id/btnMenu"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackground"
+            android:contentDescription="Menú principal"
+            android:src="@drawable/home" />
 
-    <ImageButton
-        android:id="@+id/btnPagos"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:background="?attr/selectableItemBackground"
-        android:contentDescription="Pagos"
-        android:src="@drawable/pagos" />
-</LinearLayout>
+        <ImageButton
+            android:id="@+id/btnNuevoCliente"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackground"
+            android:contentDescription="Registrar nuevo cliente"
+            android:src="@drawable/registrar_cliente" />
+
+        <ImageButton
+            android:id="@+id/btnConsultas"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackground"
+            android:contentDescription="Consultas"
+            android:src="@drawable/consultas" />
+
+        <ImageButton
+            android:id="@+id/btnPagos"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackground"
+            android:contentDescription="Pagos"
+            android:src="@drawable/pagos" />
+    </LinearLayout>
+</RelativeLayout>

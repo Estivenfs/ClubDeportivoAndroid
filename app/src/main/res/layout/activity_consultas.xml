@@ -53,9 +53,7 @@
     </ScrollView>
 
     <include
-        android:id="@+id/bottom_bar"
         layout="@layout/activity_barra_inferior"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_alignParentBottom="true" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 </RelativeLayout>
