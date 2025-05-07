@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">ClubDeportivo</string>
+    <string name="consultas">Consultas</string>
+    <string name="menuprincipal">Menú Principal</string>
+    <string name="registrarnuevocliente">Registrar nuevo cliente</string>
+    <string name="pagos">Pagos</string>
 </resources>
