@@ -13,7 +13,7 @@
         android:layout_height="0dp"
         android:padding="24dp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/barraInferior"
+        app:layout_constraintBottom_toTopOf="@+id/barraInferiorFragment"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
@@ -64,6 +64,7 @@
                 android:textColor="#1B1B1B" />
 
             <Button
+                android:id="@+id/btnPagos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="PAGOS"
@@ -89,8 +90,16 @@
                 android:textColor="#D0BA12" />
         </LinearLayout>
     </ScrollView>
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/barraInferiorFragment"
+        android:name="com.deportes.clubdeportivo.BarraInferiorFragment"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Menú fijo inferior -->
+    <!-- Menú fijo inferior
     <include
         android:id="@+id/barraInferior"
         layout="@layout/activity_barra_inferior"
@@ -98,5 +107,5 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent" />-->
 </androidx.constraintlayout.widget.ConstraintLayout>
