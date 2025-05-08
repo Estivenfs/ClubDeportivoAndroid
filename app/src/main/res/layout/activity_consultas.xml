@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#1B1B1B">
@@ -8,47 +10,99 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/bottom_bar"
-        android:padding="24dp">
+        android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Consultas"
-                android:textColor="#D0BA12"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="24dp" />
-
-            <Button
-                android:id="@+id/btnListarSocios"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="LISTAR SOCIOS"
-                android:backgroundTint="#D0BA12"
-                android:textColor="#1B1B1B"
-                android:layout_marginBottom="16dp" />
+                android:layout_height="147dp">
 
-            <Button
-                android:id="@+id/btnCarnet"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="CARNET"
-                android:backgroundTint="#D0BA12"
-                android:textColor="#1B1B1B"
-                android:layout_marginBottom="16dp" />
+                <View
+                    android:id="@+id/view"
+                    android:layout_width="match_parent"
+                    android:layout_height="145dp"
+                    android:layout_marginBottom="746dp"
+                    android:background="@color/amarillo_club_deportivo"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
 
-            <Button
-                android:id="@+id/btnPrecios"
+                <LinearLayout
+                    android:layout_width="403dp"
+                    android:layout_height="147dp"
+                    android:gravity="center|start"
+                    android:orientation="horizontal"
+                    android:padding="24dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/view"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/view">
+
+                    <ImageButton
+                        android:id="@+id/imageButton2"
+                        android:layout_width="52dp"
+                        android:layout_height="54dp"
+                        android:background="@null"
+                        android:contentDescription="Boton atrás"
+                        app:srcCompat="@drawable/btn_atras" />
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="70dp"
+                        android:text="Consultas"
+                        android:textColor="#000000"
+                        android:textSize="28sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="PRECIOS"
-                android:backgroundTint="#D0BA12"
-                android:textColor="#1B1B1B" />
+                android:layout_height="420dp"
+                android:orientation="vertical"
+                android:padding="24dp">
+
+                <Button
+                    android:id="@+id/btnListarSocios"
+                    android:layout_width="match_parent"
+                    android:layout_height="62dp"
+                    android:layout_marginTop="70dp"
+                    android:layout_marginBottom="16dp"
+                    android:backgroundTint="#D0BA12"
+                    android:text="LISTAR SOCIOS"
+                    android:textColor="#1B1B1B" />
+
+                <Button
+                    android:id="@+id/btnCarnet"
+                    android:layout_width="match_parent"
+                    android:layout_height="62dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="16dp"
+                    android:backgroundTint="#D0BA12"
+                    android:text="CARNET"
+                    android:textColor="#1B1B1B" />
+
+                <Button
+                    android:id="@+id/btnPrecios"
+                    android:layout_width="match_parent"
+                    android:layout_height="62dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="16dp"
+                    android:backgroundTint="#D0BA12"
+                    android:text="PRECIOS"
+                    android:textColor="#1B1B1B" />
+            </LinearLayout>
+
         </LinearLayout>
     </ScrollView>
 
