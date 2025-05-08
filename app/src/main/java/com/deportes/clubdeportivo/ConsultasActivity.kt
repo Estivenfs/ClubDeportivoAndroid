@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 
 class ConsultasActivity : AppCompatActivity() {
@@ -12,10 +13,9 @@ class ConsultasActivity : AppCompatActivity() {
         setContentView(R.layout.activity_consultas)
 
         // Barra inferior
-        val btnMenu = findViewById<ImageButton>(R.id.btnMenu)
-        val btnNuevoCliente = findViewById<ImageButton>(R.id.btnNuevoCliente)
-        val btnConsultas = findViewById<ImageButton>(R.id.btnConsultas)
-        val btnPagos = findViewById<ImageButton>(R.id.btnPagos)
+        val btnMenu = findViewById<LinearLayout>(R.id.btnMenu)
+        val btnNuevoCliente = findViewById<LinearLayout>(R.id.btnNuevoCliente)
+        val btnPagos = findViewById<LinearLayout>(R.id.btnPagos)
 
         btnMenu.setOnClickListener {
             startActivity(Intent(this, MenuPrincipalActivity::class.java))
@@ -25,13 +25,11 @@ class ConsultasActivity : AppCompatActivity() {
             startActivity(Intent(this, NuevoClienteActivity::class.java))
         }
 
-        btnConsultas.setOnClickListener {
-        }
 
         btnPagos.setOnClickListener {
-
+            //Nombre de pagos activity
+            //startActivity(Intent(this, PagosActivity::class.java))
         }
-
         val btnListarSocios = findViewById<Button>(R.id.btnListarSocios)
         val btnCarnet = findViewById<Button>(R.id.btnCarnet)
         val btnPrecios = findViewById<Button>(R.id.btnPrecios)
