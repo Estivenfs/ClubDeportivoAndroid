@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#1B1B1B"
@@ -8,72 +10,110 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center_horizontal">
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Hola, Administrador"
-            android:textColor="#D0BA12"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_marginTop="24dp"
-            android:shadowColor="#66000000"
-            android:shadowDx="0"
-            android:shadowDy="4"
-            android:shadowRadius="4" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="20dp">
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="174dp"
+                android:layout_height="55dp"
+                android:layout_marginStart="90dp"
+                android:layout_marginTop="59dp"
+                android:layout_marginEnd="1dp"
+                android:layout_marginBottom="26dp"
+                android:shadowColor="#66000000"
+                android:shadowDx="0"
+                android:shadowDy="4"
+                android:shadowRadius="4"
+                android:text="Hola, Administrador"
+                android:textColor="#D0BA12"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/imageButton"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="91dp"
+                android:layout_height="71dp"
+                android:layout_marginStart="1dp"
+                android:layout_marginTop="37dp"
+                android:layout_marginEnd="18dp"
+                android:layout_marginBottom="11dp"
+                android:contentDescription="foto de perfil"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/textView2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@drawable/fotoperfil" />
+
+            <ImageButton
+                android:id="@+id/imageButton"
+                android:layout_width="56dp"
+                android:layout_height="49dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="55dp"
+                android:layout_marginBottom="20dp"
+                android:background="#00FFFFFF"
+                android:contentDescription="Ajustes"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/textView2"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.566"
+                app:srcCompat="@drawable/ajustes" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <Button
             android:id="@+id/btnNuevoCliente"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Registrar NUEVO CLIENTE"
-            android:layout_marginTop="24dp"
-            android:backgroundTint="#D0BA12"
-            android:textColor="#1B1B1B" />
+            style="@style/BotonAmarilloHome"
+            android:drawableLeft="@drawable/registrar_cliente_color_negro"
+            android:text="Registrar &#10; NUEVO CLIENTE" />
 
         <Button
             android:id="@+id/btnRegistrarActividad"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Registrar ACTIVIDAD"
-            android:layout_marginTop="16dp"
-            android:backgroundTint="#D0BA12"
-            android:textColor="#1B1B1B" />
+            style="@style/BotonAmarilloHome"
+            android:drawableLeft="@drawable/nueva_actividad"
+            android:text="Registrar ACTIVIDAD" />
 
         <Button
             android:id="@+id/btnConsultas"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="CONSULTAS"
-            android:layout_marginTop="16dp"
-            android:backgroundTint="#D0BA12"
-            android:textColor="#1B1B1B" />
+            style="@style/BotonAmarilloHome"
+            android:drawableLeft="@drawable/consultas_negro"
+            android:text="Generar CONSULTAS" />
 
         <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="PAGOS"
-            android:layout_marginTop="16dp"
-            android:backgroundTint="#D0BA12"
-            android:textColor="#1B1B1B" />
+            android:id="@+id/btnPagos"
+            style="@style/BotonAmarilloHome"
+            android:drawableLeft="@drawable/pagos_negro"
+            android:text="Gestionar PAGOS" />
 
         <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="GESTIÓN DE CLIENTES"
-            android:layout_marginTop="16dp"
-            android:backgroundTint="#D0BA12"
-            android:textColor="#1B1B1B" />
+            android:id="@+id/btnGestionClientes"
+            style="@style/BotonAmarilloHome"
+            android:drawableLeft="@drawable/clientes_negro"
+            android:text="Gestionar CLIENTES" />
+
 
         <Button
+            android:id="@+id/btnCerrarSesion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Cerrar sesión"
-            android:layout_marginTop="32dp"
-            android:backgroundTint="#FFFFFF"
-            android:textColor="#D0BA12"
-            android:background="@drawable/logout_button" />
+            android:layout_marginTop="100dp"
+            android:background="@color/black"
+            android:clickable="true"
+            android:drawableLeft="@drawable/logout"
+            android:text="Cerrar Sesión"
+            android:textColor="@color/amarillo_club_deportivo"
+            app:strokeColor="@color/amarillo_club_deportivo" />
     </LinearLayout>
 </ScrollView>
