@@ -1,0 +1,54 @@
+package com.deportes.clubdeportivo
+
+import android.app.DatePickerDialog
+import android.content.Context
+import android.os.Bundle
+import android.widget.EditText
+import android.widget.LinearLayout
+import android.widget.TextView
+import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
+
+class PagosDetallesSocioActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContentView(R.layout.activity_pagos_detalles_socio)
+
+        val inputFechaPago = findViewById<TextView>(R.id.inputFechaPago)
+        val inputFechaInicio = findViewById<TextView>(R.id.inputFechaInicio)
+        val fechaPagoLayout = findViewById<LinearLayout>(R.id.fechaPagoLayout)
+        val fechaInicioLayout = findViewById<LinearLayout>(R.id.fechaInicioLayout)
+
+        fechaPagoLayout.setOnClickListener {
+            mostrarDatePickerDialog(this, inputFechaPago) // Pasar el contexto de la actividad
+        }
+        fechaInicioLayout.setOnClickListener {
+            mostrarDatePickerDialog(this, inputFechaInicio) // Pasar el contexto de la actividad
+        }
+    }
+    private fun mostrarDatePickerDialog(context: Context, textView: TextView) { // Cambio a TextView
+        val c = Calendar.getInstance()
+        val year = c.get(Calendar.YEAR)
+        val month = c.get(Calendar.MONTH)
+        val day = c.get(Calendar.DAY_OF_MONTH)
+
+        val dpd = DatePickerDialog(context, // Usar el contexto pasado como parámetro
+            { view, year, monthOfYear, dayOfMonth ->
+                // Display Selected date in textbox
+                val selectedDate = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(
+                    Calendar.getInstance().apply {
+                        set(year, monthOfYear, dayOfMonth)
+                    }.time
+                )
+                textView.text = selectedDate // Actualizar el TextView
+            }, year, month, day
+        )
+        dpd.show()
+    }
+}
