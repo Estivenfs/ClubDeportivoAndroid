@@ -10,18 +10,30 @@ class MenuPrincipalActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu_principal)
 
-        val btnNuevoCliente = findViewById<Button>(R.id.btnNuevoCliente)
-        btnNuevoCliente.setOnClickListener {
-            val intent = Intent(this, NuevoClienteActivity::class.java)
-            startActivity(intent)
+        try {
+            val btnNuevoCliente = findViewById<Button>(R.id.btnNuevoCliente)
+            val btnConsultas = findViewById<Button>(R.id.btnConsultas)
+            val btnPagos = findViewById<Button>(R.id.btnPagos)
+
+            btnNuevoCliente.setOnClickListener {
+                startActivity(Intent(this, NuevoClienteActivity::class.java))
+            }
+
+            btnConsultas.setOnClickListener {
+                startActivity(Intent(this, ConsultasActivity::class.java))
+            }
+
+            btnPagos.setOnClickListener {
+                startActivity(Intent(this, PagosBusquedaActivity::class.java))
+            }
+
+        } catch (err: Exception) {
+            err.printStackTrace()
         }
+
         val btnRegistrarActividad = findViewById<Button>(R.id.btnRegistrarActividad)
         btnRegistrarActividad.setOnClickListener {
             startActivity(Intent(this, RegistroActividadActivity::class.java))
-        }
-        val btnConsultas = findViewById<Button>(R.id.btnConsultas)
-        btnConsultas.setOnClickListener {
-            startActivity(Intent(this, ConsultasActivity::class.java))
         }
     }
 }

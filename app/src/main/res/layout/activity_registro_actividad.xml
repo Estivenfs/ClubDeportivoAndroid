@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#1B1B1B">
 
     <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/bottom_bar"
+        android:id="@+id/scrollContenidoRegistrarActividad"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:padding="24dp"
-        android:fillViewport="true">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/barraInferiorFragment"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -19,120 +25,157 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Registrar actividad"
-                android:textSize="28sp"
-                android:textColor="#D0BA12"
-                android:textStyle="bold"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="24dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:text="Actividades ya registradas"
                 android:textSize="22sp"
                 android:textColor="#FFFFFF"
                 android:textStyle="bold"
-                android:layout_marginBottom="12dp" />
+                android:layout_marginBottom="16dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nombre de la actividad"
+                android:textSize="16sp"
+                android:textColor="#ADADAD"
+                android:layout_marginBottom="8dp"/>
 
-            <RelativeLayout
+
+
+
+
+
+            <LinearLayout
+                android:id="@+id/spinnerActividad"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/rounded_border"
-                android:padding="16dp"
-                android:layout_marginBottom="12dp">
+                android:orientation="horizontal"
+                android:paddingVertical="12dp"
+                android:paddingHorizontal="16dp"
+                android:clickable="true"
+                android:focusable="true">
 
                 <TextView
-                    android:id="@+id/textNombreActividad"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/textNombreActividadSeleccionada"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="Gimnasio"
                     android:textSize="18sp"
-                    android:textColor="#FFFFFF" />
+                    android:textColor="#FFFFFF"
+                    android:layout_gravity="center_vertical"/>
 
                 <ImageView
-                    android:layout_width="26dp"
-                    android:layout_height="26dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/btnatras"
-                    android:rotation="90"
-                    />
-            </RelativeLayout>
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/baseline_down_arrow"
+                    android:layout_gravity="center_vertical"
+                    app:tint="#D0BA12" />
+
+            </LinearLayout>
+
+
+
+
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:gravity="center"
-                android:layout_marginBottom="24dp">
+                android:layout_marginTop="30dp"
+                android:gravity="center">
 
                 <Button
+                    android:id="@+id/btnModificarActividad"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Modificar"
                     android:backgroundTint="#D0BA12"
                     android:textColor="#1B1B1B"
-                    android:layout_marginEnd="8dp" />
+                    android:layout_marginEnd="8dp"
+                    android:paddingVertical="12dp"/>
 
                 <Button
+                    android:id="@+id/btnEliminarActividad"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Eliminar"
                     android:backgroundTint="#D0BA12"
                     android:textColor="#1B1B1B"
-                    android:layout_marginStart="8dp" />
+                    android:layout_marginStart="8dp"
+                    android:paddingVertical="12dp"/>
             </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Registrar nueva actividad"
+                android:textSize="22sp"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="16dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nombre"
+                android:textSize="16sp"
+                android:textColor="#ADADAD"
+                android:layout_marginBottom="8dp"/>
 
             <EditText
                 android:id="@+id/inputNombreActividad"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Nombre de la actividad"
+                android:hint="Introduce nombre de la actividad"
                 android:background="@drawable/rounded_border"
                 android:padding="12dp"
                 android:textColor="#FFFFFF"
                 android:textColorHint="#ADADAD"
-                android:layout_marginBottom="12dp" />
+                android:layout_marginBottom="16dp"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Precio cuota"
+                android:textSize="16sp"
+                android:textColor="#ADADAD"
+                android:layout_marginBottom="8dp"/>
 
             <EditText
-                android:id="@+id/inputProfesor"
+                android:id="@+id/inputPrecioCuota"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Profesor responsable"
+                android:hint="Introduce el monto"
                 android:background="@drawable/rounded_border"
                 android:padding="12dp"
                 android:textColor="#FFFFFF"
                 android:textColorHint="#ADADAD"
-                android:layout_marginBottom="12dp" />
-
-            <EditText
-                android:id="@+id/inputHorario"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Horario (ej. Lunes 18hs)"
-                android:background="@drawable/rounded_border"
-                android:padding="12dp"
-                android:textColor="#FFFFFF"
-                android:textColorHint="#ADADAD"
-                android:layout_marginBottom="24dp" />
+                android:layout_marginBottom="24dp"
+                android:inputType="numberDecimal"
+                android:textSize="18sp"/>
 
             <Button
                 android:id="@+id/btnRegistrarActividad"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Registrar Actividad"
+                android:text="REGISTRAR"
                 android:backgroundTint="#D0BA12"
-                android:textColor="#1B1B1B" />
+                android:textColor="#1B1B1B"
+                android:paddingVertical="16dp"
+                android:textSize="18sp"/>
         </LinearLayout>
     </ScrollView>
 
-    <include
-        android:id="@+id/bottom_bar"
-        layout="@layout/activity_barra_inferior"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_alignParentBottom="true" />
-</RelativeLayout>
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/barraInferiorFragment"
+        android:name="com.deportes.clubdeportivo.BarraInferiorFragment"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
