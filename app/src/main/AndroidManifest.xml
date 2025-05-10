@@ -21,6 +21,9 @@
         <activity
             android:name=".PagosBusquedaActivity"
             android:exported="false" />
+        <activity
+            android:name=".RegistroActivity"
+            android:exported="false" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".MenuPrincipalActivity" />
         <activity android:name=".NuevoClienteActivity" />
