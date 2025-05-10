@@ -33,7 +33,7 @@ class BarraInferiorFragment : Fragment() {
         }
 
         btnPagos.setOnClickListener {
-            //startActivity(Intent(requireContext(), PagosActivity::class.java))
+            startActivity(Intent(requireContext(), PagosBusquedaActivity::class.java))
         }
 
         return view

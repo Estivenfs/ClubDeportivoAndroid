@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
-        android:theme="@style/Theme.ClubDeportivo"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -11,17 +10,16 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:theme="@style/Theme.ClubDeportivo"
         tools:targetApi="31">
+        <activity
+            android:name=".PagosBusquedaActivity"
+            android:exported="false" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".MenuPrincipalActivity" />
         <activity android:name=".NuevoClienteActivity" />
         <activity android:name=".RegistroActividadActivity" />
         <activity android:name=".ConsultasActivity" />
-
-
-
-
-
         <activity
             android:name=".MainActivity"
             android:exported="true"

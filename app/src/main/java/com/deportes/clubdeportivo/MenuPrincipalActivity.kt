@@ -24,8 +24,7 @@ class MenuPrincipalActivity : AppCompatActivity() {
             }
 
             btnPagos.setOnClickListener {
-                // Reemplaza con la actividad correspondiente cuando esté lista
-                // startActivity(Intent(this, PagosActivity::class.java))
+                startActivity(Intent(this, PagosBusquedaActivity::class.java))
             }
 
         } catch (err: Exception) {
