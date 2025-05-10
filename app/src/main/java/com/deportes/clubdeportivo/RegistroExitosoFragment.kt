@@ -15,6 +15,11 @@ class RegistroExitosoFragment : DialogFragment() {
         onVolverClickListener = listener
     }
 
+    override fun onStart() {
+        super.onStart()
+        dialog?.window?.setBackgroundDrawableResource(android.R.color.transparent)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

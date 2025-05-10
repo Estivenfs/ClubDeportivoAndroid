@@ -4,15 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#80000000"
-    tools:context="RegistroExitosoFragment">
+    tools:context="com.deportes.clubdeportivo.RegistroExitosoFragment">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="#80000000">
+        android:background="@android:color/transparent"
+        android:backgroundTint="@android:color/transparent">
 
         <LinearLayout
             android:id="@+id/popup_container"
@@ -42,9 +42,9 @@
                 android:layout_marginTop="24dp"
                 android:fontFamily="@font/inter_medium"
                 android:gravity="center_horizontal"
-                android:text="Registro exitoso!"
+                android:text="¡Registro exitoso!"
                 android:textColor="@android:color/black"
-                android:textSize="28dp"
+                android:textSize="28sp"
                 android:textStyle="normal" />
 
         </LinearLayout>
