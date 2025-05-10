@@ -12,23 +12,18 @@ class RegistroActividadActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registro_actividad)
 
-        val btnMenu = findViewById<LinearLayout>(R.id.btnMenu)
-        val btnNuevoCliente = findViewById<LinearLayout>(R.id.btnNuevoCliente)
-        val btnConsultas = findViewById<LinearLayout>(R.id.btnConsultas)
-        val btnPagos = findViewById<LinearLayout>(R.id.btnPagos)
+        val btnRegistrarActividad = findViewById<Button>(R.id.btnRegistrarActividad)
+        val btnModificarActividad = findViewById<Button>(R.id.btnModificarActividad)
+        val btnEliminarActividad = findViewById<Button>(R.id.btnEliminarActividad)
 
-        btnMenu.setOnClickListener {
-            startActivity(Intent(this, MenuPrincipalActivity::class.java))
+
+        btnRegistrarActividad.setOnClickListener {
+            // Logica para registrar actividad
         }
 
-        btnNuevoCliente.setOnClickListener {
-            startActivity(Intent(this, NuevoClienteActivity::class.java))
+        btnModificarActividad.setOnClickListener {
+            startActivity(Intent(this, ModificarActividadActivity::class.java))
         }
 
-        btnConsultas.setOnClickListener {
-        }
-
-        btnPagos.setOnClickListener {
-        }
     }
 }
