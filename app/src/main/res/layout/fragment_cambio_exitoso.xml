@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.deportes.clubdeportivo.CambioExitosoFragment">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@android:color/transparent"
+        android:backgroundTint="@android:color/transparent">
+
+        <LinearLayout
+            android:id="@+id/popup_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_border"
+            android:backgroundTint="@color/amarillo_club_deportivo"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="90dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <ImageView
+                android:id="@+id/imageViewCheck"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/checkregistroexitoso" />
+
+            <TextView
+                android:id="@+id/textViewExito"
+                android:layout_width="255dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/inter_medium"
+                android:gravity="center_horizontal"
+                android:text="¡Cambio realizado con éxito!"
+                android:textColor="@android:color/black"
+                android:textSize="28sp"
+                android:textStyle="normal" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/buttonVolver"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:backgroundTint="@color/amarillo_club_deportivo"
+            android:fontFamily="@font/inter_medium"
+            android:paddingStart="32dp"
+            android:paddingEnd="32dp"
+            android:text="Volver"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/popup_container"
+            app:layout_constraintStart_toStartOf="@+id/popup_container"
+            app:layout_constraintTop_toBottomOf="@+id/popup_container" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

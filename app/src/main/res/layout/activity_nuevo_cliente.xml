@@ -187,7 +187,7 @@
                 android:id="@+id/btnRegistrarCliente"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="ACTUALIZAR DATOS"
+                android:text="REGISTRAR"
                 android:layout_marginTop="32dp"
                 android:backgroundTint="#D0BA12"
                 android:textColor="#1B1B1B"
