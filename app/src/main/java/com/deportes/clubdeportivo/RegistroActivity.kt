@@ -7,9 +7,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import android.widget.TextView
-import android.widget.ImageView
 import android.content.Intent
 import android.widget.Button
+import android.widget.ImageView
+
 
 class RegistroActivity : AppCompatActivity() {
     @SuppressLint("WrongViewCast")
@@ -25,17 +26,19 @@ class RegistroActivity : AppCompatActivity() {
 
         // Obtenemos referencias a los elementos de la interfaz de usuario
         val iniciarSesionTextView: TextView = findViewById(R.id.textViewIniciarSesion)
-        val btnAtrasLogin: ImageView = findViewById(R.id.btnAtrasLogin)
         val btnCrearCuenta: Button = findViewById<Button>(R.id.buttonCrearCuenta)
+        val btnAtras: ImageView = findViewById(R.id.buttonBack)
+        val textViewTitulo: TextView = findViewById(R.id.textViewTitle)
 
 
         // Logica
-        iniciarSesionTextView.setOnClickListener {
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
+        textViewTitulo.text = "Registro"
+
+        btnAtras.setOnClickListener {
+            finish()
         }
 
-        btnAtrasLogin.setOnClickListener {
+        iniciarSesionTextView.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }

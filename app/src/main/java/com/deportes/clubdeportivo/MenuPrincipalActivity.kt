@@ -12,11 +12,17 @@ class MenuPrincipalActivity : AppCompatActivity() {
 
         try {
             val btnNuevoCliente = findViewById<Button>(R.id.btnNuevoCliente)
+            val btnRegistrarActividad = findViewById<Button>(R.id.btnRegistrarActividad)
             val btnConsultas = findViewById<Button>(R.id.btnConsultas)
             val btnPagos = findViewById<Button>(R.id.btnPagos)
+            val btnGestionarClientes = findViewById<Button>(R.id.btnGestionClientes)
 
             btnNuevoCliente.setOnClickListener {
                 startActivity(Intent(this, NuevoClienteActivity::class.java))
+            }
+
+            btnRegistrarActividad.setOnClickListener {
+                startActivity(Intent(this, RegistroActividadActivity::class.java))
             }
 
             btnConsultas.setOnClickListener {
@@ -25,6 +31,10 @@ class MenuPrincipalActivity : AppCompatActivity() {
 
             btnPagos.setOnClickListener {
                 startActivity(Intent(this, PagosBusquedaActivity::class.java))
+            }
+
+            btnGestionarClientes.setOnClickListener {
+                startActivity(Intent(this, ClientesActivity::class.java))
             }
 
         } catch (err: Exception) {
