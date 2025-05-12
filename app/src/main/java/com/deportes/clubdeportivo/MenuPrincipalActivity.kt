@@ -16,6 +16,7 @@ class MenuPrincipalActivity : AppCompatActivity() {
             val btnConsultas = findViewById<Button>(R.id.btnConsultas)
             val btnPagos = findViewById<Button>(R.id.btnPagos)
             val btnGestionarClientes = findViewById<Button>(R.id.btnGestionClientes)
+            val btnCerrarSesion = findViewById<Button>(R.id.btnCerrarSesion)
 
             btnNuevoCliente.setOnClickListener {
                 startActivity(Intent(this, NuevoClienteActivity::class.java))
@@ -35,6 +36,10 @@ class MenuPrincipalActivity : AppCompatActivity() {
 
             btnGestionarClientes.setOnClickListener {
                 startActivity(Intent(this, ClientesActivity::class.java))
+            }
+
+            btnCerrarSesion.setOnClickListener {
+                startActivity(Intent(this, LoginActivity::class.java))
             }
 
         } catch (err: Exception) {

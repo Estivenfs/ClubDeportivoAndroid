@@ -27,17 +27,18 @@ class RegistroActivity : AppCompatActivity() {
         // Obtenemos referencias a los elementos de la interfaz de usuario
         val iniciarSesionTextView: TextView = findViewById(R.id.textViewIniciarSesion)
         val btnCrearCuenta: Button = findViewById<Button>(R.id.buttonCrearCuenta)
+
+
+        // Importación y lógica de la barra superior
         val btnAtras: ImageView = findViewById(R.id.buttonBack)
         val textViewTitulo: TextView = findViewById(R.id.textViewTitle)
-
-
-        // Logica
         textViewTitulo.text = "Registro"
 
         btnAtras.setOnClickListener {
             finish()
         }
 
+        // Logica
         iniciarSesionTextView.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)

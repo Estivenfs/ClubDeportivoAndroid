@@ -5,7 +5,9 @@ import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
 class NuevoClienteActivity : AppCompatActivity() {
@@ -13,6 +15,17 @@ class NuevoClienteActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_nuevo_cliente)
+
+
+        // Importación y lógica de la barra superior
+        val btnAtras: ImageView = findViewById(R.id.buttonBack)
+        val textViewTitulo: TextView = findViewById(R.id.textViewTitle)
+        textViewTitulo.text = "Registrar Cliente"
+
+        btnAtras.setOnClickListener {
+            finish()
+        }
+
 
         val btnMenu = findViewById<LinearLayout>(R.id.btnMenu)
         val btnConsultas = findViewById<LinearLayout>(R.id.btnConsultas)
