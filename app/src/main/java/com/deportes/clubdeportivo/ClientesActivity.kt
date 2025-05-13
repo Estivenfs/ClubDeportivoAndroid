@@ -1,50 +1,59 @@
 package com.deportes.clubdeportivo
 
-import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import android.widget.TextView
-import android.content.Intent
-import android.widget.Button
 import android.widget.ImageView
+import android.widget.LinearLayout
 
 
-class RegistroActivity : AppCompatActivity() {
-    @SuppressLint("WrongViewCast")
+class ClientesActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_registro)
+        setContentView(R.layout.activity_clientes)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
-        // Obtenemos referencias a los elementos de la interfaz de usuario
-        val iniciarSesionTextView: TextView = findViewById(R.id.textViewIniciarSesion)
-        val btnCrearCuenta: Button = findViewById<Button>(R.id.buttonCrearCuenta)
-
-
-        // Importación y lógica de la barra superior
+        // Lógica de la barra superior
         val btnAtras: ImageView = findViewById(R.id.buttonBack)
         val textViewTitulo: TextView = findViewById(R.id.textViewTitle)
-        textViewTitulo.text = "Registro"
+
+        textViewTitulo.text = "Clientes"
 
         btnAtras.setOnClickListener {
             finish()
         }
 
-        // Logica
-        iniciarSesionTextView.setOnClickListener {
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
+        // Lógica de la barra inferior
+
+        val btnMenu = findViewById<LinearLayout>(R.id.btnMenu)
+        val btnConsultas = findViewById<LinearLayout>(R.id.btnConsultas)
+        val btnPagos = findViewById<LinearLayout>(R.id.btnPagos)
+        val btnRegistrarCliente = findViewById<LinearLayout>(R.id.btnNuevoCliente)
+
+        btnMenu.setOnClickListener {
+            startActivity(Intent(this, MenuPrincipalActivity::class.java))
         }
 
-        btnCrearCuenta.setOnClickListener {
+        btnConsultas.setOnClickListener {
+            startActivity(Intent(this, ConsultasActivity::class.java))
+        }
+
+        btnPagos.setOnClickListener {
+            //Nombre de pagos activity
+            //startActivity(Intent(this, PagosActivity::class.java))
+        }
+
+        btnRegistrarCliente.setOnClickListener {
             val registroExitosoDialog =
                 RegistroExitosoFragment.newInstance() // Usar el nuevo nombre de la clase
             registroExitosoDialog.setOnVolverClickListener {
@@ -52,8 +61,10 @@ class RegistroActivity : AppCompatActivity() {
             }
             registroExitosoDialog.show(
                 supportFragmentManager,
-                RegistroExitosoFragment.TAG
+                CambioExitosoFragment.TAG
             ) // Usar el nuevo TAG
         }
+
+
     }
 }
