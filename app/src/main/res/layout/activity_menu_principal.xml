@@ -32,17 +32,14 @@
                     android:id="@+id/imageView"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
-                    android:layout_marginTop="37dp"
-                    android:layout_marginEnd="18dp"
-                    android:background="@drawable/rounded_border"
-                    android:backgroundTint="@color/amarillo_club_deportivo"
-                    android:contentDescription="foto de perfil"
+                    android:layout_marginTop="25dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/textView2"
+                    app:layout_constraintHorizontal_bias="0.064"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:srcCompat="@drawable/fotoperfil"
-                    />
+                    app:layout_constraintVertical_bias="0.666"
+                    android:src="@drawable/fotodeperfil" />
 
                 <TextView
                     android:id="@+id/textView2"
@@ -64,7 +61,6 @@
                     app:layout_constraintEnd_toStartOf="@+id/imageButton"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
-
 
 
                 <ImageButton
@@ -122,11 +118,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="100dp"
-                android:backgroundTint="#BA1414"
+                android:backgroundTint="@color/amarillo_club_deportivo"
+                android:paddingVertical="20dp"
                 android:clickable="true"
                 android:drawableLeft="@drawable/logout"
                 android:text="Cerrar Sesión"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 app:strokeColor="@color/black" />
         </LinearLayout>
     </ScrollView>
