@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#00000000"
-    tools:context="RegistroExitosoFragment">
+    tools:context="EliminadoConExitoFragment">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,7 +16,7 @@
 
         <LinearLayout
             android:id="@+id/popup_container"
-            android:layout_width="300dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_border"
             android:backgroundTint="@color/amarillo_club_deportivo"
@@ -42,7 +42,7 @@
                 android:layout_marginTop="24dp"
                 android:fontFamily="@font/inter_medium"
                 android:gravity="center_horizontal"
-                android:text="Actividad eliminada con éxito!"
+                android:text="Registro exitoso!"
                 android:textColor="@android:color/black"
                 android:textSize="28dp"
                 android:textStyle="normal" />
