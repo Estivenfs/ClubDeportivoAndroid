@@ -19,6 +19,9 @@
             android:name=".ClientesActivity"
             android:exported="false" />
         <activity
+            android:name=".ComprobanteDePago"
+            android:exported="false" />
+        <activity
             android:name=".PagosDetallesSocioActivity"
             android:exported="false" />
         <activity
