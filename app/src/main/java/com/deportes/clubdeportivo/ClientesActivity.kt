@@ -34,7 +34,6 @@ class ClientesActivity : AppCompatActivity() {
         }
 
         // Lógica de la barra inferior
-
         val btnMenu = findViewById<LinearLayout>(R.id.btnMenu)
         val btnConsultas = findViewById<LinearLayout>(R.id.btnConsultas)
         val btnPagos = findViewById<LinearLayout>(R.id.btnPagos)
@@ -65,6 +64,11 @@ class ClientesActivity : AppCompatActivity() {
             ) // Usar el nuevo TAG
         }
 
+        // Logica de la lista de clientes
+        val buttonAtras: ImageView = findViewById(R.id.ImageViewBtnAtras)
 
+        buttonAtras.setOnClickListener {
+            startActivity(Intent(this, ActualizacionDatosActivity::class.java))
+        }
     }
 }
