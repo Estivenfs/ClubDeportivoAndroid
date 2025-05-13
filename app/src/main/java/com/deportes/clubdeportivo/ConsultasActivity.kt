@@ -12,24 +12,7 @@ class ConsultasActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_consultas)
 
-        // Barra inferior
-        val btnMenu = findViewById<LinearLayout>(R.id.btnMenu)
-        val btnNuevoCliente = findViewById<LinearLayout>(R.id.btnNuevoCliente)
-        val btnPagos = findViewById<LinearLayout>(R.id.btnPagos)
 
-        btnMenu.setOnClickListener {
-            startActivity(Intent(this, MenuPrincipalActivity::class.java))
-        }
-
-        btnNuevoCliente.setOnClickListener {
-            startActivity(Intent(this, NuevoClienteActivity::class.java))
-        }
-
-
-        btnPagos.setOnClickListener {
-            //Nombre de pagos activity
-            //startActivity(Intent(this, PagosActivity::class.java))
-        }
         val btnListarSocios = findViewById<Button>(R.id.btnListarSocios)
         val btnCarnet = findViewById<Button>(R.id.btnCarnet)
         val btnPrecios = findViewById<Button>(R.id.btnPrecios)
