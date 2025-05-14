@@ -194,7 +194,7 @@
 
     <include
         android:id="@+id/barraInferior"
-        layout="@layout/activity_barra_inferior"
+        layout="@layout/fragment_barra_inferior"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"

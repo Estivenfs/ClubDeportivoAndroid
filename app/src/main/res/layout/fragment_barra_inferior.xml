@@ -3,12 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/bottom_bar"
     android:layout_width="match_parent"
-    android:layout_height="90dp"
-    android:orientation="horizontal"
+    android:layout_height="wrap_content"
     android:background="#1B1B1B"
-    android:weightSum="4"
-    android:paddingBottom="20dp"
-    android:paddingTop="15dp">
+    android:orientation="horizontal"
+    android:paddingTop="15dp"
+    android:paddingBottom="40dp"
+    android:weightSum="4">
 
     <!-- HOME -->
     <LinearLayout
@@ -16,25 +16,25 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
+        android:clickable="true"
         android:focusable="true"
         android:gravity="center"
-        android:clickable="true"
         android:orientation="vertical">
 
         <ImageView
             android:layout_width="28dp"
             android:layout_height="28dp"
-            android:src="@drawable/baseline_home_24"
             android:contentDescription="Menú principal"
+            android:src="@drawable/baseline_home_24"
             app:tint="#D0BA12" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
             android:text="Inicio"
-            android:textSize="12sp"
             android:textColor="#D0BA12"
-            android:layout_marginTop="2dp"/>
+            android:textSize="12sp" />
     </LinearLayout>
 
     <!-- NUEVO CLIENTE -->
@@ -43,25 +43,25 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
+        android:clickable="true"
         android:focusable="true"
         android:gravity="center"
-        android:clickable="true"
         android:orientation="vertical">
 
         <ImageView
             android:layout_width="28dp"
             android:layout_height="28dp"
-            android:src="@drawable/baseline_person_add_24"
             android:contentDescription="Registrar nuevo cliente"
+            android:src="@drawable/baseline_person_add_24"
             app:tint="#D0BA12" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
             android:text="Cliente"
-            android:textSize="12sp"
             android:textColor="#D0BA12"
-            android:layout_marginTop="2dp"/>
+            android:textSize="12sp" />
     </LinearLayout>
 
     <!-- CONSULTAS -->
@@ -70,25 +70,25 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
+        android:clickable="true"
         android:focusable="true"
         android:gravity="center"
-        android:clickable="true"
         android:orientation="vertical">
 
         <ImageView
             android:layout_width="28dp"
             android:layout_height="28dp"
-            android:src="@drawable/baseline_search"
             android:contentDescription="Consultas"
+            android:src="@drawable/baseline_search"
             app:tint="#D0BA12" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
             android:text="Consultas"
-            android:textSize="12sp"
             android:textColor="#D0BA12"
-            android:layout_marginTop="2dp"/>
+            android:textSize="12sp" />
     </LinearLayout>
 
     <!-- PAGOS -->
@@ -97,24 +97,24 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
+        android:clickable="true"
         android:focusable="true"
         android:gravity="center"
-        android:clickable="true"
         android:orientation="vertical">
 
         <ImageView
             android:layout_width="28dp"
             android:layout_height="28dp"
-            android:src="@drawable/baseline_pay"
             android:contentDescription="Pagos"
+            android:src="@drawable/baseline_pay"
             app:tint="#D0BA12" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
             android:text="Pagos"
-            android:textSize="12sp"
             android:textColor="#D0BA12"
-            android:layout_marginTop="2dp"/>
+            android:textSize="12sp" />
     </LinearLayout>
 </LinearLayout>

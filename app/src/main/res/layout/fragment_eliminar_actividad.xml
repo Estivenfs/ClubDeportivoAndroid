@@ -44,7 +44,7 @@
                 android:layout_marginTop="24dp"
                 android:fontFamily="@font/inter_medium"
                 android:gravity="center_horizontal"
-                android:text="¿Seguro de eliminar esta actividad? Esta acción no se puede deshacer."
+                android:text="¿Está seguro que desea eliminar esta actividad? Esta acción NO puede deshacerse."
                 android:textColor="@android:color/black"
                 android:textSize="28sp"
                 android:textStyle="normal" />
@@ -68,7 +68,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:layout_marginEnd="24dp"
+                android:layout_marginEnd="15dp"
                 android:backgroundTint="@color/amarillo_club_deportivo"
                 android:fontFamily="@font/inter_medium"
                 android:paddingStart="32dp"
