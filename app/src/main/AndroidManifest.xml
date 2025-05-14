@@ -45,6 +45,7 @@
             android:name=".DescuentosActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".MenuPrincipalActivity" />
+        <activity android:name=".ListarSociosActivity" />
         <activity android:name=".NuevoClienteActivity" />
         <activity android:name=".RegistroActividadActivity" />
         <activity android:name=".ConsultasActivity" />

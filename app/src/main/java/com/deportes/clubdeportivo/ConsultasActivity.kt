@@ -18,6 +18,8 @@ class ConsultasActivity : AppCompatActivity() {
         val btnPrecios = findViewById<Button>(R.id.btnPrecios)
 
         btnListarSocios.setOnClickListener {
+            val intent = Intent(this, ListarSociosActivity::class.java)
+            startActivity(intent)
         }
 
         btnCarnet.setOnClickListener {
