@@ -117,14 +117,17 @@
                 android:id="@+id/btnCerrarSesion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="100dp"
-                android:backgroundTint="@color/amarillo_club_deportivo"
-                android:paddingVertical="20dp"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="#00D0BA12"
                 android:clickable="true"
-                android:drawableLeft="@drawable/logout"
+                android:drawableLeft="@drawable/out"
+                android:paddingVertical="20dp"
                 android:text="Cerrar Sesión"
-                android:textColor="@color/black"
-                app:strokeColor="@color/black" />
+                android:textColor="@color/amarillo_club_deportivo"
+                android:textStyle="bold"
+                app:cornerRadius="10dp"
+                app:strokeColor="@color/amarillo_club_deportivo"
+                app:strokeWidth="3dp" />
         </LinearLayout>
     </ScrollView>
 
