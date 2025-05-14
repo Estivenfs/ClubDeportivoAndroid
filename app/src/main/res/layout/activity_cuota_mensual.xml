@@ -9,7 +9,6 @@
     android:background="#1B1B1B"
     tools:context=".CuotaMensualActivity">
 
-    <!-- Barra superior -->
     <include
         android:id="@+id/barraSuperior"
         layout="@layout/fragment_barra_superior"
@@ -17,7 +16,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Contenido con ScrollView -->
     <ScrollView
         android:id="@+id/scrollContenido"
         android:layout_width="match_parent"
@@ -35,7 +33,6 @@
             android:padding="24dp"
             android:gravity="center_horizontal">
 
-            <!-- Contenedor de precios -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -88,7 +85,6 @@
         </LinearLayout>
     </ScrollView>
 
-    <!-- Barra inferior -->
     <include
         android:id="@+id/barraInferior"
         layout="@layout/activity_barra_inferior"

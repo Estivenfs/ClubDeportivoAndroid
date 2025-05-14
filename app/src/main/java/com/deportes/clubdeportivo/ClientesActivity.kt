@@ -2,7 +2,6 @@ package com.deportes.clubdeportivo
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -23,7 +22,6 @@ class ClientesActivity : AppCompatActivity() {
             insets
         }
 
-        // Lógica de la barra superior
         val btnAtras: ImageView = findViewById(R.id.buttonBack)
         val textViewTitulo: TextView = findViewById(R.id.textViewTitle)
 
@@ -33,7 +31,6 @@ class ClientesActivity : AppCompatActivity() {
             finish()
         }
 
-        // Lógica de la barra inferior
         val btnMenu = findViewById<LinearLayout>(R.id.btnMenu)
         val btnConsultas = findViewById<LinearLayout>(R.id.btnConsultas)
         val btnPagos = findViewById<LinearLayout>(R.id.btnPagos)
@@ -48,23 +45,20 @@ class ClientesActivity : AppCompatActivity() {
         }
 
         btnPagos.setOnClickListener {
-            //Nombre de pagos activity
-            //startActivity(Intent(this, PagosActivity::class.java))
+
         }
 
         btnRegistrarCliente.setOnClickListener {
             val registroExitosoDialog =
                 RegistroExitosoFragment.newInstance() // Usar el nuevo nombre de la clase
             registroExitosoDialog.setOnVolverClickListener {
-                // ... lógica al volver ...
             }
             registroExitosoDialog.show(
                 supportFragmentManager,
                 CambioExitosoFragment.TAG
-            ) // Usar el nuevo TAG
+            )
         }
 
-        // Logica de la lista de clientes
         val buttonAtras: ImageView = findViewById(R.id.ImageViewBtnAtras)
 
         buttonAtras.setOnClickListener {

@@ -40,13 +40,16 @@
             android:name=".CuotaMensualActivity"
             android:exported="false" />
         <activity
-            android:name=".ActividadesActivity"
-            android:exported="false" />
+            android:name=".ActividadesActivity" />
+        <activity
+            android:name=".DescuentosActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".MenuPrincipalActivity" />
         <activity android:name=".NuevoClienteActivity" />
         <activity android:name=".RegistroActividadActivity" />
         <activity android:name=".ConsultasActivity" />
+        <activity android:name=".ConfiguracionActivity" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true"

@@ -20,6 +20,16 @@ class PreciosActivity : AppCompatActivity() {
             val intent = Intent(this, CuotaMensualActivity::class.java)
             startActivity(intent)
         }
+        val btnActividades: Button = findViewById(R.id.btnActividades)
+        btnActividades.setOnClickListener {
+            val intent = Intent(this, ActividadesActivity::class.java)
+            startActivity(intent)
+        }
+        val btnDescuentos: Button = findViewById(R.id.btnDescuentos)
+        btnDescuentos.setOnClickListener {
+            val intent = Intent(this, DescuentosActivity::class.java)
+            startActivity(intent)
+        }
 
     }
 }

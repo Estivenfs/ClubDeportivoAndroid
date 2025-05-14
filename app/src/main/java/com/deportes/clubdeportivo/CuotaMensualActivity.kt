@@ -8,6 +8,5 @@ class CuotaMensualActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cuota_mensual)
 
-        // Aquí podrías conectar botones, listeners o lógica en el futuro
     }
 }

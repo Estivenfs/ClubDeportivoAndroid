@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layoutConfiguracion"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1B1B1B"
+    tools:context=".ConfiguracionActivity">
+
+    <include
+        android:id="@+id/barraSuperior"
+        layout="@layout/fragment_barra_superior"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ScrollView
+        android:id="@+id/scrollConfiguracion"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="145dp"
+        android:layout_marginBottom="87dp"
+        app:layout_constraintTop_toBottomOf="@id/barraSuperior"
+        app:layout_constraintBottom_toTopOf="@id/barraInferior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="24dp"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/textSaludo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hola, Administrador"
+                android:textColor="#D0BA12"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:shadowColor="#40000000"
+                android:shadowDx="0"
+                android:shadowDy="4"
+                android:shadowRadius="4" />
+
+            <TextView
+                android:id="@+id/tituloCambiar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Cambiar contraseña"
+                android:textColor="#FFFFFF"
+                android:textSize="22sp"
+                android:layout_marginTop="32dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Contraseña actual"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:layout_marginTop="16dp" />
+
+            <EditText
+                android:id="@+id/inputContraseniaActual"
+                android:layout_width="match_parent"
+                android:layout_height="62dp"
+                android:hint="Introduce la contraseña"
+                android:background="@drawable/borde_amarillo"
+                android:textColorHint="#ADADAD"
+                android:padding="12dp"
+                android:textColor="#FFFFFF" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nueva contraseña"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:layout_marginTop="24dp" />
+
+            <EditText
+                android:id="@+id/inputNuevaContrasenia"
+                android:layout_width="match_parent"
+                android:layout_height="62dp"
+                android:hint="Introduce la contraseña"
+                android:background="@drawable/borde_amarillo"
+                android:textColorHint="#ADADAD"
+                android:padding="12dp"
+                android:textColor="#FFFFFF" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <include
+        android:id="@+id/barraInferior"
+        layout="@layout/activity_barra_inferior"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
