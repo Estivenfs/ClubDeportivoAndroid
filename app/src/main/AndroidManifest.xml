@@ -33,6 +33,15 @@
         <activity
             android:name=".RegistroActivity"
             android:exported="false" />
+        <activity
+            android:name=".PreciosActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CuotaMensualActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ActividadesActivity"
+            android:exported="false" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".MenuPrincipalActivity" />
         <activity android:name=".NuevoClienteActivity" />

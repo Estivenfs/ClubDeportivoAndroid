@@ -24,6 +24,7 @@ class ConsultasActivity : AppCompatActivity() {
         }
 
         btnPrecios.setOnClickListener {
-        }
+            val intent = Intent(this, PreciosActivity::class.java)
+            startActivity(intent)}
     }
 }
