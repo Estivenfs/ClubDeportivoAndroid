@@ -10,7 +10,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingBottom="5dp"
+        android:paddingTop="40dp">
 
         <ImageView
             android:id="@+id/buttonBack"
@@ -28,7 +30,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="@font/inter_medium"
-            android:paddingVertical="40dp"
             android:paddingStart="16dp"
             android:text="Título de la Pantalla"
             android:textColor="@color/black"

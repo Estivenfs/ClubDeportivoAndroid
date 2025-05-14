@@ -16,13 +16,31 @@ class RegistroActividadActivity : AppCompatActivity() {
         val btnModificarActividad = findViewById<Button>(R.id.btnModificarActividad)
         val btnEliminarActividad = findViewById<Button>(R.id.btnEliminarActividad)
 
-
+        // Lógica al registrar actividad
         btnRegistrarActividad.setOnClickListener {
-            // Logica para registrar actividad
+            val registroExitosoDialog = RegistroExitosoFragment.newInstance()
+            registroExitosoDialog.setOnVolverClickListener {
+                // ... lógica al volver ...
+            }
+            registroExitosoDialog.show(
+                supportFragmentManager, RegistroExitosoFragment.TAG
+            ) // Usar el nuevo TAG
         }
 
+        // Lógica al modificar actividad
         btnModificarActividad.setOnClickListener {
             startActivity(Intent(this, ModificarActividadActivity::class.java))
+        }
+
+        // Lógica al eliminar actividad
+        btnEliminarActividad.setOnClickListener {
+            val eliminarActividadDialog = EliminarActividadFragment.newInstance()
+            eliminarActividadDialog.setOnVolverClickListener {
+                // ... lógica al volver ...
+            }
+            eliminarActividadDialog.show(
+                supportFragmentManager, EliminarActividadFragment.TAG
+            ) // Usar el nuevo TAG
         }
 
     }

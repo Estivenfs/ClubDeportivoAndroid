@@ -44,9 +44,10 @@ class RegistroActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        // Logica del botón crear cuenta
         btnCrearCuenta.setOnClickListener {
             val registroExitosoDialog =
-                RegistroExitosoFragment.newInstance() // Usar el nuevo nombre de la clase
+                RegistroExitosoFragment.newInstance()
             registroExitosoDialog.setOnVolverClickListener {
                 // ... lógica al volver ...
             }
