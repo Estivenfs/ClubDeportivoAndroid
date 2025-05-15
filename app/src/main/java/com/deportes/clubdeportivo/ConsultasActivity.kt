@@ -23,10 +23,11 @@ class ConsultasActivity : AppCompatActivity() {
         }
 
         btnCarnet.setOnClickListener {
-        }
+            val intent = Intent(this, CarnetActivity::class.java)
+            startActivity(intent)}
 
         btnPrecios.setOnClickListener {
-            val intent = Intent(this, PreciosActivity::class.java)
-            startActivity(intent)}
+        val intent = Intent(this, PreciosActivity::class.java)
+        startActivity(intent)}
     }
 }
