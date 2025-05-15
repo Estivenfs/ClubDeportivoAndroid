@@ -1,86 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1B1B1B">
+    android:background="#1B1B1B"
+    android:fitsSystemWindows="true">
+
+    <include
+        android:id="@+id/barraSuperior"
+        layout="@layout/fragment_barra_superior"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fillViewport="true"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/barraInferiorFragment2"
+        app:layout_constraintBottom_toTopOf="@+id/barraInferior"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/barraSuperior">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_vertical"
             android:orientation="vertical">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="147dp"/>
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.5" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="420dp"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="24dp">
 
                 <Button
                     android:id="@+id/btnListarSocios"
                     android:layout_width="match_parent"
-                    android:layout_height="62dp"
-                    android:layout_marginTop="70dp"
+                    android:layout_height="80dp"
                     android:layout_marginBottom="16dp"
                     android:backgroundTint="#D0BA12"
+                    android:fontFamily="@font/inter_medium"
                     android:text="LISTAR SOCIOS"
-                    android:textColor="#1B1B1B" />
+                    android:textColor="#1B1B1B"
+                    android:textSize="18dp" />
 
                 <Button
                     android:id="@+id/btnCarnet"
                     android:layout_width="match_parent"
-                    android:layout_height="62dp"
+                    android:layout_height="80dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="16dp"
                     android:backgroundTint="#D0BA12"
+                    android:fontFamily="@font/inter_medium"
                     android:text="CARNET"
-                    android:textColor="#1B1B1B" />
+                    android:textColor="#1B1B1B"
+                    android:textSize="18dp" />
 
                 <Button
                     android:id="@+id/btnPrecios"
                     android:layout_width="match_parent"
-                    android:layout_height="62dp"
+                    android:layout_height="80dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginBottom="16dp"
                     android:backgroundTint="#D0BA12"
+                    android:fontFamily="@font/inter_medium"
                     android:text="PRECIOS"
-                    android:textColor="#1B1B1B" />
+                    android:textColor="#1B1B1B"
+                    android:textSize="18dp" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/barraInferiorFragment2"
-        android:name="com.deportes.clubdeportivo.BarraInferiorFragment"
+    <include
+        android:id="@+id/barraInferior"
+        layout="@layout/fragment_barra_inferior"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:layout="@layout/fragment_barra_inferior" />
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentContainerView4"
-        android:name="com.deportes.clubdeportivo.BarraSuperiorFragment"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout="@layout/fragment_barra_superior" />
 </androidx.constraintlayout.widget.ConstraintLayout>

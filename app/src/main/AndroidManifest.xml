@@ -13,15 +13,6 @@
         android:theme="@style/Theme.ClubDeportivo"
         tools:targetApi="31">
         <activity
-            android:name=".CarnetDetalleActivity"
-            android:exported="false" />
-        <activity
-            android:name=".CarnetActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.theme.CarnetActivity"
-            android:exported="false" />
-        <activity
             android:name=".ActualizacionDatosActivity"
             android:exported="false" />
         <activity
@@ -48,14 +39,17 @@
         <activity
             android:name=".CuotaMensualActivity"
             android:exported="false" />
-        <activity android:name=".ActividadesActivity" />
-        <activity android:name=".DescuentosActivity" />
+        <activity
+            android:name=".ActividadesActivity" />
+        <activity
+            android:name=".DescuentosActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".MenuPrincipalActivity" />
         <activity android:name=".NuevoClienteActivity" />
         <activity android:name=".RegistroActividadActivity" />
         <activity android:name=".ConsultasActivity" />
         <activity android:name=".ConfiguracionActivity" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true"

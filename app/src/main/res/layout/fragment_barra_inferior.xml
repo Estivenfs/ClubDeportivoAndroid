@@ -7,7 +7,7 @@
     android:background="#1B1B1B"
     android:orientation="horizontal"
     android:paddingTop="15dp"
-    android:paddingBottom="40dp"
+    android:paddingBottom="20dp"
     android:weightSum="4">
 
     <!-- HOME -->

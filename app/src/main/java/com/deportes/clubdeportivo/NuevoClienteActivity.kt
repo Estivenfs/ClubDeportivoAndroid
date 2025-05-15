@@ -1,9 +1,6 @@
 package com.deportes.clubdeportivo
 
 import android.annotation.SuppressLint
-import android.app.DatePickerDialog
-import android.app.Dialog
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -11,9 +8,6 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import java.text.SimpleDateFormat
-import java.util.Calendar
-import java.util.Locale
 
 class NuevoClienteActivity : AppCompatActivity() {
     @SuppressLint("WrongViewCast")
@@ -21,12 +15,7 @@ class NuevoClienteActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_nuevo_cliente)
 
-        // Mostrar el calendario
-        val inputFechaNacimiento = findViewById<TextView>(R.id.inputFechaNacimiento)
-        val fechaNacimientoLayout = findViewById<LinearLayout>(R.id.fechaNacimientoLayout)
-        fechaNacimientoLayout.setOnClickListener {
-            DatePickerUtils.mostrarDatePickerDialog(this, inputFechaNacimiento)
-        }
+
         // Importación y lógica de la barra superior
         val btnAtras: ImageView = findViewById(R.id.buttonBack)
         val textViewTitulo: TextView = findViewById(R.id.textViewTitle)
@@ -35,12 +24,15 @@ class NuevoClienteActivity : AppCompatActivity() {
         btnAtras.setOnClickListener {
             finish()
         }
-
-
+        // Importacion y lógica de barra inferior
         val btnMenu = findViewById<LinearLayout>(R.id.btnMenu)
         val btnConsultas = findViewById<LinearLayout>(R.id.btnConsultas)
         val btnPagos = findViewById<LinearLayout>(R.id.btnPagos)
-        val btnRegistrarCliente: Button = findViewById<Button>(R.id.btnRegistrarCliente)
+        val btnClientes = findViewById<LinearLayout>(R.id.btnNuevoCliente)
+
+        // Asignar este valor a la pantalla en la que se encuentre
+        btnClientes.alpha = 0.5f // Establece la transparencia al 50%
+        btnClientes.isEnabled = false // Opcionalmente, desactiva los clics
 
         btnMenu.setOnClickListener {
             startActivity(Intent(this, MenuPrincipalActivity::class.java))
@@ -51,9 +43,17 @@ class NuevoClienteActivity : AppCompatActivity() {
         }
 
         btnPagos.setOnClickListener {
-            //Nombre de pagos activity
-            //startActivity(Intent(this, PagosActivity::class.java))
+            startActivity(Intent(this, PagosBusquedaActivity::class.java))
         }
+
+        btnClientes.setOnClickListener {
+            // Opción deshabilitada en esta pantalla
+            // startActivity(Intent(this, NuevoClienteActivity::class.java))
+        }
+
+
+        val btnRegistrarCliente: Button = findViewById<Button>(R.id.btnRegistrarCliente)
+
 
         btnRegistrarCliente.setOnClickListener {
             val registroExitosoDialog =
@@ -67,7 +67,5 @@ class NuevoClienteActivity : AppCompatActivity() {
             ) // Usar el nuevo TAG
         }
     }
-
-
 
 }

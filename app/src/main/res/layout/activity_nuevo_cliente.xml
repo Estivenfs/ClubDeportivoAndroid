@@ -41,7 +41,7 @@
             <EditText
                 android:id="@+id/inputNombre"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="40dp"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/rounded_border"
                 android:hint="María"
@@ -62,7 +62,7 @@
             <EditText
                 android:id="@+id/inputApellido"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="40dp"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/rounded_border"
                 android:hint="González"
@@ -83,7 +83,7 @@
             <EditText
                 android:id="@+id/inputDNI"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="40dp"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/rounded_border"
                 android:hint="12345678"
@@ -105,7 +105,7 @@
             <EditText
                 android:id="@+id/inputEmail"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="40dp"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/rounded_border"
                 android:hint="maria.gonzalez@example.com"
@@ -124,35 +124,17 @@
                 android:textColor="#FFFFFF"
                 android:textSize="16sp" />
 
-            <LinearLayout
-                android:id="@+id/fechaNacimientoLayout"
+            <EditText
+                android:id="@+id/inputFechaNacimiento"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/rounded_border"
-                android:orientation="horizontal"
-                android:paddingVertical="12dp"
-                android:paddingHorizontal="16dp"
+                android:layout_height="40dp"
                 android:layout_marginTop="8dp"
-                android:clickable="true"
-                android:focusable="true">
-
-                <TextView
-                    android:id="@+id/inputFechaNacimiento"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="10/04/2025"
-                    android:textSize="18sp"
-                    android:textColor="#ADADAD"
-                    android:layout_gravity="center_vertical"/>
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/baseline_calendar"
-                    android:layout_gravity="center_vertical"
-                    app:tint="#D0BA12" />
-            </LinearLayout>
+                android:background="@drawable/rounded_border"
+                android:hint="15/05/1990"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#ADADAD" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -166,7 +148,7 @@
             <EditText
                 android:id="@+id/inputTipoInscripcion"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="40dp"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/rounded_border"
                 android:hint="Socio"
@@ -187,7 +169,7 @@
             <EditText
                 android:id="@+id/inputAptoFisico"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="40dp"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/rounded_border"
                 android:hint="Posee"

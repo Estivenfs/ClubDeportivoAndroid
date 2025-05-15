@@ -43,7 +43,7 @@ class ActualizacionDatosActivity : AppCompatActivity() {
 
 
         fechaNacimientoLayout.setOnClickListener {
-            DatePickerUtils.mostrarDatePickerDialog(this, inputFechaNacimiento) // Pasar el contexto de la actividad
+            mostrarDatePickerDialog(this, inputFechaNacimiento) // Pasar el contexto de la actividad
         }
 
         // Lógica de la barra inferior
@@ -72,12 +72,12 @@ class ActualizacionDatosActivity : AppCompatActivity() {
         val btnActualizarCambios = findViewById<Button>(R.id.buttonActualizarDatos)
 
         btnActualizarCambios.setOnClickListener {
-            val registroExitosoDialog =
-                RegistroExitosoFragment.newInstance() // Usar el nuevo nombre de la clase
-            registroExitosoDialog.setOnVolverClickListener {
+            val cambioExitosoDialog =
+                CambioExitosoFragment.newInstance() // Usar el nuevo nombre de la clase
+            cambioExitosoDialog.setOnVolverClickListener {
                 // ... lógica al volver ...
             }
-            registroExitosoDialog.show(
+            cambioExitosoDialog.show(
                 supportFragmentManager,
                 RegistroExitosoFragment.TAG
             ) // Usar el nuevo TAG
@@ -85,5 +85,26 @@ class ActualizacionDatosActivity : AppCompatActivity() {
     }
 
 
+    private fun mostrarDatePickerDialog(context: Context, textView: TextView) { // Cambio a TextView
+        val c = Calendar.getInstance()
+        val year = c.get(Calendar.YEAR)
+        val month = c.get(Calendar.MONTH)
+        val day = c.get(Calendar.DAY_OF_MONTH)
 
+        val dpd = DatePickerDialog(
+            context, // Usar el contexto pasado como parámetro
+            { view, year, monthOfYear, dayOfMonth ->
+                // Display Selected date in textbox
+                val selectedDate = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(
+                    Calendar.getInstance().apply {
+                        set(year, monthOfYear, dayOfMonth)
+                    }.time
+                )
+                textView.text = selectedDate // Actualizar el TextView
+            }, year, month, day
+        )
+        dpd.show()
+
+
+    }
 }
