@@ -15,7 +15,12 @@
         <activity
             android:name=".VisualizarCarnet"
             android:exported="false" />
-
+        <activity
+            android:name=".CarnetDetalleActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.theme.CarnetActivity"
+            android:exported="false" />
         <activity
             android:name=".CarnetActivity"
             android:exported="false" />
