@@ -33,7 +33,7 @@ class CarnetActivity : AppCompatActivity() {
         btnBuscar.setOnClickListener {
             // Lógica para manejar el clic en el botón "Buscar"
             // Cambiar a activity correspondiente
-            startActivity(Intent(this, CarnetDetalleActivity::class.java))
+            startActivity(Intent(this, VisualizarCarnet::class.java))
         }
 
     }
