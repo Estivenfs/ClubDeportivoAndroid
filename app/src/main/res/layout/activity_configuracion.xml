@@ -27,68 +27,85 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center|center_horizontal"
             android:orientation="vertical"
-            android:padding="24dp"
-            android:gravity="center_horizontal">
+            android:padding="24dp">
 
-            <TextView
-                android:id="@+id/textSaludo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Hola, Administrador"
-                android:textColor="#D0BA12"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:shadowColor="#40000000"
-                android:shadowDx="0"
-                android:shadowDy="4"
-                android:shadowRadius="4" />
+            <LinearLayout
+                android:layout_width="258dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center|center_horizontal"
+                android:gravity="start|right"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/fotodeperfil" />
+
+                <TextView
+                    android:id="@+id/textSaludo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:shadowColor="#40000000"
+                    android:shadowDx="0"
+                    android:shadowDy="4"
+                    android:shadowRadius="4"
+                    android:text="Hola, Administrador"
+                    android:textColor="#D0BA12"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/tituloCambiar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
                 android:text="Cambiar contraseña"
                 android:textColor="#FFFFFF"
                 android:textSize="22sp"
-                android:layout_marginTop="32dp"
                 android:textStyle="bold" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="10dp"
                 android:text="Contraseña actual"
                 android:textColor="#FFFFFF"
-                android:textSize="18sp"
-                android:layout_marginTop="16dp" />
+                android:textSize="18sp" />
 
             <EditText
                 android:id="@+id/inputContraseniaActual"
                 android:layout_width="match_parent"
                 android:layout_height="62dp"
-                android:hint="Introduce la contraseña"
                 android:background="@drawable/borde_amarillo"
-                android:textColorHint="#ADADAD"
+                android:hint="Introduce la contraseña"
                 android:padding="12dp"
-                android:textColor="#FFFFFF" />
+                android:textColor="#FFFFFF"
+                android:textColorHint="#ADADAD" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="10dp"
                 android:text="Nueva contraseña"
                 android:textColor="#FFFFFF"
-                android:textSize="18sp"
-                android:layout_marginTop="24dp" />
+                android:textSize="18sp" />
 
             <EditText
                 android:id="@+id/inputNuevaContrasenia"
                 android:layout_width="match_parent"
                 android:layout_height="62dp"
-                android:hint="Introduce la contraseña"
                 android:background="@drawable/borde_amarillo"
-                android:textColorHint="#ADADAD"
+                android:hint="Introduce la contraseña"
                 android:padding="12dp"
-                android:textColor="#FFFFFF" />
+                android:textColor="#FFFFFF"
+                android:textColorHint="#ADADAD" />
 
         </LinearLayout>
     </ScrollView>
