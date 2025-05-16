@@ -46,27 +46,7 @@ class ActualizacionDatosActivity : AppCompatActivity() {
             DatePickerUtils.mostrarDatePickerDialog(this, inputFechaNacimiento) // Pasar el contexto de la actividad
         }
 
-        // Lógica de la barra inferior
-        val btnMenu = findViewById<LinearLayout>(R.id.btnMenu)
-        val btnConsultas = findViewById<LinearLayout>(R.id.btnConsultas)
-        val btnPagos = findViewById<LinearLayout>(R.id.btnPagos)
-        val btnRegistrarCliente = findViewById<LinearLayout>(R.id.btnNuevoCliente)
 
-        btnMenu.setOnClickListener {
-            startActivity(Intent(this, MenuPrincipalActivity::class.java))
-        }
-
-        btnConsultas.setOnClickListener {
-            startActivity(Intent(this, ConsultasActivity::class.java))
-        }
-
-        btnPagos.setOnClickListener {
-            startActivity(Intent(this, PagosBusquedaActivity::class.java))
-        }
-
-        btnRegistrarCliente.setOnClickListener {
-            startActivity(Intent(this, NuevoClienteActivity::class.java))
-        }
 
         // Lógica del boton actualizar cambios
         val btnActualizarCambios = findViewById<Button>(R.id.buttonActualizarDatos)

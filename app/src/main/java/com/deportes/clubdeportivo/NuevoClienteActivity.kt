@@ -37,23 +37,10 @@ class NuevoClienteActivity : AppCompatActivity() {
         }
 
 
-        val btnMenu = findViewById<LinearLayout>(R.id.btnMenu)
-        val btnConsultas = findViewById<LinearLayout>(R.id.btnConsultas)
-        val btnPagos = findViewById<LinearLayout>(R.id.btnPagos)
+
         val btnRegistrarCliente: Button = findViewById<Button>(R.id.btnRegistrarCliente)
 
-        btnMenu.setOnClickListener {
-            startActivity(Intent(this, MenuPrincipalActivity::class.java))
-        }
 
-        btnConsultas.setOnClickListener {
-            startActivity(Intent(this, ConsultasActivity::class.java))
-        }
-
-        btnPagos.setOnClickListener {
-            //Nombre de pagos activity
-            //startActivity(Intent(this, PagosActivity::class.java))
-        }
 
         btnRegistrarCliente.setOnClickListener {
             val registroExitosoDialog =
