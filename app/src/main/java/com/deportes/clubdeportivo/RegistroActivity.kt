@@ -19,6 +19,7 @@ class RegistroActivity : AppCompatActivity() {
 
 
         // Obtenemos referencias a los elementos de la interfaz de usuario
+        val volverButton = findViewById<Button>(R.id.buttonVolver)
         val iniciarSesionTextView: TextView = findViewById(R.id.textViewIniciarSesion)
         val btnCrearCuenta: Button = findViewById<Button>(R.id.buttonCrearCuenta)
 
@@ -40,24 +41,37 @@ class RegistroActivity : AppCompatActivity() {
 
         // Logica del botón crear cuenta
         btnCrearCuenta.setOnClickListener {
-            val registroExitosoDialog =
-                RegistroExitosoFragment.newInstance()
+            val registroExitosoDialog = RegistroExitosoFragment.newInstance(false)
             registroExitosoDialog.setOnVolverClickListener {
                 finish()
             }
+
+            // Mostrar el diálogo de registro exitoso primero
             registroExitosoDialog.show(
                 supportFragmentManager,
                 RegistroExitosoFragment.TAG
-            ) // Usar el nuevo TAG
+            )
 
-            // Vista de carga de pantalla
-            val cargandoDialog = CargandoFragment.newInstance()
-            cargandoDialog.show(supportFragmentManager, CargandoFragment.TAG)
             Handler(Looper.getMainLooper()).postDelayed({
-                val cargandoDialog = supportFragmentManager.findFragmentByTag(CargandoFragment.TAG) as? CargandoFragment
-                cargandoDialog?.dismiss()
-                startActivity(Intent(this, MenuPrincipalActivity::class.java))
-            }, 3000)
+                // Ocultar el diálogo de registro exitoso después de 1 segundo
+                registroExitosoDialog.dismiss()
+
+
+                // Mostrar el diálogo de carga después de ocultar el registro exitoso
+                val cargandoDialog = CargandoFragment.newInstance()
+                cargandoDialog.show(
+                    supportFragmentManager,
+                    CargandoFragment.TAG
+                )
+
+                Handler(Looper.getMainLooper()).postDelayed({
+                    // Ocultar el diálogo de carga después de 3 segundos
+                    val cargandoDialog =
+                        supportFragmentManager.findFragmentByTag(CargandoFragment.TAG) as? CargandoFragment
+                    cargandoDialog?.dismiss()
+                    startActivity(Intent(this, MenuPrincipalActivity::class.java))
+                }, 3000)
+            }, 1000)
         }
     }
 }
