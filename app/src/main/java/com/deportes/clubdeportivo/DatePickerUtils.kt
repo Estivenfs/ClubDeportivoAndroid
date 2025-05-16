@@ -17,6 +17,7 @@ object DatePickerUtils {
         val day = c.get(Calendar.DAY_OF_MONTH)
 
         val dpd = DatePickerDialog(context,
+            R.style.MyDatePickerDialogTheme, // <- Aquí aplicás tu estilo
             { _, year, monthOfYear, dayOfMonth ->
                 val selectedDate = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(
                     Calendar.getInstance().apply {

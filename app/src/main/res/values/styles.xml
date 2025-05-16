@@ -11,4 +11,12 @@
     <item name="android:layout_marginBottom">12dp</item>
     <item name="android:textSize">14sp</item>
 </style>
+    <style name="MyDatePickerDialogTheme" parent="Theme.MaterialComponents.Light.Dialog">
+        <!-- Cambia los colores según tu diseño -->
+        <item name="colorPrimary">#D0BA12</item>
+        <item name="colorOnPrimary">#1B1B1B</item>
+        <item name="colorAccent">#D0BA12</item>
+        <item name="android:textColorPrimary">#1B1B1B</item>
+    </style>
+
 </resources>
