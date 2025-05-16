@@ -23,43 +23,49 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="147dp"/>
+                android:layout_height="147dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="420dp"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="24dp">
 
                 <Button
                     android:id="@+id/btnListarSocios"
                     android:layout_width="match_parent"
-                    android:layout_height="62dp"
+                    android:layout_height="70dp"
                     android:layout_marginTop="70dp"
                     android:layout_marginBottom="16dp"
                     android:backgroundTint="#D0BA12"
                     android:text="LISTAR SOCIOS"
-                    android:textColor="#1B1B1B" />
+                    android:textColor="#1B1B1B"
+                    android:textStyle="bold"
+                    android:textSize="18sp" />
 
                 <Button
                     android:id="@+id/btnCarnet"
                     android:layout_width="match_parent"
-                    android:layout_height="62dp"
+                    android:layout_height="70dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="16dp"
                     android:backgroundTint="#D0BA12"
                     android:text="CARNET"
-                    android:textColor="#1B1B1B" />
+                    android:textColor="#1B1B1B"
+                    android:textStyle="bold"
+                    android:textSize="18sp" />
 
                 <Button
                     android:id="@+id/btnPrecios"
                     android:layout_width="match_parent"
-                    android:layout_height="62dp"
+                    android:layout_height="70dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="16dp"
                     android:backgroundTint="#D0BA12"
                     android:text="PRECIOS"
-                    android:textColor="#1B1B1B" />
+                    android:textColor="#1B1B1B"
+                    android:textStyle="bold"
+                    android:textSize="18sp" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
