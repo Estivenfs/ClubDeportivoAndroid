@@ -9,10 +9,9 @@
     <!-- Contenido desplazable -->
     <ScrollView
         android:id="@+id/scrollContenido"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:padding="24dp"
-        app:layout_constraintBottom_toTopOf="@+id/barraInferiorFragment"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -33,13 +32,13 @@
                     android:layout_width="70dp"
                     android:layout_height="70dp"
                     android:layout_marginTop="25dp"
+                    android:src="@drawable/fotodeperfil"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/textView2"
                     app:layout_constraintHorizontal_bias="0.064"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.666"
-                    android:src="@drawable/fotodeperfil" />
+                    app:layout_constraintVertical_bias="0.666" />
 
                 <TextView
                     android:id="@+id/textView2"
@@ -85,6 +84,7 @@
             <Button
                 android:id="@+id/btnNuevoCliente"
                 style="@style/BotonAmarilloHome"
+                android:layout_marginTop="25dp"
                 android:drawableLeft="@drawable/registrar_cliente_color_negro"
                 android:text="Registrar &#10; NUEVO CLIENTE" />
 
@@ -131,13 +131,4 @@
         </LinearLayout>
     </ScrollView>
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/barraInferiorFragment"
-        android:name="com.deportes.clubdeportivo.BarraInferiorFragment"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout="@layout/fragment_barra_inferior" />
 </androidx.constraintlayout.widget.ConstraintLayout>
