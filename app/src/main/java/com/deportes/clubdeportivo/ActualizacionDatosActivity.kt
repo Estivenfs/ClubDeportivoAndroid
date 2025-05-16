@@ -1,31 +1,17 @@
 package com.deportes.clubdeportivo
 
-import android.app.DatePickerDialog
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import java.text.SimpleDateFormat
-import java.util.Calendar
-import java.util.Locale
 
 class ActualizacionDatosActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_actualizacion_datos)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
 
         // Lógica de la barra superior
         val btnAtras: ImageView = findViewById(R.id.buttonBack)
@@ -46,27 +32,7 @@ class ActualizacionDatosActivity : AppCompatActivity() {
             DatePickerUtils.mostrarDatePickerDialog(this, inputFechaNacimiento) // Pasar el contexto de la actividad
         }
 
-        // Lógica de la barra inferior
-        val btnMenu = findViewById<LinearLayout>(R.id.btnMenu)
-        val btnConsultas = findViewById<LinearLayout>(R.id.btnConsultas)
-        val btnPagos = findViewById<LinearLayout>(R.id.btnPagos)
-        val btnRegistrarCliente = findViewById<LinearLayout>(R.id.btnNuevoCliente)
 
-        btnMenu.setOnClickListener {
-            startActivity(Intent(this, MenuPrincipalActivity::class.java))
-        }
-
-        btnConsultas.setOnClickListener {
-            startActivity(Intent(this, ConsultasActivity::class.java))
-        }
-
-        btnPagos.setOnClickListener {
-            startActivity(Intent(this, PagosBusquedaActivity::class.java))
-        }
-
-        btnRegistrarCliente.setOnClickListener {
-            startActivity(Intent(this, NuevoClienteActivity::class.java))
-        }
 
         // Lógica del boton actualizar cambios
         val btnActualizarCambios = findViewById<Button>(R.id.buttonActualizarDatos)
