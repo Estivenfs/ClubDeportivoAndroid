@@ -39,7 +39,7 @@ class ClientesActivity : AppCompatActivity() {
             )
         }*/
 
-        val buttonAtras: ImageView = findViewById(R.id.ImageViewBtnAtras)
+       val buttonAtras: ImageView = findViewById(R.id.ImageViewBtnAtras)
 
         buttonAtras.setOnClickListener {
             startActivity(Intent(this, ActualizacionDatosActivity::class.java))

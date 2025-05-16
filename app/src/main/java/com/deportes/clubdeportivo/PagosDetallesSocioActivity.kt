@@ -1,6 +1,7 @@
 package com.deportes.clubdeportivo
 
 import android.os.Bundle
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -9,6 +10,17 @@ class PagosDetallesSocioActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pagos_detalles_socio)
+
+
+        // Lógica de la barra superior
+        val btnAtras: ImageView = findViewById(R.id.buttonBack)
+        val textViewTitulo: TextView = findViewById(R.id.textViewTitle)
+
+        textViewTitulo.text = "Detalles de Pago (Socio)"
+
+        btnAtras.setOnClickListener {
+            finish()
+        }
 
         val inputFechaPago = findViewById<TextView>(R.id.inputFechaPago)
         val inputFechaInicio = findViewById<TextView>(R.id.inputFechaInicio)

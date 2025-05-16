@@ -5,12 +5,25 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
 
 class PreciosActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_precios)
+
+        // Lógica de la barra superior
+        val btnAtras: ImageView = findViewById(R.id.buttonBack)
+        val textViewTitulo: TextView = findViewById(R.id.textViewTitle)
+
+        textViewTitulo.text = "Precios"
+
+        btnAtras.setOnClickListener {
+            finish()
+        }
+
 
         val barraSuperior: Toolbar = findViewById(R.id.barraSuperior)
         setSupportActionBar(barraSuperior)

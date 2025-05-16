@@ -27,11 +27,11 @@ class NuevoClienteActivity : AppCompatActivity() {
         fechaNacimientoLayout.setOnClickListener {
             DatePickerUtils.mostrarDatePickerDialog(this, inputFechaNacimiento)
         }
-        // Importación y lógica de la barra superior
-        val btnAtras: ImageView = findViewById(R.id.buttonBack)
         val textViewTitulo: TextView = findViewById(R.id.textViewTitle)
         textViewTitulo.text = "Registrar Cliente"
 
+        // Importación y lógica de la barra superior
+        val btnAtras: ImageView = findViewById(R.id.buttonBack)
         btnAtras.setOnClickListener {
             finish()
         }

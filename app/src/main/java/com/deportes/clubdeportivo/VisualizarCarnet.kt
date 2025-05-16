@@ -20,7 +20,7 @@ class VisualizarCarnet : AppCompatActivity() {
         val btnAtras: ImageView = findViewById(R.id.buttonBack)
         val textViewTitulo: TextView = findViewById(R.id.textViewTitle)
 
-        textViewTitulo.text = "Clientes"
+        textViewTitulo.text = "Carnet"
 
         btnAtras.setOnClickListener {
             finish()

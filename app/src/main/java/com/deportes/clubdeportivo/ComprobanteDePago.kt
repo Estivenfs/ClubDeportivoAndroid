@@ -12,7 +12,15 @@ class ComprobanteDePago : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_comprobante_de_pago)
 
+        // Lógica de la barra superior
+        val btnAtras: ImageView = findViewById(R.id.buttonBack)
+        val textViewTitulo: TextView = findViewById(R.id.textViewTitle)
 
+        textViewTitulo.text = "Comprobantes de Pago"
+
+        btnAtras.setOnClickListener {
+            finish()
+        }
         // Lógica de la barra superior
        /* val btnAtras: ImageView = findViewById(R.id.buttonBack)
         val textViewTitulo: TextView = findViewById(R.id.textViewTitle)

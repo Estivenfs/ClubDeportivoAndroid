@@ -3,12 +3,25 @@ package com.deportes.clubdeportivo
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
 class RegistroActividadActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registro_actividad)
+
+
+        // Lógica de la barra superior
+        val btnAtras: ImageView = findViewById(R.id.buttonBack)
+        val textViewTitulo: TextView = findViewById(R.id.textViewTitle)
+
+        textViewTitulo.text = "Registro de Actividad"
+
+        btnAtras.setOnClickListener {
+            finish()
+        }
 
         val btnRegistrarActividad = findViewById<Button>(R.id.btnRegistrarActividad)
         val btnModificarActividad = findViewById<Button>(R.id.btnModificarActividad)
