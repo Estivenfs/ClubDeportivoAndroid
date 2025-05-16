@@ -90,13 +90,13 @@
         </LinearLayout>
     </ScrollView>
 
-    <include
-        android:id="@+id/barraInferior"
-        layout="@layout/activity_barra_inferior"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/barraInferiorFragment"
+        android:name="com.deportes.clubdeportivo.BarraInferiorFragment"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

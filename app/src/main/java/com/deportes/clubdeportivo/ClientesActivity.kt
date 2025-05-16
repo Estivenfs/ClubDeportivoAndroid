@@ -23,33 +23,21 @@ class ClientesActivity : AppCompatActivity() {
             finish()
         }
 
-        val btnMenu = findViewById<LinearLayout>(R.id.btnMenu)
-        val btnConsultas = findViewById<LinearLayout>(R.id.btnConsultas)
-        val btnPagos = findViewById<LinearLayout>(R.id.btnPagos)
-        val btnRegistrarCliente = findViewById<LinearLayout>(R.id.btnNuevoCliente)
 
-        btnMenu.setOnClickListener {
-            startActivity(Intent(this, MenuPrincipalActivity::class.java))
-        }
+       /* val btnRegistrarCliente = findViewById<LinearLayout>(R.id.btnNuevoCliente)
 
-        btnConsultas.setOnClickListener {
-            startActivity(Intent(this, ConsultasActivity::class.java))
-        }
 
-        btnPagos.setOnClickListener {
-
-        }
 
         btnRegistrarCliente.setOnClickListener {
-            val registroExitosoDialog =
-                RegistroExitosoFragment.newInstance() // Usar el nuevo nombre de la clase
+            val registroExitosoDialog = RegistroExitosoFragment.newInstance()
             registroExitosoDialog.setOnVolverClickListener {
+                // lógica al volver si querés
             }
             registroExitosoDialog.show(
                 supportFragmentManager,
-                CambioExitosoFragment.TAG
+                RegistroExitosoFragment.TAG
             )
-        }
+        }*/
 
         val buttonAtras: ImageView = findViewById(R.id.ImageViewBtnAtras)
 
