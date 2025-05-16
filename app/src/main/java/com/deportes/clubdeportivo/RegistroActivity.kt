@@ -5,6 +5,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.TextView
 import android.content.Intent
+import android.os.Handler
+import android.os.Looper
 import android.widget.Button
 import android.widget.ImageView
 
@@ -41,12 +43,21 @@ class RegistroActivity : AppCompatActivity() {
             val registroExitosoDialog =
                 RegistroExitosoFragment.newInstance()
             registroExitosoDialog.setOnVolverClickListener {
-                // ... lógica al volver ...
+                finish()
             }
             registroExitosoDialog.show(
                 supportFragmentManager,
                 RegistroExitosoFragment.TAG
             ) // Usar el nuevo TAG
+
+            // Vista de carga de pantalla
+            val cargandoDialog = CargandoFragment.newInstance()
+            cargandoDialog.show(supportFragmentManager, CargandoFragment.TAG)
+            Handler(Looper.getMainLooper()).postDelayed({
+                val cargandoDialog = supportFragmentManager.findFragmentByTag(CargandoFragment.TAG) as? CargandoFragment
+                cargandoDialog?.dismiss()
+                startActivity(Intent(this, MenuPrincipalActivity::class.java))
+            }, 3000)
         }
     }
 }
