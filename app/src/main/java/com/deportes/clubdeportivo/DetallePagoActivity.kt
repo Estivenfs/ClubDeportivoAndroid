@@ -13,9 +13,10 @@ class DetallePagoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detalle_pago)
 
-        // Importación y lógica de la barra superior
+        // Lógica de la barra superior
         val btnAtras: ImageView = findViewById(R.id.buttonBack)
         val textViewTitulo: TextView = findViewById(R.id.textViewTitle)
+
         textViewTitulo.text = "Detalle de Pago"
 
         btnAtras.setOnClickListener {
