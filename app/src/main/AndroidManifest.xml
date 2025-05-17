@@ -16,7 +16,7 @@
             android:name=".VisualizarCarnet"
             android:exported="false" />
         <activity
-            android:name=".CarnetDetalleActivity"
+            android:name=".DetallePagoActivity"
             android:exported="false" />
 
         <activity

@@ -76,7 +76,7 @@
             </LinearLayout>
 
             <Button
-                android:id="@+id/btnIniciarSesion2"
+                android:id="@+id/btnImprimir"
                 android:layout_width="match_parent"
                 android:layout_height="62dp"
                 android:layout_marginTop="30dp"

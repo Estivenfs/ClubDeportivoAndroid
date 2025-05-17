@@ -2,6 +2,7 @@ package com.deportes.clubdeportivo
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -35,6 +36,12 @@ class ComprobanteDePago : AppCompatActivity() {
 
 
         val btnRegistrarCliente = findViewById<LinearLayout>(R.id.btnNuevoCliente)*/
+
+        val btnImprimir = findViewById<Button>(R.id.btnImprimir)
+
+        btnImprimir.setOnClickListener {
+            startActivity(Intent(this, DetallePagoActivity::class.java))
+        }
 
 
     }
