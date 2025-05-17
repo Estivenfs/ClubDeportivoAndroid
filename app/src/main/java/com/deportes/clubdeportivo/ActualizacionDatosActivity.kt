@@ -38,14 +38,14 @@ class ActualizacionDatosActivity : AppCompatActivity() {
         val btnActualizarCambios = findViewById<Button>(R.id.buttonActualizarDatos)
 
         btnActualizarCambios.setOnClickListener {
-            val registroExitosoDialog =
-                RegistroExitosoFragment.newInstance() // Usar el nuevo nombre de la clase
-            registroExitosoDialog.setOnVolverClickListener {
+            val cambioExitosoDialog =
+                CambioExitosoFragment.newInstance() // Usar el nuevo nombre de la clase
+            cambioExitosoDialog.setOnVolverClickListener {
                 // ... lógica al volver ...
             }
-            registroExitosoDialog.show(
+            cambioExitosoDialog.show(
                 supportFragmentManager,
-                RegistroExitosoFragment.TAG
+                CambioExitosoFragment.TAG
             ) // Usar el nuevo TAG
         }
     }

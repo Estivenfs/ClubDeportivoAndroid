@@ -3,6 +3,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 
 class MenuPrincipalActivity : AppCompatActivity() {
@@ -11,11 +12,11 @@ class MenuPrincipalActivity : AppCompatActivity() {
         setContentView(R.layout.activity_menu_principal)
 
         try {
-            val btnNuevoCliente = findViewById<Button>(R.id.btnNuevoCliente)
-            val btnRegistrarActividad = findViewById<Button>(R.id.btnRegistrarActividad)
-            val btnConsultas = findViewById<Button>(R.id.btnConsultas)
-            val btnPagos = findViewById<Button>(R.id.btnPagos)
-            val btnGestionarClientes = findViewById<Button>(R.id.btnGestionClientes)
+            val btnNuevoCliente = findViewById<LinearLayout>(R.id.btnNuevoCliente)
+            val btnRegistrarActividad = findViewById<LinearLayout>(R.id.btnRegistrarActividad)
+            val btnConsultas = findViewById<LinearLayout>(R.id.btnConsultas)
+            val btnPagos = findViewById<LinearLayout>(R.id.btnPagos)
+            val btnGestionarClientes = findViewById<LinearLayout>(R.id.btnGestionClientes)
             val btnCerrarSesion = findViewById<Button>(R.id.btnCerrarSesion)
             val btnConfiguracion = findViewById<ImageButton>(R.id.imageButton)
 

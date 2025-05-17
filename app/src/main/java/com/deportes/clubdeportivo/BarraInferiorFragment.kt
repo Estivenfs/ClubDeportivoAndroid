@@ -44,8 +44,7 @@ class BarraInferiorFragment : Fragment() {
 
         if (currentActivity == targetActivity) {
             // Cambiar color para indicar que esta es la Activity actual
-            imageView.setColorFilter(Color.WHITE) // o el color que quieras para activo
-            textView.setTextColor(Color.WHITE)
+            button.alpha = 0.5f
 
             // Desactivar el click
             button.isClickable = false
