@@ -7,8 +7,8 @@ import android.database.sqlite.SQLiteOpenHelper
 import android.database.Cursor
 
 // Nombre de la base de datos
-private const val BD_NOMBRE = "BaseDatos"
-private const val BD_VERSION = 1
+private const val BD_NOMBRE = "ClubDeportivo"
+private const val BD_VERSION = 4
 
 class BDatos(contexto: Context) : SQLiteOpenHelper(contexto, BD_NOMBRE, null, BD_VERSION) {
 
@@ -26,7 +26,7 @@ class BDatos(contexto: Context) : SQLiteOpenHelper(contexto, BD_NOMBRE, null, BD
 
         // Insertar usuario por defecto (admin / admin)
         val insertAdmin = """
-        INSERT OR IGNORE INTO Usuario (nombre, clave) VALUES ('admin', 'admin')
+        INSERT OR IGNORE INTO Usuario (nombre, clave, email, dni) VALUES ('admin', 'admin', 'admin@admin.com', '12345678')
     """.trimIndent()
         db?.execSQL(insertAdmin)
     }
@@ -37,15 +37,18 @@ class BDatos(contexto: Context) : SQLiteOpenHelper(contexto, BD_NOMBRE, null, BD
 
     companion object {
         fun crearTablaEmpleado(): String = """
-            CREATE TABLE IF NOT EXISTS Empleado (
-            id_usuario INTEGER PRIMARY KEY AUTOINCREMENT,
-            nombre_usuario TEXT NOT NULL,
-            contrasena_usuario TEXT NOT NULL
+            CREATE TABLE Usuario (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            email TEXT NOT NULL UNIQUE,
+            dni TEXT NOT NULL UNIQUE,
+            nombre TEXT NOT NULL,
+            clave TEXT NOT NULL,
+            estado BOOLEAN DEFAULT 0 NOT NULL
 );
         """.trimIndent()
 
         fun crearTablaCliente(): String = """
-            CREATE TABLE IF NOT EXISTS Cliente (
+            CREATE TABLE Cliente (
             id_cliente INTEGER PRIMARY KEY AUTOINCREMENT,
             nombre TEXT NOT NULL,
             apellido TEXT NOT NULL,
@@ -54,9 +57,7 @@ class BDatos(contexto: Context) : SQLiteOpenHelper(contexto, BD_NOMBRE, null, BD
             telefono TEXT,
             fecha_nacimiento DATE,
             cond_socio BOOLEAN NOT NULL,  -- TRUE si es socio, FALSE si no
-            apto_fisico BOOLEAN NOT NULL,
-            id_pago INTEGER,
-            id_actividad INTEGER
+            apto_fisico BOOLEAN NOT NULL
             );
         """.trimIndent()
 
@@ -167,13 +168,36 @@ class BDatos(contexto: Context) : SQLiteOpenHelper(contexto, BD_NOMBRE, null, BD
     }
 
     // Ejecutar consultas DML como INSERT, UPDATE, DELETE
-    fun ejecutarConsultaDML(query: String, args: Array<String>): Long {
+    // Función para INSERT
+    fun insertar(query: String, args: Array<String>): Int {
         val db = writableDatabase
-        val stmt = db.compileStatement(query)
-        args.forEachIndexed { i, arg -> stmt.bindString(i + 1, arg) }
-        val resultado = stmt.executeInsert()
-        db.close()
-        return resultado
+        var rowId: Int = -1
+        try {
+            val stmt = db.compileStatement(query)
+            args.forEachIndexed { i, arg -> stmt.bindString(i + 1, arg) }
+            rowId = stmt.executeInsert().toInt()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        } finally {
+            db.close()
+        }
+        return rowId
+    }
+
+    // Función para UPDATE o DELETE (devuelve el número de filas afectadas)
+    fun actualizarOEliminar(query: String, args: Array<String>): Int {
+        val db = writableDatabase
+        var rowsAffected: Int = 0
+        try {
+            val stmt = db.compileStatement(query)
+            args.forEachIndexed { i, arg -> stmt.bindString(i + 1, arg) }
+            rowsAffected = stmt.executeUpdateDelete()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        } finally {
+            db.close()
+        }
+        return rowsAffected
     }
 
     fun ejecutarConsultaRaw(query: String, args: Array<String>? = null): Boolean {

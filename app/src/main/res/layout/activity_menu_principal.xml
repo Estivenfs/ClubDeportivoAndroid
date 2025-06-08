@@ -20,14 +20,14 @@
             android:layout_marginTop="25dp"
             android:src="@drawable/fotodeperfil"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/textView2"
+            app:layout_constraintEnd_toStartOf="@+id/textViewSaludo"
             app:layout_constraintHorizontal_bias="0.064"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.666" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/textViewSaludo"
             android:layout_width="174dp"
             android:layout_height="55dp"
             android:layout_marginStart="90dp"
@@ -60,7 +60,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/textView2"
+            app:layout_constraintStart_toEndOf="@+id/textViewSaludo"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.566"
             app:srcCompat="@drawable/ajustes" />

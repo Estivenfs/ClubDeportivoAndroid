@@ -32,12 +32,19 @@ class LoginActivity : AppCompatActivity() {
             }
 
             // Consulta SQL segura
-            val query = "SELECT id FROM Usuario WHERE nombre = ? AND clave = ?"
+            val query = "SELECT id, nombre FROM Usuario WHERE email = ? AND clave = ?"
             val resultado = db.ejecutarConsultaSelect(query, arrayOf(email, password))
 
             if (resultado.isNotEmpty()) {
                 // Login exitoso
-                val intent = Intent(this, MenuPrincipalActivity::class.java)
+                //Obtengo el id del usuario
+                val idUsuario = resultado[0]["id"] as Int
+                val nombreUsuario = resultado[0]["nombre"] as String
+
+                val intent = Intent(this, MenuPrincipalActivity::class.java).apply {
+                    putExtra("idUsuario", idUsuario.toString())
+                    putExtra("nombreUsuario", nombreUsuario)
+                }
                 startActivity(intent)
                 finish() // evita volver al login al presionar "atrás"
             } else {

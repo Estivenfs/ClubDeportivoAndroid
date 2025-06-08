@@ -98,6 +98,28 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:gravity="left"
+                android:text="Teléfono"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/inputTelefono"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/rounded_border"
+                android:hint="1158746589"
+                android:inputType="number"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#ADADAD" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="left"
                 android:text="Email"
                 android:textColor="#FFFFFF"
                 android:textSize="16sp" />
@@ -153,7 +175,6 @@
                     android:layout_gravity="center_vertical"
                     app:tint="#D0BA12" />
             </LinearLayout>
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -162,18 +183,36 @@
                 android:text="Tipo de Inscripción"
                 android:textColor="#FFFFFF"
                 android:textSize="16sp" />
-
-            <EditText
-                android:id="@+id/inputTipoInscripcion"
+            <LinearLayout
+                android:id="@+id/spinnerTipoDeInscripcion"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:layout_marginTop="8dp"
                 android:background="@drawable/rounded_border"
-                android:hint="Socio"
-                android:paddingLeft="12dp"
-                android:paddingRight="12dp"
-                android:textColor="#FFFFFF"
-                android:textColorHint="#ADADAD" />
+                android:orientation="horizontal"
+                android:paddingVertical="12dp"
+                android:paddingHorizontal="16dp"
+                android:layout_marginTop="16dp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <TextView
+                    android:id="@+id/inputTipoInscripcion"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Socio"
+                    android:textSize="18sp"
+                    android:textColor="#FFFFFF"
+                    android:layout_gravity="center_vertical"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/baseline_down_arrow"
+                    android:layout_gravity="center_vertical"
+                    app:tint="#D0BA12" />
+            </LinearLayout>
+
 
             <TextView
                 android:layout_width="match_parent"
@@ -183,18 +222,36 @@
                 android:text="Apto físico"
                 android:textColor="#FFFFFF"
                 android:textSize="16sp" />
-
-            <EditText
-                android:id="@+id/inputAptoFisico"
+            <LinearLayout
+                android:id="@+id/spinnerAptoFisico"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:layout_marginTop="8dp"
                 android:background="@drawable/rounded_border"
-                android:hint="Posee"
-                android:paddingLeft="12dp"
-                android:paddingRight="12dp"
-                android:textColor="#FFFFFF"
-                android:textColorHint="#ADADAD" />
+                android:orientation="horizontal"
+                android:paddingVertical="12dp"
+                android:paddingHorizontal="16dp"
+                android:layout_marginTop="16dp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <TextView
+                    android:id="@+id/inputAptoFisico"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Posee"
+                    android:textSize="18sp"
+                    android:textColor="#FFFFFF"
+                    android:layout_gravity="center_vertical"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/baseline_down_arrow"
+                    android:layout_gravity="center_vertical"
+                    app:tint="#D0BA12" />
+            </LinearLayout>
+
 
             <Button
                 android:id="@+id/btnRegistrarCliente"

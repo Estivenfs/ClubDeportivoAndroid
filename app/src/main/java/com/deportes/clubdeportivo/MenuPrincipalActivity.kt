@@ -4,12 +4,24 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.deportes.clubdeportivo.R
+import com.deportes.clubdeportivo.utils.StringManager
+
 
 class MenuPrincipalActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu_principal)
+        val bundle = intent.extras
+        val idUsuario = bundle?.getString("idUsuario")
+        val nombreUsuario = bundle?.getString("nombreUsuario")
+
+        // Configurar el saludo del usuario
+        val welcomeUser = findViewById<TextView>(R.id.textViewSaludo)
+        val nombreCapitalizado = StringManager().capitalizeWords(nombreUsuario.toString())
+        welcomeUser.text = "Hola, $nombreCapitalizado"
 
         try {
             val btnNuevoCliente = findViewById<LinearLayout>(R.id.btnNuevoCliente)
