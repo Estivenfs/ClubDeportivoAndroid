@@ -10,18 +10,25 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.deportes.clubdeportivo.adapters.OptionAdapter
 import com.deportes.clubdeportivo.db.BDatos
+import com.deportes.clubdeportivo.utils.DateFormatter
+import com.deportes.clubdeportivo.utils.DateFormatResult
+import com.deportes.clubdeportivo.utils.ResultadoBD
+import com.deportes.clubdeportivo.utils.setBottomSheetSelector
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 
+
 class NuevoClienteActivity : AppCompatActivity() {
     private lateinit var db: BDatos
+    private val dateFormatterUtil = DateFormatter()
     private lateinit var inputFechaNacimiento : TextView
     private lateinit var textTipoInscripcionSeleccionada: TextView
     private lateinit var textAptoFisicoSeleccionado: TextView
@@ -71,8 +78,8 @@ class NuevoClienteActivity : AppCompatActivity() {
         val opcionesAptoFisico = listOf("Posee", "No posee")
 
         // Configurar los listeners para los spinners
-        setOnClickListener(spinnerTipoDeInscripcion, opcionesTipoDeInscripcion, "Tipo de Inscripción", textTipoInscripcionSeleccionada)
-        setOnClickListener(spinnerAptoFisico, opcionesAptoFisico, "Apto Físico", textAptoFisicoSeleccionado)
+        setBottomSheetSelector(spinnerTipoDeInscripcion, opcionesTipoDeInscripcion, "Tipo de Inscripción", textTipoInscripcionSeleccionada)
+        setBottomSheetSelector(spinnerAptoFisico, opcionesAptoFisico, "Apto Físico", textAptoFisicoSeleccionado)
 
 
 
@@ -82,159 +89,105 @@ class NuevoClienteActivity : AppCompatActivity() {
 
 
         btnRegistrarCliente.setOnClickListener {
-            val registroExitosoDialog =
-                RegistroExitosoFragment.newInstance() // Usar el nuevo nombre de la clase
-            registroExitosoDialog.setOnVolverClickListener {
-                // ... lógica al volver ...
+            when (val resultado = guardarNuevoCliente()) {
+                is ResultadoBD.Exito -> {
+                    val registroExitosoDialog =
+                        RegistroExitosoFragment.newInstance() // Usar el nuevo nombre de la clase
+                    registroExitosoDialog.setOnVolverClickListener {
+                        // ... lógica al volver ...
+                    }
+                    registroExitosoDialog.show(
+                        supportFragmentManager,
+                        CambioExitosoFragment.TAG
+                    ) // Usar el nuevo TAG
+                }
+                ResultadoBD.YaExiste -> {
+                    Toast.makeText(this, "El cliente ya existe", Toast.LENGTH_SHORT).show()
+                }
+                is ResultadoBD.Error -> {
+                    Toast.makeText(this, "Error: ${resultado.mensaje}", Toast.LENGTH_LONG).show()
+                }
+                ResultadoBD.CamposIncompletos -> {
+                    Toast.makeText(this, "Por favor completa todos los campos.", Toast.LENGTH_SHORT).show()
+                }
             }
-            registroExitosoDialog.show(
-                supportFragmentManager,
-                CambioExitosoFragment.TAG
-            ) // Usar el nuevo TAG
+
+
+
         }
     }
 
-    private fun guardarNuevoCliente() {
-       /* val nombre = inputNombre.text.toString().trim()
+    private fun guardarNuevoCliente(): ResultadoBD<Int> {
+        val nombre = inputNombre.text.toString().trim()
         val apellido = inputApellido.text.toString().trim()
         val dni = inputDNI.text.toString().trim()
-        val fechaPagoStr = inputFechaPago.text.toString().trim()
-        val fechaInicioStr = inputFechaInicio.text.toString().trim() // Para la tabla Cliente
-        val mesesSuscripcion = textMesesSuscripcionSeleccionada.text.toString().trim().toIntOrNull() ?: 1
-        val tipoCuota = textTipoCuotaSeleccionada.text.toString().trim()
-        val opcionPago = textOpcionesPagoSeleccionada.text.toString().trim()
+        val email = inputEmail.text.toString().trim()
+        val telefono = inputTelefono.text.toString().trim()
+        val fechaNacimientoTexto = inputFechaNacimiento.text.toString().trim()
+        val tipoInscripcion = textTipoInscripcionSeleccionada.text.toString().trim()
+        val aptoFisico = textAptoFisicoSeleccionado.text.toString().trim()
 
-        // Validaciones básicas
-        if (nombre.isEmpty() || apellido.isEmpty() || dni.isEmpty() || fechaPagoStr.isEmpty()) {
-            Toast.makeText(this, "Por favor, completa todos los campos obligatorios.", Toast.LENGTH_SHORT).show()
-            return
-        }
-        if (mesesSuscripcion <= 0) {
-            Toast.makeText(this, "Los meses de suscripción deben ser al menos 1.", Toast.LENGTH_SHORT).show()
-            return
+        // Validación de campos
+        if (nombre.isEmpty() || apellido.isEmpty() || dni.isEmpty() || email.isEmpty()
+            || telefono.isEmpty() || fechaNacimientoTexto.isEmpty()
+            || tipoInscripcion.isEmpty() || aptoFisico.isEmpty()
+        ) {
+            return ResultadoBD.CamposIncompletos
         }
 
-        // Formatear fechas para la base de datos (YYYY-MM-DD es común para DATE en SQLite)
-        // O mantén DD/MM/YYYY si ese es tu formato preferido y lo manejas en la DB.
-        val dateFormatDb = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-        val dateFormatDisplay = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+        val condSocio = tipoInscripcion == "Socio"
+        val aptoFisicoBool = aptoFisico == "Posee"
 
-        val fechaActual = dateFormatDisplay.format(Date())
-
-        val fechaPagoFormateada: String
-        try {
-            val datePago = if (fechaPagoStr == "10/04/2025" || fechaPagoStr.isEmpty()) Date() else dateFormatDisplay.parse(fechaPagoStr)
-            fechaPagoFormateada = dateFormatDb.format(datePago!!)
-        } catch (e: Exception) {
-            Toast.makeText(this, "Formato de fecha de pago inválido.", Toast.LENGTH_SHORT).show()
-            return
+        val fechaNacimientoFormateada: String
+        when (val result = dateFormatterUtil.formatInputDateForDatabase(fechaNacimientoTexto)) {
+            is DateFormatResult.Success -> {
+                fechaNacimientoFormateada = result.formattedDate
+            }
+            is DateFormatResult.Error -> {
+                // Si hay un error de formato de fecha, retornamos un ResultadoBD.Error
+                return ResultadoBD.Error(result.errorMessage)
+            }
         }
 
-        val fechaInicioFormateada: String
-        try {
-            val dateInicio = if (fechaInicioStr == "10/04/2025" || fechaInicioStr.isEmpty()) Date() else dateFormatDisplay.parse(fechaInicioStr)
-            fechaInicioFormateada = dateFormatDb.format(dateInicio!!)
-        } catch (e: Exception) {
-            Toast.makeText(this, "Formato de fecha de inicio inválido.", Toast.LENGTH_SHORT).show()
-            return
-        }
-
-
-        // Lógica de cálculo de monto (ejemplo, ajusta esto a tu negocio)
-        var monto = 0.0
-        when (tipoCuota) {
-            "Regular" -> monto = 1000.0 * mesesSuscripcion
-            "Premium" -> monto = 1500.0 * mesesSuscripcion
-        }
-
-        // Aplicar descuentos o recargos según la opción de pago
-        when (opcionPago) {
-            "3 Cuotas" -> monto *= 1.05 // Recargo del 5%
-            "6 Cuotas" -> monto *= 1.10 // Recargo del 10%
-            // "Efectivo" no tiene recargo
-        }
-
-        try {
-            var idCliente: Int? = null
-
-            // 1. Buscar si el cliente ya existe por DNI
+        return try {
             val queryCliente = "SELECT id_cliente FROM Cliente WHERE dni = ?"
             val argsCliente = arrayOf(dni)
             val resultadoCliente = db.ejecutarConsultaSelect(queryCliente, argsCliente)
 
             if (resultadoCliente.isNotEmpty()) {
-                // Cliente existe, obtener su ID
-                idCliente = resultadoCliente[0]["id_cliente"] as? Int
-                Toast.makeText(this, "Cliente existente encontrado. ID: $idCliente", Toast.LENGTH_SHORT).show()
+                ResultadoBD.YaExiste
             } else {
-                // Mostrar  que el cliente no existe
-                Toast.makeText(this, "Cliente no encontrado.", Toast.LENGTH_SHORT).show()
-            }
+                val insertClienteQuery = """
+                INSERT INTO Cliente (nombre, apellido, dni, email, telefono, fecha_nacimiento, cond_socio, apto_fisico)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+            """.trimIndent()
 
-            // 2. Insertar el pago
-            if (idCliente != null && idCliente != -1) {
-                // Columnas: id_cliente, monto, cantidad_cuotas, medio_pago, fecha_pago
-                val insertPagoQuery = """
-                    INSERT INTO Pagos (id_cliente, monto, cantidad_cuotas, medio_pago, fecha_pago)
-                    VALUES (?, ?, ?, ?, ?)
-                """.trimIndent()
-                val insertPagoArgs = arrayOf(
-                    idCliente.toString(),
-                    monto.toString(),
-                    mesesSuscripcion.toString(),
-                    opcionPago,
-                    fechaPagoFormateada
+                val insertClienteArgs = arrayOf(
+                    nombre,
+                    apellido,
+                    dni,
+                    email,
+                    telefono,
+                    fechaNacimientoFormateada,
+                    condSocio.toString(),
+                    aptoFisicoBool.toString()
                 )
-                val idPago = db.insertar(insertPagoQuery, insertPagoArgs)
 
-                if (idPago != -1) {
-                    Toast.makeText(this, "Pago registrado exitosamente. ID: $idPago", Toast.LENGTH_LONG).show()
-                    // Si tienes una actividad a la que pasarle los detalles de pago, puedes hacerlo aquí
-                    // val intent = Intent(this, DetallePagoActivity::class.java)
-                    // intent.putExtra("pago_id", idPago)
-                    // startActivity(intent)
+                val idCliente = db.insertar(insertClienteQuery, insertClienteArgs)
+
+                if (idCliente != null && idCliente > 0) {
+                    ResultadoBD.Exito(idCliente)
                 } else {
-                    Toast.makeText(this, "Error al registrar el pago.", Toast.LENGTH_LONG).show()
+                    ResultadoBD.Error("Error al insertar el cliente en la base de datos")
                 }
-            } else {
-                Toast.makeText(this, "No se pudo obtener/crear el ID del cliente.", Toast.LENGTH_LONG).show()
             }
-
         } catch (e: Exception) {
-            e.printStackTrace()
-            Toast.makeText(this, "Ocurrió un error: ${e.message}", Toast.LENGTH_LONG).show()
-        } */
-    }
-
-    fun setOnClickListener(layout: LinearLayout, options: List<String>, title: String, textView: TextView) {
-        layout.setOnClickListener {
-            showBottomSheetSelector(title, options) { seleccion ->
-                textView.text = seleccion
-            }
+            ResultadoBD.Error("Excepción: ${e.message}")
         }
     }
 
-    fun showBottomSheetSelector(
-        title: String,
-        options: List<String>,
-        onSelected: (String) -> Unit
-    ) {
-        val dialog = BottomSheetDialog(this)
-        val view = layoutInflater.inflate(R.layout.bottom_sheet_selector, null)
 
-        val titleText = view.findViewById<TextView>(R.id.titleBottomSheet)
-        val recyclerView = view.findViewById<RecyclerView>(R.id.listOptions)
 
-        titleText.text = title
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = OptionAdapter(options) {
-            onSelected(it)
-            dialog.dismiss()
-        }
-
-        dialog.setContentView(view)
-        dialog.show()
-    }
 
 
 

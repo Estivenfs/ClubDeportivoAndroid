@@ -267,6 +267,23 @@ class BDatos(contexto: Context) : SQLiteOpenHelper(contexto, BD_NOMBRE, null, BD
         db.close()
         return resultado > 0
     }
+
+    fun obtenerActividades(): List<String> {
+        val actividades = mutableListOf<String>()
+        val db = readableDatabase
+        val cursor = db.rawQuery("SELECT nombre_actividad FROM Actividades", null)
+
+        if (cursor.moveToFirst()) {
+            do {
+                val actividad = cursor.getString(cursor.getColumnIndexOrThrow("nombre_actividad"))
+                actividades.add(actividad)
+            } while (cursor.moveToNext())
+        }
+
+        cursor.close()
+        db.close()
+        return actividades
+    }
 }
 
 // Modelo simple de Usuario
