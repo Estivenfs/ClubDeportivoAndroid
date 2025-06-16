@@ -119,12 +119,23 @@ class RegistroActividadActivity : AppCompatActivity() {
 
     fun guardarNuevaActividad() : ResultadoBD<Int>{
         val nombreActividad = inputNombreActividad.text.toString().trim()
-        val precioCuota = inputPrecioCuota.text.toString().trim()
-        val cupoActividad = inputCupoActividad.text.toString().trim()
-
-        if (nombreActividad.isEmpty() || precioCuota.isEmpty()) {
+        val precioCuotaText = inputPrecioCuota.text.toString().trim()
+        val cupoActividadText = inputCupoActividad.text.toString().trim()
+        var precioCuota : Float
+        if (nombreActividad.isEmpty() || precioCuotaText.isEmpty() || cupoActividadText.isEmpty()) {
             return ResultadoBD.CamposIncompletos
         }
+        try {
+            precioCuota = precioCuotaText.toFloat()
+        } catch (e: NumberFormatException) {
+            return ResultadoBD.Error("El precio por cuota debe ser un número válido")
+        }
+
+        val cupoActividad = cupoActividadText.toIntOrNull()
+        if (cupoActividad == null) {
+            return ResultadoBD.Error("El cupo de la actividad debe ser un número válido")
+        }
+
 
         val insertActividadQuery = """
             INSERT INTO Actividades (nombre_actividad, precio_actividad, cupo_actividad)
@@ -138,7 +149,7 @@ class RegistroActividadActivity : AppCompatActivity() {
             if (resultadoActividad.isNotEmpty()) {
                 ResultadoBD.YaExiste
             } else {
-                val insertActividadArgs = arrayOf(nombreActividad, precioCuota, cupoActividad)
+                val insertActividadArgs = arrayOf(nombreActividad, precioCuota.toString(), cupoActividad.toString())
                 val idActividad = db.insertar(insertActividadQuery, insertActividadArgs)
                 if (idActividad != null && idActividad > 0) {
                     ResultadoBD.Exito(idActividad)
