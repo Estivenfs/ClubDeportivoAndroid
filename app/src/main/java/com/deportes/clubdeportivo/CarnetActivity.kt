@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.deportes.clubdeportivo.db.BDatos
 
 class CarnetActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,6 +25,9 @@ class CarnetActivity : AppCompatActivity() {
         val textCoincidencia = findViewById<TextView>(R.id.textCoincidencia)
         val btnBuscar = findViewById<Button>(R.id.btnBuscar)
 
+        // Consulta SQL segura para buscar el DNI en BBDD
+        val db = BDatos(this)
+
         // Lógica btn Atras
         btnAtras.setOnClickListener {
             finish()
@@ -32,19 +36,39 @@ class CarnetActivity : AppCompatActivity() {
         // Lógica del boton Buscar
         btnBuscar.setOnClickListener {
             val dniIngresado = inputDNI.text.toString().trim()
-            // Lógica para manejar el clic en el botón "Buscar"
-            // Cambiar a activity correspondiente
-            if (dniIngresado == "1234") {
-                Toast.makeText(this, "DNI INGRESADO CORRECTAMENTE.", Toast.LENGTH_SHORT).show()
+
+            // Validamos el DNI vacío
+            if (dniIngresado.isEmpty()) {
+                textCoincidencia.text = "Por favor, ingresa el DNI de un cliente."
+                textCoincidencia.visibility = View.VISIBLE
+                inputDNI.text = ""
+                return@setOnClickListener
+            }
+
+            // Ejecutamos la consulta en la base de datos
+            val query = "SELECT id_cliente, nombre, apellido FROM Cliente WHERE dni = ?"
+            val resultadoBD = db.ejecutarConsultaSelect(query, arrayOf(dniIngresado))
+
+            // Procesamos el resultado obtenido
+            if (resultadoBD.isNotEmpty()) {
+                val idCliente = resultadoBD[0]["id_cliente"] as Int
+                val nombreCliente = resultadoBD[0]["nombre"] as String
+                val apellidoCliente = resultadoBD[0]["apellido"] as String
+                val dniCliente = dniIngresado
+                textCoincidencia.visibility = View.GONE
+
                 val intent = Intent(this, VisualizarCarnet::class.java).apply {
-                    putExtra("dniCliente", dniIngresado)
-                    putExtra("nombreClienteSimulado", "Cliente Simulado DNI 1234")
+                    putExtra("idCliente", idCliente.toString())
+                    putExtra("nombreCliente", nombreCliente)
+                    putExtra("apellidoCliente", apellidoCliente)
+                    putExtra("dniCliente", dniCliente)
                 }
                 startActivity(intent)
                 finish()
             } else {
-                textCoincidencia.text = "No se encontraron coincidencias. Verifique el DNI ingresado."
+                textCoincidencia.text = "Cliente con DNI $dniIngresado no encontrado."
                 textCoincidencia.visibility = View.VISIBLE
+                inputDNI.text = ""
             }
         }
     }

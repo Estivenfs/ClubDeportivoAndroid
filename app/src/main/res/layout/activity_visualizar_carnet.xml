@@ -32,15 +32,56 @@
             android:gravity="center"
             android:minHeight="0dp"
             android:orientation="vertical"
-            android:paddingBottom="24dp">
+            android:paddingBottom="24dp"
+            >
 
             <LinearLayout
-                android:layout_width="374dp"
-                android:layout_height="530dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:gravity="center"
-                android:orientation="horizontal">
+                android:orientation="vertical"
+                android:paddingLeft="15dp"
+                android:background="@drawable/borde_amarillo">
 
-                <ImageView
+                <TextView
+                    android:id="@+id/TextViewIdCliente"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="ID Cliente: "
+                    android:gravity="left"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:paddingVertical="15dp"/>
+                <TextView
+                    android:id="@+id/TextViewDniCliente"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="DNI Cliente: "
+                    android:gravity="left"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:paddingVertical="15dp"/>
+                <TextView
+                    android:id="@+id/TextViewNombrecliente"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Nombre cliente: "
+                    android:gravity="left"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:paddingVertical="15dp"/>
+                <TextView
+                    android:id="@+id/TextViewApellidoCliente"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Apellido cliente: "
+                    android:gravity="left"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:paddingVertical="15dp"/>
+
+
+                <!--<ImageView
                     android:id="@+id/carnet"
                     android:layout_width="262dp"
                     android:layout_height="430dp"
@@ -54,7 +95,7 @@
                     android:layout_marginStart="16dp"
                     android:background="@null"
                     android:contentDescription="girar carnet"
-                    app:srcCompat="@drawable/flecha_amarilla" />
+                    app:srcCompat="@drawable/flecha_amarilla" />-->
             </LinearLayout>
 
             <LinearLayout

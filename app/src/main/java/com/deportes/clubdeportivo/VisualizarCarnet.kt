@@ -6,6 +6,7 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 class VisualizarCarnet : AppCompatActivity() {
@@ -22,12 +23,37 @@ class VisualizarCarnet : AppCompatActivity() {
 
         textViewTitulo.text = "Carnet"
 
+        // Capturamos elementos de la vista
+        val textViewIdCliente = findViewById<TextView>(R.id.TextViewIdCliente)
+        val textViewNombreCliente = findViewById<TextView>(R.id.TextViewNombrecliente)
+        val textViewApellidoCliente = findViewById<TextView>(R.id.TextViewApellidoCliente)
+        val textViewDniCliente = findViewById<TextView>(R.id.TextViewDniCliente)
+
+        // Recuperamos los datos del intent
+        val idCliente = intent.getStringExtra("idCliente")
+        val nombreCliente = intent.getStringExtra("nombreCliente")
+        val apellidoCliente = intent.getStringExtra("apellidoCliente")
+        val dniCliente = intent.getStringExtra("dniCliente")
+
+        // Mostramos los datos en la vista
+        textViewIdCliente.text = "ID Cliente: $idCliente"
+        textViewNombreCliente.text = "Nombre cliente: $nombreCliente"
+        textViewApellidoCliente.text = "Apellido cliente: $apellidoCliente"
+        textViewDniCliente.text = "DNI Cliente: $dniCliente"
+
+        // Opcional: Mostrar un Toast si algún dato fundamental no llegó
+        if (idCliente == null || nombreCliente == null || dniCliente == null) {
+            Toast.makeText(this, "Algunos datos del carnet no se pudieron cargar.", Toast.LENGTH_LONG).show()
+        }
+
         btnAtras.setOnClickListener {
             finish()
         }
 
 
         // --- Lógica para girar el carnet ---
+        /*
+        ## SE COMENTA TEMPORALMENTE
         val carnet = findViewById<ImageView>(R.id.carnet)
         val girarCarnet = findViewById<ImageButton>(R.id.girarcarnet)
 
@@ -49,6 +75,6 @@ class VisualizarCarnet : AppCompatActivity() {
                     carnet.animate().rotationY(0f).setDuration(150).start()
                 }
                 .start()
-        }
+        }*/
     }
 }
