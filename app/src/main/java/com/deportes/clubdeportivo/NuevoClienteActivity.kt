@@ -169,9 +169,10 @@ class NuevoClienteActivity : AppCompatActivity() {
                     email,
                     telefono,
                     fechaNacimientoFormateada,
-                    condSocio.toString(),
-                    aptoFisicoBool.toString()
+                    if (condSocio) "1" else "0",
+                    if (aptoFisicoBool) "1" else "0"
                 )
+
 
                 val idCliente = db.insertar(insertClienteQuery, insertClienteArgs)
 

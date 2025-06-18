@@ -5,6 +5,7 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.database.Cursor
+import com.deportes.clubdeportivo.models.Cliente
 
 // Nombre de la base de datos
 private const val BD_NOMBRE = "ClubDeportivo"
@@ -284,6 +285,41 @@ class BDatos(contexto: Context) : SQLiteOpenHelper(contexto, BD_NOMBRE, null, BD
         db.close()
         return actividades
     }
+
+    fun obtenerSocios(): List<Cliente> {
+        val lista = mutableListOf<Cliente>()
+        val db = readableDatabase
+        // Corrección: Usar la tabla 'Cliente' y la columna 'id_cliente'
+        val cursor = db.rawQuery("SELECT id_cliente, nombre, apellido, dni FROM Cliente WHERE cond_socio = 1", null)
+
+        if (cursor.moveToFirst()) {
+            do {
+                val id = cursor.getInt(cursor.getColumnIndexOrThrow("id_cliente")) // Obtener id_cliente
+                val nombre = cursor.getString(cursor.getColumnIndexOrThrow("nombre"))
+                val apellido = cursor.getString(cursor.getColumnIndexOrThrow("apellido"))
+                val dni = cursor.getString(cursor.getColumnIndexOrThrow("dni"))
+
+
+
+                lista.add(Cliente(
+                    id,
+                    nombre,
+                    apellido,
+                    dni,
+                    email = null,
+                    telefono = null,
+                    fechaNacimiento = null,
+                    condSocio = null,
+                    aptoFisico = null
+                ))
+            } while (cursor.moveToNext())
+        }
+
+        cursor.close()
+        db.close()
+        return lista
+    }
+
 }
 
 // Modelo simple de Usuario
