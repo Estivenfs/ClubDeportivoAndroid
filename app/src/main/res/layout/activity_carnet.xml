@@ -35,19 +35,27 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
                 android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textViewIngreseDNI"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="left"
+                    android:text="Ingrese el DNI:"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp" />
 
                 <EditText
                     android:id="@+id/inputDNI"
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_weight="1"
                     android:background="@drawable/rounded_border"
                     android:drawableEnd="@drawable/baseline_busqueda_de_lupa"
                     android:drawablePadding="8dp"
-                    android:hint="45693394"
                     android:inputType="number"
                     android:paddingStart="12dp"
                     android:paddingEnd="20dp"
@@ -59,10 +67,10 @@
                 android:id="@+id/textCoincidencia"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:layout_marginBottom="32dp"
-                android:gravity="center"
+                android:layout_marginTop="10dp"
+                android:gravity="left"
                 android:text="Coincidencia: SOCIO: Maria González"
+                android:visibility="gone"
                 android:textColor="#FFFFFF"
                 android:textSize="18sp" />
 
@@ -76,7 +84,8 @@
                 android:text="BUSCAR"
                 android:textColor="#1B1B1B"
                 android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:layout_marginTop="15dp"/>
 
         </LinearLayout>
     </ScrollView>
