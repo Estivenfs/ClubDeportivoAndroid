@@ -27,22 +27,21 @@ class VisualizarCarnet : AppCompatActivity() {
         val textViewIdCliente = findViewById<TextView>(R.id.TextViewIdCliente)
         val textViewNombreCliente = findViewById<TextView>(R.id.TextViewNombrecliente)
         val textViewApellidoCliente = findViewById<TextView>(R.id.TextViewApellidoCliente)
-        val textViewDniCliente = findViewById<TextView>(R.id.TextViewDniCliente)
+
 
         // Recuperamos los datos del intent
         val idCliente = intent.getStringExtra("idCliente")
         val nombreCliente = intent.getStringExtra("nombreCliente")
         val apellidoCliente = intent.getStringExtra("apellidoCliente")
-        val dniCliente = intent.getStringExtra("dniCliente")
+
 
         // Mostramos los datos en la vista
-        textViewIdCliente.text = "ID Cliente: $idCliente"
-        textViewNombreCliente.text = "Nombre cliente: $nombreCliente"
-        textViewApellidoCliente.text = "Apellido cliente: $apellidoCliente"
-        textViewDniCliente.text = "DNI Cliente: $dniCliente"
+        textViewIdCliente.text = "$idCliente"
+        textViewNombreCliente.text = "$nombreCliente"
+        textViewApellidoCliente.text = "$apellidoCliente"
 
         // Opcional: Mostrar un Toast si algún dato fundamental no llegó
-        if (idCliente == null || nombreCliente == null || dniCliente == null) {
+        if (idCliente == null || nombreCliente == null || apellidoCliente == null) {
             Toast.makeText(this, "Algunos datos del carnet no se pudieron cargar.", Toast.LENGTH_LONG).show()
         }
 
