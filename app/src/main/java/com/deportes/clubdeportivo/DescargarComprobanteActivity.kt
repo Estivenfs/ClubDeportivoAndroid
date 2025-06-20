@@ -15,7 +15,7 @@ class DescargarComprobanteActivity : AppCompatActivity() {
         setContentView(R.layout.activity_descargar_comprobante)
 
         // ⚠️ Declarar una sola vez
-        val idPago = intent.getIntExtra("id_pago", -1)
+        val idPago = intent.getIntExtra("idPago", -1)
 
         if (idPago == -1) {
             Toast.makeText(this, "Error: ID de pago no válido", Toast.LENGTH_SHORT).show()

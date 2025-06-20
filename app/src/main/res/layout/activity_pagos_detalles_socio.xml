@@ -286,7 +286,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Efectivo"
+                    android:text="Efectivo (-10%)"
                     android:textSize="18sp"
                     android:textColor="#FFFFFF"
                     android:layout_gravity="center_vertical"/>

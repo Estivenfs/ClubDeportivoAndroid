@@ -389,6 +389,43 @@ class BDatos(contexto: Context) : SQLiteOpenHelper(contexto, BD_NOMBRE, null, BD
         } else null
     }
 
+    fun buscarClientePorDNI(dni: String): Map<String, Any>? {
+        val db = readableDatabase
+        var cursor: Cursor? = null
+
+        return try {
+            val query = """
+            SELECT id_cliente, nombre, apellido, cond_socio, email, telefono 
+            FROM Cliente 
+            WHERE dni = ?
+        """.trimIndent()
+
+            cursor = db.rawQuery(query, arrayOf(dni))
+
+            if (cursor.moveToFirst()) {
+                val cliente = mutableMapOf<String, Any>()
+                for (col in cursor.columnNames) {
+                    when (cursor.getType(cursor.getColumnIndexOrThrow(col))) {
+                        Cursor.FIELD_TYPE_INTEGER -> cliente[col] = cursor.getInt(cursor.getColumnIndexOrThrow(col))
+                        Cursor.FIELD_TYPE_FLOAT -> cliente[col] = cursor.getFloat(cursor.getColumnIndexOrThrow(col))
+                        Cursor.FIELD_TYPE_STRING -> cliente[col] = cursor.getString(cursor.getColumnIndexOrThrow(col))
+                        Cursor.FIELD_TYPE_BLOB -> cliente[col] = cursor.getBlob(cursor.getColumnIndexOrThrow(col))
+                        Cursor.FIELD_TYPE_NULL -> cliente[col] = ""
+                    }
+                }
+                cliente
+            } else {
+                null
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            null
+        } finally {
+            cursor?.close()
+            db.close()
+        }
+    }
+
 
 }
 

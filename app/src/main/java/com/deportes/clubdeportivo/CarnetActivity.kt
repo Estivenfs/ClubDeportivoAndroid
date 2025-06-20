@@ -46,20 +46,12 @@ class CarnetActivity : AppCompatActivity() {
             }
 
             // Ejecutamos la consulta en la base de datos
+            val query = """SELECT C.nombre, C.apellido, C.id_cliente, C.cond_socio, C.dni, C.apto_fisico, C.email,
+                 (SELECT MAX(fecha_vencimiento) FROM Pagos WHERE id_cliente = C.id_cliente) AS fechaDeExpiracion
+                 FROM Cliente AS C
+                 WHERE C.dni = ?;
+            """.trimIndent()
 
-            val query = "SELECT\n" +
-                    "    C.nombre,\n" +
-                    "    C.apellido,\n" +
-                    "    C.id_cliente,\n" +
-                    "    C.cond_socio,\n" +
-                    "    C.dni,\n" +
-                    "    C.apto_fisico,\n" +
-                    "    C.email,\n" +
-                    "    (SELECT MAX(fecha_pago) FROM Pagos WHERE id_cliente = C.id_cliente) AS fechaDeExpiracion\n" +
-                    "FROM\n" +
-                    "    Cliente AS C\n" +
-                    "WHERE\n" +
-                    "    C.dni = ?; "
             val resultadoBD = db.ejecutarConsultaSelect(query, arrayOf(dniIngresado))
 
             // Procesamos el resultado obtenido
@@ -91,7 +83,6 @@ class CarnetActivity : AppCompatActivity() {
             } else {
                 textCoincidencia.text = "Cliente con DNI $dniIngresado no encontrado."
                 textCoincidencia.visibility = View.VISIBLE
-                inputDNI.text = ""
             }
         }
     }
