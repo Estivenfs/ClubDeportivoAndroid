@@ -46,6 +46,7 @@ class CarnetActivity : AppCompatActivity() {
             }
 
             // Ejecutamos la consulta en la base de datos
+
             val query = "SELECT\n" +
                     "    C.nombre,\n" +
                     "    C.apellido,\n" +
@@ -67,10 +68,10 @@ class CarnetActivity : AppCompatActivity() {
                 val nombreCliente = resultadoBD[0]["nombre"] as String
                 val apellidoCliente = resultadoBD[0]["apellido"] as String
                 val dniCliente = dniIngresado
-                val aptoFisico = resultadoBD[0]["apto_fisico"] as String
+                val aptoFisico = resultadoBD[0]["apto_fisico"] as Int
                 val email = resultadoBD[0]["email"] as String
                 val fechaDeExpiracion = resultadoBD[0]["fechaDeExpiracion"] as String
-                val condSocio = resultadoBD[0]["cond_socio"] as String
+                val condSocio = resultadoBD[0]["cond_socio"] as Int
                 textCoincidencia.visibility = View.GONE
 
                 // Enviamos los datos a la siguiente actividad

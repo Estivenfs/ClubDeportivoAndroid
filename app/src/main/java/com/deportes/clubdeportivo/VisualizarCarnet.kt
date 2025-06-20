@@ -62,12 +62,12 @@ class VisualizarCarnet : AppCompatActivity() {
         val apellidoCliente = intent.getStringExtra("apellidoCliente")
         val dniCliente = intent.getStringExtra("dniCliente")
         val email = intent.getStringExtra("email")
-        val aptoFisico = intent.getStringExtra("aptoFisico") // "true" o "false"
+        val aptoFisico = intent.getIntExtra("aptoFisico", -1) // "true" o "false"
         val fechaDeExpiracion = intent.getStringExtra("fechaDeExpiracion")
-        val condSocio = intent.getStringExtra("condSocio") // "true" o "false"
+        val condSocio = intent.getIntExtra("condSocio", -1) // "true" o "false"
 
         // --- Asignación de imágenes del carnet según condSocio ---
-        if (condSocio == "true") {
+        if (condSocio == 1) {
             carnetFrontResId = R.drawable.carnet_front_socio
             carnetBackResId = R.drawable.carnet_back_socio
             textViewFechaExpiracion.text = fechaDeExpiracion // Mostramos fecha de expiracion solo para socios
@@ -90,7 +90,7 @@ class VisualizarCarnet : AppCompatActivity() {
         textViewMailCliente.text = email
 
         // Mostrar campo "Si" o "No" según el valor de aptoFisico
-        if (aptoFisico == "true") {
+        if (aptoFisico == 1) {
             textViewAptoFisicoCliente.text = "Si"
         } else {
             textViewAptoFisicoCliente.text = "No"
@@ -99,7 +99,7 @@ class VisualizarCarnet : AppCompatActivity() {
 
         // --- Lógica para girar el carnet (usando las variables de recursos) ---
         val btnGirarCarnet = findViewById<ImageButton>(R.id.btnGirarCarnet)
-        val carnet = findViewById<ImageView>(R.id.carnet)
+        //val carnet = findViewById<ImageView>(R.id.carnetTemplateImageView)
         
 
         btnGirarCarnet.setOnClickListener {
@@ -128,13 +128,13 @@ class VisualizarCarnet : AppCompatActivity() {
 
         val shareButton = findViewById<FloatingActionButton>(R.id.share)
         shareButton.setOnClickListener {
-            compartirImagen(carnet)
+            compartirImagen(imageViewCarnet)
         }
 
 
         val printButton = findViewById<FloatingActionButton>(R.id.print)
         printButton.setOnClickListener {
-            imprimirCarnet(carnet)
+            imprimirCarnet(imageViewCarnet)
         }
     }
 
