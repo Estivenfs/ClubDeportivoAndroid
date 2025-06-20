@@ -36,6 +36,9 @@
             android:name=".PagosDetallesSocioActivity"
             android:exported="false" />
         <activity
+            android:name=".PagosDetallesNoSocioActivity"
+            android:exported="false" />
+        <activity
             android:name=".ModificarActividadActivity"
             android:exported="false" />
         <activity
@@ -59,6 +62,8 @@
         <activity android:name=".RegistroActividadActivity" />
         <activity android:name=".ConsultasActivity" />
         <activity android:name=".ConfiguracionActivity" />
+        <activity android:name=".DescargarComprobanteActivity" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true"

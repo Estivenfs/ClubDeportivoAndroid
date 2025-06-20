@@ -138,7 +138,11 @@ class BDatos(contexto: Context) : SQLiteOpenHelper(contexto, BD_NOMBRE, null, BD
                 WHERE id_actividad = OLD.id_actividad;
             END;
 
-        """.trimIndent()
+
+}
+
+
+       """.trimIndent()
     }
 
     // Función genérica para ejecutar SELECT
@@ -362,7 +366,33 @@ class BDatos(contexto: Context) : SQLiteOpenHelper(contexto, BD_NOMBRE, null, BD
         return lista
     }
 
+    fun obtenerComprobantePorId(idPago: Int): Map<String, String>? {
+        val query = """
+        SELECT 
+            Cliente.nombre || ' ' || Cliente.apellido AS nombre_completo,
+            Cliente.dni,
+            CASE Cliente.cond_socio WHEN 1 THEN 'Socio' ELSE 'No Socio' END AS tipo_usuario,
+            Pagos.fecha_pago,
+            Pagos.monto,
+            Pagos.medio_pago,
+            Pagos.id_pago
+        FROM Pagos
+        JOIN Cliente ON Cliente.id_cliente = Pagos.id_cliente
+        WHERE Pagos.id_pago = ?
+    """.trimIndent()
+
+        val resultado = this.ejecutarConsultaSelect(query, arrayOf(idPago.toString()))
+
+        return if (resultado.isNotEmpty()) {
+            // Convertimos Map<String, Any> → Map<String, String>
+            resultado[0].mapValues { it.value.toString() }
+        } else null
+    }
+
+
 }
+
+
 
 // Modelo simple de Usuario
 data class Usuario(var id: Int, var nombre: String, var clave: Int, var rol: String = "admin")
