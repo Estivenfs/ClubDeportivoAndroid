@@ -46,7 +46,19 @@ class CarnetActivity : AppCompatActivity() {
             }
 
             // Ejecutamos la consulta en la base de datos
-            val query = "SELECT id_cliente, nombre, apellido FROM Cliente WHERE dni = ?"
+            val query = "SELECT\n" +
+                    "    C.nombre,\n" +
+                    "    C.apellido,\n" +
+                    "    C.id_cliente,\n" +
+                    "    C.cond_socio,\n" +
+                    "    C.dni,\n" +
+                    "    C.apto_fisico,\n" +
+                    "    C.email,\n" +
+                    "    (SELECT MAX(fecha_pago) FROM Pagos WHERE id_cliente = C.id_cliente) AS fechaDeExpiracion\n" +
+                    "FROM\n" +
+                    "    Cliente AS C\n" +
+                    "WHERE\n" +
+                    "    C.dni = ?; "
             val resultadoBD = db.ejecutarConsultaSelect(query, arrayOf(dniIngresado))
 
             // Procesamos el resultado obtenido
@@ -55,16 +67,26 @@ class CarnetActivity : AppCompatActivity() {
                 val nombreCliente = resultadoBD[0]["nombre"] as String
                 val apellidoCliente = resultadoBD[0]["apellido"] as String
                 val dniCliente = dniIngresado
+                val aptoFisico = resultadoBD[0]["apto_fisico"] as String
+                val email = resultadoBD[0]["email"] as String
+                val fechaDeExpiracion = resultadoBD[0]["fechaDeExpiracion"] as String
+                val condSocio = resultadoBD[0]["cond_socio"] as String
                 textCoincidencia.visibility = View.GONE
 
+                // Enviamos los datos a la siguiente actividad
                 val intent = Intent(this, VisualizarCarnet::class.java).apply {
                     putExtra("idCliente", idCliente.toString())
                     putExtra("nombreCliente", nombreCliente)
                     putExtra("apellidoCliente", apellidoCliente)
                     putExtra("dniCliente", dniCliente)
+                    putExtra("aptoFisico", aptoFisico)
+                    putExtra("email", email)
+                    putExtra("fechaDeExpiracion", fechaDeExpiracion)
+                    putExtra("condSocio", condSocio)
                 }
+                inputDNI.text = ""
                 startActivity(intent)
-                finish()
+
             } else {
                 textCoincidencia.text = "Cliente con DNI $dniIngresado no encontrado."
                 textCoincidencia.visibility = View.VISIBLE
