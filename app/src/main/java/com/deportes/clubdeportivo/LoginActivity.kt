@@ -25,6 +25,8 @@ class LoginActivity : AppCompatActivity() {
         btnIniciarSesion.setOnClickListener {
             val email = inputEmail.text.toString().trim()
             val password = inputPassword.text.toString().trim()
+            startActivity(Intent(this, MenuPrincipalActivity::class.java))
+
 
             if (email.isEmpty() || password.isEmpty()) {
                 Toast.makeText(this, "Por favor, completa todos los campos", Toast.LENGTH_SHORT).show()
@@ -38,6 +40,8 @@ class LoginActivity : AppCompatActivity() {
             if (resultado.isNotEmpty()) {
                 // Login exitoso
                 //Obtengo el id del usuario
+
+
                 val idUsuario = resultado[0]["id"] as Int
                 val nombreUsuario = resultado[0]["nombre"] as String
 

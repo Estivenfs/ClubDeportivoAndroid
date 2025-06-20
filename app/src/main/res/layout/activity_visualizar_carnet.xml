@@ -10,82 +10,168 @@
     <include
         android:id="@+id/barraSuperior"
         layout="@layout/fragment_barra_superior"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <ScrollView
-        android:id="@+id/scrollView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:paddingLeft="24dp"
-        android:paddingTop="16dp"
-        android:paddingRight="24dp"
+    <!-- El width y el height del FrameLayout debe mantener proporciones.
+    La imagen tiene 1011 x 639 px (0.63 factor de la proporción).
+
+    width = X
+    height = width_deseado * 0.63
+    -->
+    <FrameLayout
+        android:id="@+id/carnetFrameLayout"
+        android:layout_width="460dp"
+        android:layout_height="291dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginStart="-50dp"
+        app:layout_constraintBottom_toTopOf="@id/buttonsLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/barraSuperior"
-        app:layout_constraintBottom_toTopOf="@id/barraInferiorFragment"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        android:rotation="270"
+        android:background="@drawable/carnet_border"
+        android:padding="10dp"
+        >
 
-        <LinearLayout
+        <ImageView
+            android:id="@+id/carnetTemplateImageView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
-            android:minHeight="0dp"
-            android:orientation="vertical"
-            android:paddingBottom="24dp">
+            android:src="@drawable/carnet_front_socio"
+            android:scaleType="fitXY"
+            />
 
-            <LinearLayout
-                android:layout_width="374dp"
-                android:layout_height="530dp"
-                android:gravity="center"
-                android:orientation="horizontal">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/carnetContentConstraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="0dp"
+            >
 
-                <ImageView
-                    android:id="@+id/carnet"
-                    android:layout_width="262dp"
-                    android:layout_height="430dp"
-                    android:contentDescription="carnet"
-                    app:srcCompat="@drawable/carnet_front" />
-
-                <ImageButton
-                    android:id="@+id/girarcarnet"
-                    android:layout_width="54dp"
-                    android:layout_height="68dp"
-                    android:layout_marginStart="16dp"
-                    android:background="@null"
-                    android:contentDescription="girar carnet"
-                    app:srcCompat="@drawable/flecha_amarilla" />
-            </LinearLayout>
-
-            <LinearLayout
+            <TextView
+                android:id="@+id/TextViewNombrecliente"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:gravity="center"
-                android:orientation="horizontal">
+                android:layout_marginStart="60dp"
+                android:layout_marginTop="75dp"
+                android:text="Nombre"
+                android:textAlignment="textStart"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-                <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/print"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="15dp"
-                    android:backgroundTint="@color/amarillo_club_deportivo"
-                    android:clickable="true"
-                    android:contentDescription="Imprimir"
-                    app:srcCompat="@drawable/print" />
+            <TextView
+                android:id="@+id/TextViewApellidoCliente"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Apellido"
+                android:textAlignment="textStart"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/TextViewNombrecliente"
+                app:layout_constraintTop_toBottomOf="@id/TextViewNombrecliente" />
 
-                <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/share"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/amarillo_club_deportivo"
-                    android:clickable="true"
-                    android:contentDescription="Compartir"
-                    app:srcCompat="@drawable/share" />
-            </LinearLayout>
+            <TextView
+                android:id="@+id/TextViewIdCliente"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="123456"
+                android:textAlignment="textStart"
+                android:textColor="@android:color/white"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="@id/TextViewNombrecliente"
+                app:layout_constraintTop_toBottomOf="@id/TextViewApellidoCliente" />
 
-        </LinearLayout>
-    </ScrollView>
+            <TextView
+                android:id="@+id/TextViewDniCliente"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="123456"
+                android:textAlignment="textStart"
+                android:textColor="@android:color/white"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="@id/TextViewNombrecliente"
+                app:layout_constraintTop_toBottomOf="@id/TextViewIdCliente" />
+
+            <TextView
+                android:id="@+id/TextViewAptoFisicoCliente"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="55dp"
+                android:layout_marginTop="0dp"
+                android:text="Si"
+                android:textAlignment="textStart"
+                android:textColor="@android:color/white"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="@id/TextViewDniCliente"
+                app:layout_constraintTop_toBottomOf="@id/TextViewDniCliente" />
+
+            <TextView
+                android:id="@+id/TextViewMailCliente"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="-45dp"
+                android:layout_marginTop="0dp"
+                android:text="ejemplo@mail.com"
+                android:textAlignment="textStart"
+                android:textColor="@android:color/white"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="@id/TextViewAptoFisicoCliente"
+                app:layout_constraintTop_toBottomOf="@id/TextViewAptoFisicoCliente" />
+
+            <TextView
+                android:id="@+id/TextViewFechaExpiracion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="55dp"
+                android:layout_marginTop="0dp"
+                android:text="31/12/2025"
+                android:textAlignment="textStart"
+                android:textColor="@android:color/white"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="@id/TextViewMailCliente"
+                app:layout_constraintTop_toBottomOf="@id/TextViewMailCliente" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/buttonsLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@id/barraInferiorFragment"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/carnetFrameLayout">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/print"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/amarillo_club_deportivo"
+            android:clickable="true"
+            android:contentDescription="Imprimir"
+            app:srcCompat="@drawable/print" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/share"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:backgroundTint="@color/amarillo_club_deportivo"
+            android:clickable="true"
+            android:contentDescription="Compartir"
+            app:srcCompat="@drawable/share" />
+    </LinearLayout>
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/barraInferiorFragment"
@@ -93,7 +179,16 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
+    <ImageButton
+        android:id="@+id/btnGirarCarnet"
+        android:layout_width="68dp"
+        android:layout_height="54dp"
+        android:background="@null"
+        android:src="@drawable/flecha_amarilla"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/carnetFrameLayout"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

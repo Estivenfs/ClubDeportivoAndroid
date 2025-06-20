@@ -2,10 +2,13 @@ package com.deportes.clubdeportivo
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.deportes.clubdeportivo.db.BDatos
 
 class CarnetActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,16 +20,78 @@ class CarnetActivity : AppCompatActivity() {
         val textViewTitulo: TextView = findViewById(R.id.textViewTitle)
         textViewTitulo.text = "Carnet"
 
+        // Captura de valores ingresados
+        val inputDNI = findViewById<TextView>(R.id.inputDNI)
+        val textCoincidencia = findViewById<TextView>(R.id.textCoincidencia)
+        val btnBuscar = findViewById<Button>(R.id.btnBuscar)
+
+        // Consulta SQL segura para buscar el DNI en BBDD
+        val db = BDatos(this)
+
+        // Lógica btn Atras
         btnAtras.setOnClickListener {
             finish()
         }
 
-        val btnBuscar = findViewById<Button>(R.id.btnBuscar)
+        // Lógica del boton Buscar
         btnBuscar.setOnClickListener {
-            // Lógica para manejar el clic en el botón "Buscar"
-            // Cambiar a activity correspondiente
-            startActivity(Intent(this, VisualizarCarnet::class.java))
-        }
+            val dniIngresado = inputDNI.text.toString().trim()
 
+            // Validamos el DNI vacío
+            if (dniIngresado.isEmpty()) {
+                textCoincidencia.text = "Por favor, ingresa el DNI de un cliente."
+                textCoincidencia.visibility = View.VISIBLE
+                inputDNI.text = ""
+                return@setOnClickListener
+            }
+
+            // Ejecutamos la consulta en la base de datos
+            val query = "SELECT\n" +
+                    "    C.nombre,\n" +
+                    "    C.apellido,\n" +
+                    "    C.id_cliente,\n" +
+                    "    C.cond_socio,\n" +
+                    "    C.dni,\n" +
+                    "    C.apto_fisico,\n" +
+                    "    C.email,\n" +
+                    "    (SELECT MAX(fecha_pago) FROM Pagos WHERE id_cliente = C.id_cliente) AS fechaDeExpiracion\n" +
+                    "FROM\n" +
+                    "    Cliente AS C\n" +
+                    "WHERE\n" +
+                    "    C.dni = ?; "
+            val resultadoBD = db.ejecutarConsultaSelect(query, arrayOf(dniIngresado))
+
+            // Procesamos el resultado obtenido
+            if (resultadoBD.isNotEmpty()) {
+                val idCliente = resultadoBD[0]["id_cliente"] as Int
+                val nombreCliente = resultadoBD[0]["nombre"] as String
+                val apellidoCliente = resultadoBD[0]["apellido"] as String
+                val dniCliente = dniIngresado
+                val aptoFisico = resultadoBD[0]["apto_fisico"] as String
+                val email = resultadoBD[0]["email"] as String
+                val fechaDeExpiracion = resultadoBD[0]["fechaDeExpiracion"] as String
+                val condSocio = resultadoBD[0]["cond_socio"] as String
+                textCoincidencia.visibility = View.GONE
+
+                // Enviamos los datos a la siguiente actividad
+                val intent = Intent(this, VisualizarCarnet::class.java).apply {
+                    putExtra("idCliente", idCliente.toString())
+                    putExtra("nombreCliente", nombreCliente)
+                    putExtra("apellidoCliente", apellidoCliente)
+                    putExtra("dniCliente", dniCliente)
+                    putExtra("aptoFisico", aptoFisico)
+                    putExtra("email", email)
+                    putExtra("fechaDeExpiracion", fechaDeExpiracion)
+                    putExtra("condSocio", condSocio)
+                }
+                inputDNI.text = ""
+                startActivity(intent)
+
+            } else {
+                textCoincidencia.text = "Cliente con DNI $dniIngresado no encontrado."
+                textCoincidencia.visibility = View.VISIBLE
+                inputDNI.text = ""
+            }
+        }
     }
 }
