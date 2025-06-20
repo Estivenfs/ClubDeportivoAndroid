@@ -38,14 +38,8 @@ class RegistroActividadActivity : AppCompatActivity() {
 
         val btnRegistrarActividad = findViewById<Button>(R.id.btnRegistrarActividad)
         val btnModificarActividad = findViewById<Button>(R.id.btnModificarActividad)
-        val btnEliminarActividad = findViewById<Button>(R.id.btnEliminarActividad)
 
-        // Configuracion de spinner
-        val spinnerActividad = findViewById<LinearLayout>(R.id.spinnerActividad)
-        val textActividadSeleccionada = findViewById<TextView>(R.id.inputActividadSeleccionada)
 
-        // Opciones para el spinner
-        cargarActividadesEnSpinner()
 
         // Configuración de los campos de texto
         inputNombreActividad = findViewById<EditText>(R.id.inputNombreActividad)
@@ -57,7 +51,7 @@ class RegistroActividadActivity : AppCompatActivity() {
         btnRegistrarActividad.setOnClickListener {
             when (val resultado = guardarNuevaActividad()) {
                 is ResultadoBD.Exito -> {
-                    cargarActividadesEnSpinner()
+                    //cargarActividadesEnSpinner()
                     val registroExitosoDialog = RegistroExitosoFragment.newInstance()
                     registroExitosoDialog.setOnVolverClickListener {
                         // ... lógica al volver ...
@@ -90,7 +84,7 @@ class RegistroActividadActivity : AppCompatActivity() {
         }
 
         // Lógica al eliminar actividad
-        btnEliminarActividad.setOnClickListener {
+        /*btnEliminarActividad.setOnClickListener {
             val eliminarActividadDialog = EliminarActividadFragment.newInstance()
             eliminarActividadDialog.setOnVolverClickListener {
                 // ... lógica al volver ...
@@ -98,11 +92,11 @@ class RegistroActividadActivity : AppCompatActivity() {
             eliminarActividadDialog.show(
                 supportFragmentManager, EliminarActividadFragment.TAG
             ) // Usar el nuevo TAG
-        }
+        }*/
 
     }
 
-    private fun cargarActividadesEnSpinner() {
+    /*private fun cargarActividadesEnSpinner() {
         val opcionesActividad = db.obtenerActividades()
         val textActividadSeleccionada = findViewById<TextView>(R.id.inputActividadSeleccionada)
         val spinnerActividad = findViewById<LinearLayout>(R.id.spinnerActividad)
@@ -114,7 +108,7 @@ class RegistroActividadActivity : AppCompatActivity() {
             textActividadSeleccionada.text = opcionesActividad[0]
             setBottomSheetSelector(spinnerActividad, opcionesActividad, "Actividad", textActividadSeleccionada)
         }
-    }
+    }*/
 
 
     fun guardarNuevaActividad() : ResultadoBD<Int>{
