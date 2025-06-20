@@ -1,0 +1,91 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp"
+    android:background="#1B1B1B">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/rounded_border"
+        android:padding="24dp"
+        android:backgroundTint="@color/amarillo_club_deportivo">
+
+        <TextView
+            android:id="@+id/tvTitulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="COMPROBANTE DE PAGO"
+            android:textColor="#000000"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal" />
+
+        <TextView
+            android:id="@+id/tvNombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nombre: Maria Gonzalez"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:id="@+id/tvDNI"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="DNI: 12345678"
+            android:textColor="#000000"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:id="@+id/tvTipoUsuario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tipo: Socio"
+            android:textColor="#000000"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:id="@+id/tvTipoPago"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pago: Cuota Mensual"
+            android:textColor="#000000"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:id="@+id/tvFecha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Fecha: 16/06/2025"
+            android:textColor="#000000"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:id="@+id/tvMonto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Monto: $3000"
+            android:textColor="#000000"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:id="@+id/tvOperacion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Operación N°: 000123"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            android:layout_marginBottom="20dp"/>
+
+        <Button
+            android:id="@+id/btnCompartir"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="COMPARTIR COMPROBANTE"
+            android:backgroundTint="#D0BA12"
+            android:textColor="#1B1B1B" />
+    </LinearLayout>
+</ScrollView>
