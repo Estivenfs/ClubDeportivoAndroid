@@ -10,6 +10,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.deportes.clubdeportivo.db.BDatos
 import android.graphics.Color
 import android.view.Gravity
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
+import kotlin.math.min
 
 
 class ListarSociosActivity : AppCompatActivity() {
@@ -42,7 +46,8 @@ class ListarSociosActivity : AppCompatActivity() {
             gravity = Gravity.CENTER
         }
 
-        val socios = db.obtenerSocios() // implementa esta función en BDatos
+        val fechaBuscada = getFechaMesAnterior()
+        val socios = db.obtenerClientesConPagoMesAnterior(fechaBuscada)
 
         if (socios.isEmpty()) {
             (recyclerView.parent as ViewGroup).addView(sinSociosText)
@@ -50,5 +55,17 @@ class ListarSociosActivity : AppCompatActivity() {
             recyclerView.layoutManager = LinearLayoutManager(this)
             recyclerView.adapter = SocioAdapter(socios)
         }
+    }
+    private fun getFechaMesAnterior(): String {
+        val formato = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()) // Ajustalo si usás otro formato
+        val calendar = Calendar.getInstance()
+        val dia = calendar.get(Calendar.DAY_OF_MONTH)
+
+        calendar.add(Calendar.MONTH, -1)
+
+        val maxDia = calendar.getActualMaximum(Calendar.DAY_OF_MONTH)
+        calendar.set(Calendar.DAY_OF_MONTH, min(dia, maxDia))
+
+        return formato.format(calendar.time)
     }
 }
