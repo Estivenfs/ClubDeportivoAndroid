@@ -2,18 +2,26 @@ package com.deportes.clubdeportivo
 
 import android.graphics.Color
 import android.os.Bundle
-import android.widget.Button
+import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.deportes.clubdeportivo.db.BDatos
+import android.graphics.Color
+import android.view.Gravity
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Calendar
+import java.util.Locale
 import kotlin.math.min
+
 
 class ListarSociosActivity : AppCompatActivity() {
     private lateinit var db: BDatos
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var sinSociosText: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,8 +45,28 @@ class ListarSociosActivity : AppCompatActivity() {
         btnAtras.setOnClickListener {
             finish()
         }
-    }
 
+
+        // Lógica para mostrar la lista de socios
+        db = BDatos(this)
+        recyclerView = findViewById(R.id.recyclerSocios)
+        sinSociosText = TextView(this).apply {
+            text = "No hay socios registrados"
+            setTextColor(Color.WHITE)
+            textSize = 18f
+            gravity = Gravity.CENTER
+        }
+
+        val fechaBuscada = getFechaMesAnterior()
+        val socios = db.obtenerClientesConPagoMesAnterior(fechaBuscada)
+
+        if (socios.isEmpty()) {
+            (recyclerView.parent as ViewGroup).addView(sinSociosText)
+        } else {
+            recyclerView.layoutManager = LinearLayoutManager(this)
+            recyclerView.adapter = SocioAdapter(socios)
+        }
+    }
     private fun getFechaMesAnterior(): String {
         val formato = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()) // Ajustalo si usás otro formato
         val calendar = Calendar.getInstance()
@@ -50,49 +78,5 @@ class ListarSociosActivity : AppCompatActivity() {
         calendar.set(Calendar.DAY_OF_MONTH, min(dia, maxDia))
 
         return formato.format(calendar.time)
-    }
-
-    private fun mostrarSociosEnPantalla(socios: List<Map<String, Any>>) {
-        val contenedor = findViewById<LinearLayout>(R.id.listaSociosContainer)
-        contenedor.removeAllViews()
-
-        for (socio in socios) {
-            val layout = LinearLayout(this).apply {
-                orientation = LinearLayout.HORIZONTAL
-                setBackgroundColor(Color.argb(26, 255, 255, 255)) // 0x1AFFFFFF como Color.argb
-                setPadding(8, 8, 8, 8)
-                layoutParams = LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.MATCH_PARENT,
-                    130 // altura aproximada como en tu XML
-                ).apply {
-                    bottomMargin = 8
-                }
-                gravity = android.view.Gravity.CENTER_VERTICAL
-            }
-
-            val idView = TextView(this).apply {
-                text = socio["id_cliente"].toString()
-                setTextColor(Color.WHITE)
-                layoutParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
-            }
-
-            val nombreView = TextView(this).apply {
-                text = "${socio["nombre"]} ${socio["apellido"]}"
-                setTextColor(Color.WHITE)
-                layoutParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 2f)
-            }
-
-            val dniView = TextView(this).apply {
-                text = socio["dni"].toString()
-                setTextColor(Color.WHITE)
-                layoutParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1.5f)
-            }
-
-            layout.addView(idView)
-            layout.addView(nombreView)
-            layout.addView(dniView)
-
-            contenedor.addView(layout)
-        }
     }
 }

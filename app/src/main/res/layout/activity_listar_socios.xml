@@ -99,13 +99,17 @@
                     android:textColor="#D0BA12" />
             </LinearLayout>
 
-            <!-- Contenedor donde se agregarán los socios dinámicamente -->
-            <LinearLayout
-                android:id="@+id/listaSociosContainer"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerSocios"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingHorizontal="24dp" />
+                android:layout_marginTop="8dp"
+                android:paddingHorizontal="24dp"
+                tools:listitem="@layout/item_socio"
+                />
+
+
+
         </LinearLayout>
     </ScrollView>
 

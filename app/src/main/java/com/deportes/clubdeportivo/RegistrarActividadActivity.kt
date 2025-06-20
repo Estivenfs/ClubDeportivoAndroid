@@ -38,14 +38,8 @@ class RegistroActividadActivity : AppCompatActivity() {
 
         val btnRegistrarActividad = findViewById<Button>(R.id.btnRegistrarActividad)
         val btnModificarActividad = findViewById<Button>(R.id.btnModificarActividad)
-        val btnEliminarActividad = findViewById<Button>(R.id.btnEliminarActividad)
 
-        // Configuracion de spinner
-        val spinnerActividad = findViewById<LinearLayout>(R.id.spinnerActividad)
-        val textActividadSeleccionada = findViewById<TextView>(R.id.inputActividadSeleccionada)
 
-        // Opciones para el spinner
-        cargarActividadesEnSpinner()
 
         // Configuración de los campos de texto
         inputNombreActividad = findViewById<EditText>(R.id.inputNombreActividad)
@@ -57,7 +51,7 @@ class RegistroActividadActivity : AppCompatActivity() {
         btnRegistrarActividad.setOnClickListener {
             when (val resultado = guardarNuevaActividad()) {
                 is ResultadoBD.Exito -> {
-                    cargarActividadesEnSpinner()
+                    //cargarActividadesEnSpinner()
                     val registroExitosoDialog = RegistroExitosoFragment.newInstance()
                     registroExitosoDialog.setOnVolverClickListener {
                         // ... lógica al volver ...
@@ -90,7 +84,7 @@ class RegistroActividadActivity : AppCompatActivity() {
         }
 
         // Lógica al eliminar actividad
-        btnEliminarActividad.setOnClickListener {
+        /*btnEliminarActividad.setOnClickListener {
             val eliminarActividadDialog = EliminarActividadFragment.newInstance()
             eliminarActividadDialog.setOnVolverClickListener {
                 // ... lógica al volver ...
@@ -98,11 +92,11 @@ class RegistroActividadActivity : AppCompatActivity() {
             eliminarActividadDialog.show(
                 supportFragmentManager, EliminarActividadFragment.TAG
             ) // Usar el nuevo TAG
-        }
+        }*/
 
     }
 
-    private fun cargarActividadesEnSpinner() {
+    /*private fun cargarActividadesEnSpinner() {
         val opcionesActividad = db.obtenerActividades()
         val textActividadSeleccionada = findViewById<TextView>(R.id.inputActividadSeleccionada)
         val spinnerActividad = findViewById<LinearLayout>(R.id.spinnerActividad)
@@ -114,17 +108,28 @@ class RegistroActividadActivity : AppCompatActivity() {
             textActividadSeleccionada.text = opcionesActividad[0]
             setBottomSheetSelector(spinnerActividad, opcionesActividad, "Actividad", textActividadSeleccionada)
         }
-    }
+    }*/
 
 
     fun guardarNuevaActividad() : ResultadoBD<Int>{
         val nombreActividad = inputNombreActividad.text.toString().trim()
-        val precioCuota = inputPrecioCuota.text.toString().trim()
-        val cupoActividad = inputCupoActividad.text.toString().trim()
-
-        if (nombreActividad.isEmpty() || precioCuota.isEmpty()) {
+        val precioCuotaText = inputPrecioCuota.text.toString().trim()
+        val cupoActividadText = inputCupoActividad.text.toString().trim()
+        var precioCuota : Float
+        if (nombreActividad.isEmpty() || precioCuotaText.isEmpty() || cupoActividadText.isEmpty()) {
             return ResultadoBD.CamposIncompletos
         }
+        try {
+            precioCuota = precioCuotaText.toFloat()
+        } catch (e: NumberFormatException) {
+            return ResultadoBD.Error("El precio por cuota debe ser un número válido")
+        }
+
+        val cupoActividad = cupoActividadText.toIntOrNull()
+        if (cupoActividad == null) {
+            return ResultadoBD.Error("El cupo de la actividad debe ser un número válido")
+        }
+
 
         val insertActividadQuery = """
             INSERT INTO Actividades (nombre_actividad, precio_actividad, cupo_actividad)
@@ -138,7 +143,7 @@ class RegistroActividadActivity : AppCompatActivity() {
             if (resultadoActividad.isNotEmpty()) {
                 ResultadoBD.YaExiste
             } else {
-                val insertActividadArgs = arrayOf(nombreActividad, precioCuota, cupoActividad)
+                val insertActividadArgs = arrayOf(nombreActividad, precioCuota.toString(), cupoActividad.toString())
                 val idActividad = db.insertar(insertActividadQuery, insertActividadArgs)
                 if (idActividad != null && idActividad > 0) {
                     ResultadoBD.Exito(idActividad)

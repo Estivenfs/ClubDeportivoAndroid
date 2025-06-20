@@ -94,7 +94,24 @@ class NuevoClienteActivity : AppCompatActivity() {
                     val registroExitosoDialog =
                         RegistroExitosoFragment.newInstance() // Usar el nuevo nombre de la clase
                     registroExitosoDialog.setOnVolverClickListener {
-                        // ... lógica al volver ...
+                        val cliente = db.ejecutarConsultaSelect("SELECT * FROM Cliente WHERE id_cliente = ?", arrayOf(resultado.datos.toString()))
+                        var intent : Intent
+                        //verificar que el cliente sea socio
+                        if (cliente[0]["cond_socio"] == 1){
+                            intent = Intent(this, PagosDetallesSocioActivity::class.java)
+                            intent.putExtra("nombre", cliente[0]["nombre"].toString())
+                            intent.putExtra("apellido", cliente[0]["apellido"].toString())
+                            intent.putExtra("dni", cliente[0]["dni"].toString())
+                            startActivity(intent)
+                        } else {
+                            intent = Intent(this, PagosDetallesNoSocioActivity::class.java)
+                            intent.putExtra("nombre", cliente[0]["nombre"].toString())
+                            intent.putExtra("apellido", cliente[0]["apellido"].toString())
+                            intent.putExtra("dni", cliente[0]["dni"].toString())
+                            startActivity(intent)
+                        }
+
+
                     }
                     registroExitosoDialog.show(
                         supportFragmentManager,
@@ -169,9 +186,10 @@ class NuevoClienteActivity : AppCompatActivity() {
                     email,
                     telefono,
                     fechaNacimientoFormateada,
-                    condSocio.toString(),
-                    aptoFisicoBool.toString()
+                    if (condSocio) "1" else "0",
+                    if (aptoFisicoBool) "1" else "0"
                 )
+
 
                 val idCliente = db.insertar(insertClienteQuery, insertClienteArgs)
 

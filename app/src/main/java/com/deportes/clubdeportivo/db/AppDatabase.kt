@@ -5,6 +5,7 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.database.Cursor
+import com.deportes.clubdeportivo.models.Cliente
 
 // Nombre de la base de datos
 private const val BD_NOMBRE = "ClubDeportivo"
@@ -69,6 +70,7 @@ class BDatos(contexto: Context) : SQLiteOpenHelper(contexto, BD_NOMBRE, null, BD
             cantidad_cuotas INTEGER,
             medio_pago TEXT NOT NULL,
             fecha_pago DATE NOT NULL,
+            fecha_vencimiento DATE NOT NULL,
             FOREIGN KEY (id_cliente) REFERENCES Cliente(id_cliente)
         );
         """.trimIndent()
@@ -285,15 +287,79 @@ class BDatos(contexto: Context) : SQLiteOpenHelper(contexto, BD_NOMBRE, null, BD
         return actividades
     }
 
-    fun obtenerClientesConPagoMesAnterior(fechaExacta: String): List<Map<String, Any>> {
-        val query = """
-        SELECT Cliente.id_cliente, Cliente.nombre, Cliente.apellido, Cliente.dni
-        FROM Cliente
-        INNER JOIN Pagos ON Cliente.id_cliente = Pagos.id_cliente
-        WHERE Pagos.fecha_pago = ?
-    """.trimIndent()
+    fun obtenerSocios(): List<Cliente> {
+        val lista = mutableListOf<Cliente>()
+        val db = readableDatabase
+        // Corrección: Usar la tabla 'Cliente' y la columna 'id_cliente'
+        val cursor = db.rawQuery("SELECT id_cliente, nombre, apellido, dni FROM Cliente WHERE cond_socio = 1", null)
 
-        return ejecutarConsultaSelect(query, arrayOf(fechaExacta))
+        if (cursor.moveToFirst()) {
+            do {
+                val id = cursor.getInt(cursor.getColumnIndexOrThrow("id_cliente")) // Obtener id_cliente
+                val nombre = cursor.getString(cursor.getColumnIndexOrThrow("nombre"))
+                val apellido = cursor.getString(cursor.getColumnIndexOrThrow("apellido"))
+                val dni = cursor.getString(cursor.getColumnIndexOrThrow("dni"))
+
+
+
+                lista.add(Cliente(
+                    id,
+                    nombre,
+                    apellido,
+                    dni,
+                    email = null,
+                    telefono = null,
+                    fechaNacimiento = null,
+                    condSocio = null,
+                    aptoFisico = null
+                ))
+            } while (cursor.moveToNext())
+        }
+
+        cursor.close()
+        db.close()
+        return lista
+    }
+
+    fun obtenerClientesConPagoMesAnterior(fechaExacta: String): List<Cliente> {
+        val query = """
+            SELECT Cliente.id_cliente, Cliente.nombre, Cliente.apellido, Cliente.dni
+            FROM Cliente
+            INNER JOIN Pagos ON Cliente.id_cliente = Pagos.id_cliente
+            WHERE Pagos.fecha_pago = ?
+        """.trimIndent()
+
+        val lista = mutableListOf<Cliente>()
+        val db = readableDatabase
+        // Corrección: Usar la tabla 'Cliente' y la columna 'id_cliente'
+        val cursor = db.rawQuery(query, arrayOf(fechaExacta))
+
+        if (cursor.moveToFirst()) {
+            do {
+                val id = cursor.getInt(cursor.getColumnIndexOrThrow("id_cliente")) // Obtener id_cliente
+                val nombre = cursor.getString(cursor.getColumnIndexOrThrow("nombre"))
+                val apellido = cursor.getString(cursor.getColumnIndexOrThrow("apellido"))
+                val dni = cursor.getString(cursor.getColumnIndexOrThrow("dni"))
+
+
+
+                lista.add(Cliente(
+                    id,
+                    nombre,
+                    apellido,
+                    dni,
+                    email = null,
+                    telefono = null,
+                    fechaNacimiento = null,
+                    condSocio = null,
+                    aptoFisico = null
+                ))
+            } while (cursor.moveToNext())
+        }
+
+        cursor.close()
+        db.close()
+        return lista
     }
 
 }
