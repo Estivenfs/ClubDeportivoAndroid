@@ -284,6 +284,18 @@ class BDatos(contexto: Context) : SQLiteOpenHelper(contexto, BD_NOMBRE, null, BD
         db.close()
         return actividades
     }
+
+    fun obtenerClientesConPagoMesAnterior(fechaExacta: String): List<Map<String, Any>> {
+        val query = """
+        SELECT Cliente.id_cliente, Cliente.nombre, Cliente.apellido, Cliente.dni
+        FROM Cliente
+        INNER JOIN Pagos ON Cliente.id_cliente = Pagos.id_cliente
+        WHERE Pagos.fecha_pago = ?
+    """.trimIndent()
+
+        return ejecutarConsultaSelect(query, arrayOf(fechaExacta))
+    }
+
 }
 
 // Modelo simple de Usuario
