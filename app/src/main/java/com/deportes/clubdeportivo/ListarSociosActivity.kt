@@ -10,7 +10,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.deportes.clubdeportivo.db.BDatos
-import android.graphics.Color
 import android.view.Gravity
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -29,12 +28,12 @@ class ListarSociosActivity : AppCompatActivity() {
 
         db = BDatos(this)
 
-        val btnProximos: Button = findViewById(R.id.btnProximos)
+        /*val btnProximos: Button = findViewById(R.id.btnProximos)
         btnProximos.setOnClickListener {
             val fechaBuscada = getFechaMesAnterior()
             val socios = db.obtenerClientesConPagoMesAnterior(fechaBuscada)
             mostrarSociosEnPantalla(socios)
-        }
+        }*/
 
         // Lógica de la barra superior
         val btnAtras: ImageView = findViewById(R.id.buttonBack)

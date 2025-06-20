@@ -37,7 +37,6 @@ class RegistroActividadActivity : AppCompatActivity() {
         }
 
         val btnRegistrarActividad = findViewById<Button>(R.id.btnRegistrarActividad)
-        val btnModificarActividad = findViewById<Button>(R.id.btnModificarActividad)
 
 
 
@@ -77,22 +76,6 @@ class RegistroActividadActivity : AppCompatActivity() {
             }
 
         }
-
-        // Lógica al modificar actividad
-        btnModificarActividad.setOnClickListener {
-            startActivity(Intent(this, ModificarActividadActivity::class.java))
-        }
-
-        // Lógica al eliminar actividad
-        /*btnEliminarActividad.setOnClickListener {
-            val eliminarActividadDialog = EliminarActividadFragment.newInstance()
-            eliminarActividadDialog.setOnVolverClickListener {
-                // ... lógica al volver ...
-            }
-            eliminarActividadDialog.show(
-                supportFragmentManager, EliminarActividadFragment.TAG
-            ) // Usar el nuevo TAG
-        }*/
 
     }
 
@@ -159,7 +142,7 @@ class RegistroActividadActivity : AppCompatActivity() {
 
     }
 
-    fun actualizarListadoActividades(fn: () -> Unit){
+    /*fun actualizarListadoActividades(fn: () -> Unit){
         val opcionesActividad = db.obtenerActividades()
         if (opcionesActividad.isEmpty()) {
             textActividadSeleccionada.text = "No hay actividades disponibles"
@@ -167,7 +150,7 @@ class RegistroActividadActivity : AppCompatActivity() {
             textActividadSeleccionada.text = opcionesActividad[0]
             fn()
         }
-    }
+    }*/
 
 
 }

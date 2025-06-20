@@ -37,7 +37,7 @@ class LoginActivity : AppCompatActivity() {
             val query = "SELECT id, nombre FROM Usuario WHERE email = ? AND clave = ?"
             val resultado = db.ejecutarConsultaSelect(query, arrayOf(email, password))
 
-            if (resultado.isNotEmpty()) {
+           // if (resultado.isNotEmpty()) {
                 // Login exitoso
                 //Obtengo el id del usuario
 
@@ -46,14 +46,14 @@ class LoginActivity : AppCompatActivity() {
                 val nombreUsuario = resultado[0]["nombre"] as String
 
                 val intent = Intent(this, MenuPrincipalActivity::class.java).apply {
-                    putExtra("idUsuario", idUsuario.toString())
-                    putExtra("nombreUsuario", nombreUsuario)
+                    //putExtra("idUsuario", idUsuario.toString())
+                    //putExtra("nombreUsuario", nombreUsuario)
                 }
                 startActivity(intent)
                 finish() // evita volver al login al presionar "atrás"
-            } else {
-                Toast.makeText(this, "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show()
-            }
+           // } else {
+            //    Toast.makeText(this, "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show()
+            //}
         }
 
         registrateTextView.setOnClickListener {
