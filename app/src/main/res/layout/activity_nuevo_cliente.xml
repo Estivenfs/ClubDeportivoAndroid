@@ -164,8 +164,9 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_weight="1"
-                    android:text="DD/MM/YY"
-                    android:textColor="#ADADAD"
+                    android:hint="DD/MM/YY"
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#ADADAD"
                     android:textSize="18sp" />
 
                 <ImageView
