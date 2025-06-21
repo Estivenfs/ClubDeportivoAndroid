@@ -96,18 +96,21 @@ class NuevoClienteActivity : AppCompatActivity() {
                     registroExitosoDialog.setOnVolverClickListener {
                         val cliente = db.ejecutarConsultaSelect("SELECT * FROM Cliente WHERE id_cliente = ?", arrayOf(resultado.datos.toString()))
                         var intent : Intent
+                        val idCliente = resultado.datos.toString()
                         //verificar que el cliente sea socio
                         if (cliente[0]["cond_socio"] == 1){
                             intent = Intent(this, PagosDetallesSocioActivity::class.java)
                             intent.putExtra("nombre", cliente[0]["nombre"].toString())
                             intent.putExtra("apellido", cliente[0]["apellido"].toString())
                             intent.putExtra("dni", cliente[0]["dni"].toString())
+                            intent.putExtra("id_cliente", idCliente.toInt())
                             startActivity(intent)
                         } else {
                             intent = Intent(this, PagosDetallesNoSocioActivity::class.java)
                             intent.putExtra("nombre", cliente[0]["nombre"].toString())
                             intent.putExtra("apellido", cliente[0]["apellido"].toString())
                             intent.putExtra("dni", cliente[0]["dni"].toString())
+                            intent.putExtra("id_cliente", idCliente.toInt())
                             startActivity(intent)
                         }
 
