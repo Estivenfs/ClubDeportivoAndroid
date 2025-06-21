@@ -415,11 +415,25 @@ class BDatos(contexto: Context) : SQLiteOpenHelper(contexto, BD_NOMBRE, null, BD
 
     fun obtenerVencidos(): List<Cliente> {
         val query = """
-            SELECT Cliente.id_cliente, Cliente.nombre, Cliente.apellido, Cliente.dni
-            FROM Cliente
-            INNER JOIN Pagos ON Cliente.id_cliente = Pagos.id_cliente
-            WHERE Pagos.fecha_vencimiento < ?
-        """.trimIndent()
+        SELECT
+            C.id_cliente,
+            C.nombre,
+            C.apellido,
+            C.dni
+        FROM
+            Cliente AS C
+        INNER JOIN (
+            SELECT
+                id_cliente,
+                MAX(fecha_vencimiento) AS ultima_fecha_vencimiento
+            FROM
+                Pagos
+            GROUP BY
+                id_cliente
+        ) AS P ON C.id_cliente = P.id_cliente
+        WHERE
+            P.ultima_fecha_vencimiento < ?
+    """.trimIndent()
 
         val formatoFecha = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         val fechaFormateada = formatoFecha.format(Calendar.getInstance().time)
@@ -455,6 +469,29 @@ class BDatos(contexto: Context) : SQLiteOpenHelper(contexto, BD_NOMBRE, null, BD
         cursor.close()
         db.close()
         return lista
+    }
+
+    fun obtenerSocioPorId(idSocio: Int): Cliente? {
+        val query = """
+            SELECT * FROM Cliente WHERE id_cliente = ?
+        """.trimIndent()
+        val resultado = this.ejecutarConsultaSelect(query, arrayOf(idSocio.toString()))
+        return if (resultado.isNotEmpty()) {
+            val clienteMap = resultado[0]
+            Cliente(
+                idCliente = clienteMap["id_cliente"] as Int,
+                nombre = clienteMap["nombre"] as String,
+                apellido = clienteMap["apellido"] as String,
+                dni = clienteMap["dni"] as String,
+                email = clienteMap["email"] as String,
+                telefono = clienteMap["telefono"] as String,
+                fechaNacimiento = clienteMap["fecha_nacimiento"] as String,
+                condSocio = clienteMap["cond_socio"] == 1,
+                aptoFisico = clienteMap["apto_fisico"] == 1,
+                )
+        } else {
+            null
+        }
     }
 
     fun obtenerComprobantePorId(idPago: Int): Map<String, String>? {

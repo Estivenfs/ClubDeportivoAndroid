@@ -1,11 +1,13 @@
 package com.deportes.clubdeportivo
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.deportes.clubdeportivo.models.Cliente
+
 
 class SocioAdapter(private val socios: List<Cliente>) :
     RecyclerView.Adapter<SocioAdapter.SocioViewHolder>() {
@@ -27,6 +29,15 @@ class SocioAdapter(private val socios: List<Cliente>) :
         holder.tvId.text = socio.idCliente.toString()
         holder.tvNombre.text = socio.nombre
         holder.tvDni.text = socio.dni
+
+        // Añadir el OnClickListener al itemView
+        holder.itemView.setOnClickListener {
+            val context = holder.itemView.context
+            val intent = Intent(context, ActualizacionDatosActivity::class.java).apply {
+                putExtra("id_socio", socio.idCliente) // Pasa el ID del socio como extra
+            }
+            context.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int = socios.size
