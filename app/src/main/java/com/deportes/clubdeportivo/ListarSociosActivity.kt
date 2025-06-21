@@ -39,21 +39,32 @@ class ListarSociosActivity : AppCompatActivity() {
         var socios : List<Cliente> = listOf()
 
         val btnTodos: Button = findViewById<Button>(R.id.btnTodos)
+        val btnSinActividad: Button = findViewById<Button>(R.id.btnSinActividad)
+        val btnProximos: Button = findViewById(R.id.btnProximos)
         btnTodos.setOnClickListener {
             socios = db.obtenerTodosSocios()
             mostrarSociosEnPantalla(socios)
+            btnTodos.alpha = 1.0f
+            btnSinActividad.alpha = 0.5f
+            btnProximos.alpha = 0.5f
         }
 
-        val btnSinActividad: Button = findViewById<Button>(R.id.btnSinActividad)
+
         btnSinActividad.setOnClickListener {
             socios = db.obtenerVencidos()
             mostrarSociosEnPantalla(socios)
+            btnTodos.alpha = 0.5f
+            btnSinActividad.alpha = 1.0f
+            btnProximos.alpha = 0.5f
         }
 
-        val btnProximos: Button = findViewById(R.id.btnProximos)
+
         btnProximos.setOnClickListener {
             socios = db.obtenerClientesConPagoMesAnterior()
             mostrarSociosEnPantalla(socios)
+            btnTodos.alpha = 0.5f
+            btnSinActividad.alpha = 0.5f
+            btnProximos.alpha = 1.0f
         }
 
         // Lógica de la barra superior
