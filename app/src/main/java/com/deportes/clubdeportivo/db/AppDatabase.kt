@@ -600,6 +600,18 @@ class BDatos(contexto: Context) : SQLiteOpenHelper(contexto, BD_NOMBRE, null, BD
         }
     }
 
+    fun verificarPagoFecha(idCliente: Int, fechaInicio: String): Boolean {
+        val query = """
+            SELECT * FROM Pagos WHERE id_cliente = ? AND fecha_vencimiento > ?
+        """.trimIndent()
+        val args = arrayOf(idCliente.toString(), fechaInicio)
+        val resultado = this.ejecutarConsultaSelect(query, args)
+        if (resultado.isNotEmpty()) {
+            return true
+        }
+        return false
+    }
+
 
 }
 

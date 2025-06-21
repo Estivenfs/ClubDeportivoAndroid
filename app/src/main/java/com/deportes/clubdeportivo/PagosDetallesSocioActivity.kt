@@ -231,8 +231,26 @@ class PagosDetallesSocioActivity : AppCompatActivity() {
             Toast.makeText(this, "Por favor, completa todos los campos obligatorios.", Toast.LENGTH_SHORT).show()
             return
         }
+
         if (mesesSuscripcion <= 0) {
             Toast.makeText(this, "Los meses de suscripción deben ser al menos 1.", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        // Validación de Nombre y Apellido (ejemplo de longitud mínima)
+        if (nombre.length < 2) {
+            Toast.makeText(this, "El nombre debe tener al menos 2 caracteres.", Toast.LENGTH_SHORT).show()
+            return
+        }
+        if (apellido.length < 2) {
+            Toast.makeText(this, "El apellido debe tener al menos 2 caracteres.", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        // Validación de DNI (7 u 8 dígitos numéricos, si aplica)
+        // Asegúrate de que 'dni' sea el String del campo de texto
+        if (!dni.matches(Regex("^\\d{7,8}$"))) {
+            Toast.makeText(this, "El DNI debe contener 7 u 8 dígitos numéricos.", Toast.LENGTH_SHORT).show()
             return
         }
 
@@ -260,6 +278,13 @@ class PagosDetallesSocioActivity : AppCompatActivity() {
             Toast.makeText(this, "Formato de fecha de inicio inválido.", Toast.LENGTH_SHORT).show()
             return
         }
+
+        //Verifico que este cliente no tenga un pago en este periodo (la fecha de inicio no deberia estar entre la fecha de inicio y vencimiento de algun pago del mismo cliente)
+        if(db.verificarPagoFecha(idCliente, fechaInicioFormateada)){
+            Toast.makeText(this, "Este cliente ya tiene un pago en este periodo.", Toast.LENGTH_SHORT).show()
+            return
+        }
+
         //A fecha inicio sumo la cantidad de meses de suscripcion
         val fechaInicioDate = dateFormatDb.parse(fechaInicioFormateada)
         val calendar = java.util.Calendar.getInstance()
