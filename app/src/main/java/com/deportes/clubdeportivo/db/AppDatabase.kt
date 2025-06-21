@@ -290,6 +290,21 @@ class BDatos(contexto: Context) : SQLiteOpenHelper(contexto, BD_NOMBRE, null, BD
         db.close()
         return actividades
     }
+    fun obtenerPrecioActividad(nombreActividad: String): Float {
+        val db = readableDatabase
+        val cursor = db.rawQuery(
+            "SELECT precio_actividad FROM Actividades WHERE nombre_actividad = ?",
+            arrayOf(nombreActividad)
+        )
+
+        var precio = 0f
+        if (cursor.moveToFirst()) {
+            precio = cursor.getFloat(0)
+        }
+        cursor.close()
+        db.close()
+        return precio
+    }
 
     fun obtenerSocios(): List<Cliente> {
         val lista = mutableListOf<Cliente>()
@@ -361,6 +376,35 @@ class BDatos(contexto: Context) : SQLiteOpenHelper(contexto, BD_NOMBRE, null, BD
             } while (cursor.moveToNext())
         }
 
+        cursor.close()
+        db.close()
+        return lista
+    }
+    fun obtenerSociosSinActividad(): List<Cliente> {
+        val lista = mutableListOf<Cliente>()
+        val query = """
+        SELECT Cliente.id_cliente, Cliente.nombre, Cliente.apellido, Cliente.dni
+        FROM Cliente
+        LEFT JOIN Inscripcion ON Cliente.id_cliente = Inscripcion.id_cliente
+        WHERE Cliente.cond_socio = 1 AND Inscripcion.id_actividad IS NULL
+    """.trimIndent()
+
+        val db = readableDatabase
+        val cursor = db.rawQuery(query, null)
+        if (cursor.moveToFirst()) {
+            do {
+                val id = cursor.getInt(cursor.getColumnIndexOrThrow("id_cliente"))
+                val nombre = cursor.getString(cursor.getColumnIndexOrThrow("nombre"))
+                val apellido = cursor.getString(cursor.getColumnIndexOrThrow("apellido"))
+                val dni = cursor.getString(cursor.getColumnIndexOrThrow("dni"))
+
+                lista.add(Cliente(
+                    id, nombre, apellido, dni,
+                    email = null, telefono = null, fechaNacimiento = null,
+                    condSocio = null, aptoFisico = null
+                ))
+            } while (cursor.moveToNext())
+        }
         cursor.close()
         db.close()
         return lista
