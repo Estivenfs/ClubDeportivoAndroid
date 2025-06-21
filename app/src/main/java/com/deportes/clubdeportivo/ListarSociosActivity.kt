@@ -87,6 +87,10 @@ class ListarSociosActivity : AppCompatActivity() {
     fun mostrarSociosEnPantalla(socios: List<Cliente>) {
         db = BDatos(this)
         recyclerView = findViewById(R.id.recyclerSocios)
+        //Reiniciar el layout
+        recyclerView.removeAllViews()
+        recyclerView.removeAllViewsInLayout()
+
         sinSociosText = TextView(this).apply {
             text = "No hay socios registrados"
             setTextColor(Color.WHITE)
