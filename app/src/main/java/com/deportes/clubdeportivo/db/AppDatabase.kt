@@ -373,6 +373,90 @@ class BDatos(contexto: Context) : SQLiteOpenHelper(contexto, BD_NOMBRE, null, BD
         return lista
     }
 
+    fun obtenerTodosSocios(): List<Cliente> {
+        val query = """
+            SELECT Cliente.id_cliente, Cliente.nombre, Cliente.apellido, Cliente.dni
+            FROM Cliente WHERE cond_socio = 1
+        """.trimIndent()
+
+
+        val lista = mutableListOf<Cliente>()
+        val db = readableDatabase
+        // Corrección: Usar la tabla 'Cliente' y la columna 'id_cliente'
+        val cursor = db.rawQuery(query, null)
+
+        if (cursor.moveToFirst()) {
+            do {
+                val id = cursor.getInt(cursor.getColumnIndexOrThrow("id_cliente")) // Obtener id_cliente
+                val nombre = cursor.getString(cursor.getColumnIndexOrThrow("nombre"))
+                val apellido = cursor.getString(cursor.getColumnIndexOrThrow("apellido"))
+                val dni = cursor.getString(cursor.getColumnIndexOrThrow("dni"))
+
+
+
+                lista.add(Cliente(
+                    id,
+                    nombre,
+                    apellido,
+                    dni,
+                    email = null,
+                    telefono = null,
+                    fechaNacimiento = null,
+                    condSocio = null,
+                    aptoFisico = null
+                ))
+            } while (cursor.moveToNext())
+        }
+
+        cursor.close()
+        db.close()
+        return lista
+    }
+
+    fun obtenerVencidos(): List<Cliente> {
+        val query = """
+            SELECT Cliente.id_cliente, Cliente.nombre, Cliente.apellido, Cliente.dni
+            FROM Cliente
+            INNER JOIN Pagos ON Cliente.id_cliente = Pagos.id_cliente
+            WHERE Pagos.fecha_vencimiento < ?
+        """.trimIndent()
+
+        val formatoFecha = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        val fechaFormateada = formatoFecha.format(Calendar.getInstance().time)
+
+        val lista = mutableListOf<Cliente>()
+        val db = readableDatabase
+        // Corrección: Usar la tabla 'Cliente' y la columna 'id_cliente'
+        val cursor = db.rawQuery(query, arrayOf(fechaFormateada))
+
+        if (cursor.moveToFirst()) {
+            do {
+                val id = cursor.getInt(cursor.getColumnIndexOrThrow("id_cliente")) // Obtener id_cliente
+                val nombre = cursor.getString(cursor.getColumnIndexOrThrow("nombre"))
+                val apellido = cursor.getString(cursor.getColumnIndexOrThrow("apellido"))
+                val dni = cursor.getString(cursor.getColumnIndexOrThrow("dni"))
+
+
+
+                lista.add(Cliente(
+                    id,
+                    nombre,
+                    apellido,
+                    dni,
+                    email = null,
+                    telefono = null,
+                    fechaNacimiento = null,
+                    condSocio = null,
+                    aptoFisico = null
+                ))
+            } while (cursor.moveToNext())
+        }
+
+        cursor.close()
+        db.close()
+        return lista
+    }
+
     fun obtenerComprobantePorId(idPago: Int): Map<String, String>? {
         val query = """
         SELECT 
