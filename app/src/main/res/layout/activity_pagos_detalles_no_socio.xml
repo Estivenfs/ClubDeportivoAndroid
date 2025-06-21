@@ -40,13 +40,13 @@
                 android:id="@+id/inputNombre"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:hint="María"
-                android:textColorHint="#ADADAD"
-                android:textColor="#FFFFFF"
+                android:layout_marginTop="8dp"
                 android:background="@drawable/rounded_border"
+                android:hint="María"
                 android:paddingLeft="12dp"
                 android:paddingRight="12dp"
-                android:layout_marginTop="8dp" />
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FFFFFF" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -61,13 +61,13 @@
                 android:id="@+id/inputApellido"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:hint="González"
-                android:textColorHint="#ADADAD"
-                android:textColor="#FFFFFF"
+                android:layout_marginTop="8dp"
                 android:background="@drawable/rounded_border"
+                android:hint="González"
                 android:paddingLeft="12dp"
                 android:paddingRight="12dp"
-                android:layout_marginTop="8dp" />
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FFFFFF" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -82,14 +82,14 @@
                 android:id="@+id/inputDNI"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/rounded_border"
                 android:hint="45693394"
                 android:inputType="number"
-                android:textColorHint="#ADADAD"
-                android:textColor="#FFFFFF"
-                android:background="@drawable/rounded_border"
                 android:paddingLeft="12dp"
                 android:paddingRight="12dp"
-                android:layout_marginTop="8dp" />
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FFFFFF" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -116,11 +116,11 @@
                     android:id="@+id/inputFechaPago"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
                     android:layout_weight="1"
-                    android:text="10/04/2025"
-                    android:textSize="18sp"
+                    android:text="DD/MM/YY"
                     android:textColor="#ADADAD"
-                    android:layout_gravity="center_vertical"/>
+                    android:textSize="18sp" />
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -165,11 +165,11 @@
                     android:id="@+id/inputFechaAPagar"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
                     android:layout_weight="1"
-                    android:text="10/04/2025"
-                    android:textSize="18sp"
+                    android:text="DD/MM/YY"
                     android:textColor="#ADADAD"
-                    android:layout_gravity="center_vertical"/>
+                    android:textSize="18sp" />
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -237,11 +237,11 @@
                     android:id="@+id/textOpcionesPagoSeleccionada"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
                     android:layout_weight="1"
-                    android:text="Efectivo"
-                    android:textSize="18sp"
+                    android:text="Efectivo (-10%)"
                     android:textColor="#FFFFFF"
-                    android:layout_gravity="center_vertical"/>
+                    android:textSize="18sp" />
 
                 <ImageView
                     android:layout_width="wrap_content"

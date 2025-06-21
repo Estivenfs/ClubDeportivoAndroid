@@ -62,7 +62,7 @@
                     android:layout_width="0dp"
                     android:layout_height="48dp"
                     android:background="@drawable/rounded_border"
-                    android:hint="Pedro Perez"
+                    android:hint="Introduce tu nombre"
                     android:inputType="textPersonName"
                     android:paddingStart="16dp"
                     android:paddingEnd="48dp"
@@ -72,18 +72,6 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageView
-                    android:id="@+id/imageViewCheck"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginRight="20dp"
-                    android:src="@drawable/checkicon"
-                    app:layout_constraintBottom_toBottomOf="@+id/editTextNombre"
-                    app:layout_constraintEnd_toEndOf="@+id/editTextNombre"
-                    app:layout_constraintTop_toTopOf="@+id/editTextNombre"
-                    app:tint="@color/amarillo_club_deportivo" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -104,7 +92,7 @@
                 android:layout_marginTop="8dp"
                 android:autofillHints=""
                 android:background="@drawable/rounded_border"
-                android:hint="clubdeportivo@tuemail.com"
+                android:hint="Introduce tu email"
                 android:inputType="textEmailAddress"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"

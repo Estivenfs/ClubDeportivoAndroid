@@ -30,7 +30,7 @@ class BDatos(contexto: Context) : SQLiteOpenHelper(contexto, BD_NOMBRE, null, BD
 
         // Insertar usuario por defecto (admin / admin)
         val insertAdmin = """
-        INSERT OR IGNORE INTO Usuario (nombre, clave, email, dni) VALUES ('admin', 'admin', 'admin@admin.com', '12345678')
+        INSERT OR IGNORE INTO Usuario (nombre, clave, email, dni) VALUES ('administrador', 'admin', 'admin@admin.com', '12345678')
     """.trimIndent()
         db?.execSQL(insertAdmin)
     }

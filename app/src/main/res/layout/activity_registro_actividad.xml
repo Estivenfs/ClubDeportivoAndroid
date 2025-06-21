@@ -46,10 +46,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
                 android:text="Nombre"
-                android:textSize="16sp"
-                android:textColor="#ADADAD"
-                android:layout_marginBottom="8dp"/>
+                android:textColor="#FFFFFF"
+                android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/inputNombreActividad"
@@ -66,10 +66,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
                 android:text="Precio cuota"
-                android:textSize="16sp"
-                android:textColor="#ADADAD"
-                android:layout_marginBottom="8dp"/>
+                android:textColor="#FFFFFF"
+                android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/inputPrecioCuota"
@@ -88,10 +88,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
                 android:text="Cupos Máximos"
-                android:textSize="16sp"
-                android:textColor="#ADADAD"
-                android:layout_marginBottom="8dp"/>
+                android:textColor="#FFFFFF"
+                android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/inputCupoActividad"
