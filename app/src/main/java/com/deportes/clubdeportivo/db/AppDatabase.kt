@@ -362,10 +362,25 @@ class BDatos(contexto: Context) : SQLiteOpenHelper(contexto, BD_NOMBRE, null, BD
 
     fun obtenerClientesConPagoMesAnterior(): List<Cliente> {
         val query = """
-            SELECT Cliente.id_cliente, Cliente.nombre, Cliente.apellido, Cliente.dni
-            FROM Cliente
-            INNER JOIN Pagos ON Cliente.id_cliente = Pagos.id_cliente
-            WHERE Pagos.fecha_vencimiento = ?
+            SELECT
+            C.id_cliente,
+            C.nombre,
+            C.apellido,
+            C.dni,
+            P.ultima_fecha_vencimiento
+        FROM
+            Cliente AS C
+        INNER JOIN (
+            SELECT
+                id_cliente,
+                MAX(fecha_vencimiento) AS ultima_fecha_vencimiento
+            FROM
+                Pagos
+            GROUP BY
+                id_cliente
+        ) AS P ON C.id_cliente = P.id_cliente
+        WHERE P.ultima_fecha_vencimiento = ?
+        
         """.trimIndent()
 
         val fechaHoy = Calendar.getInstance().toString()
@@ -383,7 +398,6 @@ class BDatos(contexto: Context) : SQLiteOpenHelper(contexto, BD_NOMBRE, null, BD
                 val nombre = cursor.getString(cursor.getColumnIndexOrThrow("nombre"))
                 val apellido = cursor.getString(cursor.getColumnIndexOrThrow("apellido"))
                 val dni = cursor.getString(cursor.getColumnIndexOrThrow("dni"))
-
 
 
                 lista.add(Cliente(
