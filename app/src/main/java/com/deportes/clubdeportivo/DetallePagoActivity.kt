@@ -128,7 +128,20 @@ class DetallePagoActivity : AppCompatActivity() {
             } catch (e: Exception) {
                 Toast.makeText(this, "Error al registrar el pago: ${e.message}", Toast.LENGTH_LONG).show()
             }
-
+            // verifico si actividad es distinto a membresia. Si lo es entonces sumo 1 a inscripto dentro de actividades
+            if (actividad != "Membresia") {
+                val updateActividadesQuery = """
+                    UPDATE Actividades
+                    SET inscripto = inscripto + 1
+                    WHERE nombre = ?
+                """.trimIndent()
+                val updateActividadesArgs = arrayOf(actividad)
+                try {
+                    db.actualizarOEliminar(updateActividadesQuery, updateActividadesArgs)
+                } catch (e: Exception) {
+                    Toast.makeText(this, "Error al actualizar inscripto: ${e.message}", Toast.LENGTH_LONG).show()
+                }
+            }
 
             if (idPago != -1) {
                 Toast.makeText(this, "Pago registrado exitosamente. ID: $idPago", Toast.LENGTH_LONG).show()
