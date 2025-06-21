@@ -83,8 +83,8 @@ class ActualizacionDatosActivity : AppCompatActivity() {
         textViewTipoInscripcion.text = tipoInscripcion
         val textViewAptoFisico = findViewById<TextView>(R.id.textViewAptoFisico)
         textViewAptoFisico.text = aptoFisico
-        //val inputTelefono = findViewById<TextView>(R.id.editTextTelefono)
-        //inputTelefono.text = socio.telefono
+        val inputTelefono = findViewById<TextView>(R.id.editTextTelefono)
+        inputTelefono.text = socio.telefono
 
 
 

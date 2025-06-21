@@ -85,7 +85,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Nombre"
+                android:text="DNI"
                 android:textColor="#FFFFFF"
                 android:textSize="18sp" />
 
@@ -97,6 +97,32 @@
                 android:autofillHints=""
                 android:background="@drawable/rounded_border"
                 android:hint="1234568"
+                android:inputType="phone"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#EDEDED"
+                android:textSize="16sp"
+                android:focusable="false"
+                android:clickable="false"
+                />
+            <!-- Input Telefono -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Teléfono"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/editTextTelefono"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="8dp"
+                android:autofillHints=""
+                android:background="@drawable/rounded_border"
+                android:hint="11586254"
                 android:inputType="number"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
