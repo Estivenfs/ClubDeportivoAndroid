@@ -6,6 +6,9 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.database.Cursor
 import com.deportes.clubdeportivo.models.Cliente
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
 // Nombre de la base de datos
 private const val BD_NOMBRE = "ClubDeportivo"
@@ -325,18 +328,22 @@ class BDatos(contexto: Context) : SQLiteOpenHelper(contexto, BD_NOMBRE, null, BD
         return lista
     }
 
-    fun obtenerClientesConPagoMesAnterior(fechaExacta: String): List<Cliente> {
+    fun obtenerClientesConPagoMesAnterior(): List<Cliente> {
         val query = """
             SELECT Cliente.id_cliente, Cliente.nombre, Cliente.apellido, Cliente.dni
             FROM Cliente
             INNER JOIN Pagos ON Cliente.id_cliente = Pagos.id_cliente
-            WHERE Pagos.fecha_pago = ?
+            WHERE Pagos.fecha_vencimiento = ?
         """.trimIndent()
+
+        val fechaHoy = Calendar.getInstance().toString()
+        val formatoFecha = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        val fechaFormateada = formatoFecha.format(Calendar.getInstance().time)
 
         val lista = mutableListOf<Cliente>()
         val db = readableDatabase
         // Corrección: Usar la tabla 'Cliente' y la columna 'id_cliente'
-        val cursor = db.rawQuery(query, arrayOf(fechaExacta))
+        val cursor = db.rawQuery(query, arrayOf(fechaFormateada))
 
         if (cursor.moveToFirst()) {
             do {

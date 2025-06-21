@@ -56,8 +56,8 @@ class ListarSociosActivity : AppCompatActivity() {
             gravity = Gravity.CENTER
         }
 
-        val fechaBuscada = getFechaMesAnterior()
-        val socios = db.obtenerClientesConPagoMesAnterior(fechaBuscada)
+        //val fechaBuscada = getFechaMesAnterior()
+        val socios = db.obtenerClientesConPagoMesAnterior()
 
         if (socios.isEmpty()) {
             (recyclerView.parent as ViewGroup).addView(sinSociosText)
