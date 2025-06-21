@@ -21,7 +21,8 @@ class DescargarComprobanteActivity : AppCompatActivity() {
         textViewTitulo.text = "Comprobante de Pago"
 
         btnAtras.setOnClickListener {
-            finish()
+            val intent = Intent(this, MenuPrincipalActivity::class.java)
+            startActivity(intent)
         }
 
         val idPago = intent.getIntExtra("idPago", -1)
