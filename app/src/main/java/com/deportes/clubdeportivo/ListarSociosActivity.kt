@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.deportes.clubdeportivo.db.BDatos
 import android.view.Gravity
+import android.widget.Button
+import com.deportes.clubdeportivo.models.Cliente
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -34,6 +36,36 @@ class ListarSociosActivity : AppCompatActivity() {
             val socios = db.obtenerClientesConPagoMesAnterior(fechaBuscada)
             mostrarSociosEnPantalla(socios)
         }*/
+        var socios : List<Cliente> = listOf()
+
+        val btnTodos: Button = findViewById<Button>(R.id.btnTodos)
+        val btnSinActividad: Button = findViewById<Button>(R.id.btnSinActividad)
+        val btnProximos: Button = findViewById(R.id.btnProximos)
+        btnTodos.setOnClickListener {
+            socios = db.obtenerTodosSocios()
+            mostrarSociosEnPantalla(socios)
+            btnTodos.alpha = 1.0f
+            btnSinActividad.alpha = 0.5f
+            btnProximos.alpha = 0.5f
+        }
+
+
+        btnSinActividad.setOnClickListener {
+            socios = db.obtenerVencidos()
+            mostrarSociosEnPantalla(socios)
+            btnTodos.alpha = 0.5f
+            btnSinActividad.alpha = 1.0f
+            btnProximos.alpha = 0.5f
+        }
+
+
+        btnProximos.setOnClickListener {
+            socios = db.obtenerClientesConPagoMesAnterior()
+            mostrarSociosEnPantalla(socios)
+            btnTodos.alpha = 0.5f
+            btnSinActividad.alpha = 0.5f
+            btnProximos.alpha = 1.0f
+        }
 
         // Lógica de la barra superior
         val btnAtras: ImageView = findViewById(R.id.buttonBack)
@@ -47,6 +79,12 @@ class ListarSociosActivity : AppCompatActivity() {
 
 
         // Lógica para mostrar la lista de socios
+        socios = db.obtenerClientesConPagoMesAnterior()
+        mostrarSociosEnPantalla(socios)
+
+
+    }
+    fun mostrarSociosEnPantalla(socios: List<Cliente>) {
         db = BDatos(this)
         recyclerView = findViewById(R.id.recyclerSocios)
         sinSociosText = TextView(this).apply {
@@ -56,8 +94,7 @@ class ListarSociosActivity : AppCompatActivity() {
             gravity = Gravity.CENTER
         }
 
-        //val fechaBuscada = getFechaMesAnterior()
-        val socios = db.obtenerClientesConPagoMesAnterior()
+
 
         if (socios.isEmpty()) {
             (recyclerView.parent as ViewGroup).addView(sinSociosText)
@@ -65,17 +102,6 @@ class ListarSociosActivity : AppCompatActivity() {
             recyclerView.layoutManager = LinearLayoutManager(this)
             recyclerView.adapter = SocioAdapter(socios)
         }
-    }
-    private fun getFechaMesAnterior(): String {
-        val formato = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()) // Ajustalo si usás otro formato
-        val calendar = Calendar.getInstance()
-        val dia = calendar.get(Calendar.DAY_OF_MONTH)
 
-        calendar.add(Calendar.MONTH, -1)
-
-        val maxDia = calendar.getActualMaximum(Calendar.DAY_OF_MONTH)
-        calendar.set(Calendar.DAY_OF_MONTH, min(dia, maxDia))
-
-        return formato.format(calendar.time)
     }
 }

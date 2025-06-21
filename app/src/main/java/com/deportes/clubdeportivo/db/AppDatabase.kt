@@ -405,6 +405,127 @@ class BDatos(contexto: Context) : SQLiteOpenHelper(contexto, BD_NOMBRE, null, BD
         return lista
     }
 
+    fun obtenerTodosSocios(): List<Cliente> {
+        val query = """
+            SELECT Cliente.id_cliente, Cliente.nombre, Cliente.apellido, Cliente.dni
+            FROM Cliente WHERE cond_socio = 1
+        """.trimIndent()
+
+
+        val lista = mutableListOf<Cliente>()
+        val db = readableDatabase
+        // Corrección: Usar la tabla 'Cliente' y la columna 'id_cliente'
+        val cursor = db.rawQuery(query, null)
+
+        if (cursor.moveToFirst()) {
+            do {
+                val id = cursor.getInt(cursor.getColumnIndexOrThrow("id_cliente")) // Obtener id_cliente
+                val nombre = cursor.getString(cursor.getColumnIndexOrThrow("nombre"))
+                val apellido = cursor.getString(cursor.getColumnIndexOrThrow("apellido"))
+                val dni = cursor.getString(cursor.getColumnIndexOrThrow("dni"))
+
+
+
+                lista.add(Cliente(
+                    id,
+                    nombre,
+                    apellido,
+                    dni,
+                    email = null,
+                    telefono = null,
+                    fechaNacimiento = null,
+                    condSocio = null,
+                    aptoFisico = null
+                ))
+            } while (cursor.moveToNext())
+        }
+
+        cursor.close()
+        db.close()
+        return lista
+    }
+
+    fun obtenerVencidos(): List<Cliente> {
+        val query = """
+        SELECT
+            C.id_cliente,
+            C.nombre,
+            C.apellido,
+            C.dni
+        FROM
+            Cliente AS C
+        INNER JOIN (
+            SELECT
+                id_cliente,
+                MAX(fecha_vencimiento) AS ultima_fecha_vencimiento
+            FROM
+                Pagos
+            GROUP BY
+                id_cliente
+        ) AS P ON C.id_cliente = P.id_cliente
+        WHERE
+            P.ultima_fecha_vencimiento < ?
+    """.trimIndent()
+
+        val formatoFecha = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        val fechaFormateada = formatoFecha.format(Calendar.getInstance().time)
+
+        val lista = mutableListOf<Cliente>()
+        val db = readableDatabase
+        // Corrección: Usar la tabla 'Cliente' y la columna 'id_cliente'
+        val cursor = db.rawQuery(query, arrayOf(fechaFormateada))
+
+        if (cursor.moveToFirst()) {
+            do {
+                val id = cursor.getInt(cursor.getColumnIndexOrThrow("id_cliente")) // Obtener id_cliente
+                val nombre = cursor.getString(cursor.getColumnIndexOrThrow("nombre"))
+                val apellido = cursor.getString(cursor.getColumnIndexOrThrow("apellido"))
+                val dni = cursor.getString(cursor.getColumnIndexOrThrow("dni"))
+
+
+
+                lista.add(Cliente(
+                    id,
+                    nombre,
+                    apellido,
+                    dni,
+                    email = null,
+                    telefono = null,
+                    fechaNacimiento = null,
+                    condSocio = null,
+                    aptoFisico = null
+                ))
+            } while (cursor.moveToNext())
+        }
+
+        cursor.close()
+        db.close()
+        return lista
+    }
+
+    fun obtenerSocioPorId(idSocio: Int): Cliente? {
+        val query = """
+            SELECT * FROM Cliente WHERE id_cliente = ?
+        """.trimIndent()
+        val resultado = this.ejecutarConsultaSelect(query, arrayOf(idSocio.toString()))
+        return if (resultado.isNotEmpty()) {
+            val clienteMap = resultado[0]
+            Cliente(
+                idCliente = clienteMap["id_cliente"] as Int,
+                nombre = clienteMap["nombre"] as String,
+                apellido = clienteMap["apellido"] as String,
+                dni = clienteMap["dni"] as String,
+                email = clienteMap["email"] as String,
+                telefono = clienteMap["telefono"] as String,
+                fechaNacimiento = clienteMap["fecha_nacimiento"] as String,
+                condSocio = clienteMap["cond_socio"] == 1,
+                aptoFisico = clienteMap["apto_fisico"] == 1,
+                )
+        } else {
+            null
+        }
+    }
+
     fun obtenerComprobantePorId(idPago: Int): Map<String, String>? {
         val query = """
         SELECT 
