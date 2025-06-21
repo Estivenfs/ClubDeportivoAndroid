@@ -600,6 +600,98 @@ class BDatos(contexto: Context) : SQLiteOpenHelper(contexto, BD_NOMBRE, null, BD
         }
     }
 
+    fun verificarPagoFecha(idCliente: Int, fechaInicio: String): Boolean {
+        val query = """
+            SELECT * FROM Pagos WHERE id_cliente = ? AND fecha_vencimiento > ?
+        """.trimIndent()
+        val args = arrayOf(idCliente.toString(), fechaInicio)
+        val resultado = this.ejecutarConsultaSelect(query, args)
+        if (resultado.isNotEmpty()) {
+            return true
+        }
+        return false
+    }
+
+    fun obtenerTodosClientes(): List<Cliente> {
+        val query = """
+            SELECT Cliente.id_cliente, Cliente.nombre, Cliente.apellido, Cliente.dni
+            FROM Cliente
+        """.trimIndent()
+
+
+        val lista = mutableListOf<Cliente>()
+        val db = readableDatabase
+        // Corrección: Usar la tabla 'Cliente' y la columna 'id_cliente'
+        val cursor = db.rawQuery(query, null)
+
+        if (cursor.moveToFirst()) {
+            do {
+                val id = cursor.getInt(cursor.getColumnIndexOrThrow("id_cliente")) // Obtener id_cliente
+                val nombre = cursor.getString(cursor.getColumnIndexOrThrow("nombre"))
+                val apellido = cursor.getString(cursor.getColumnIndexOrThrow("apellido"))
+                val dni = cursor.getString(cursor.getColumnIndexOrThrow("dni"))
+
+
+
+                lista.add(Cliente(
+                    id,
+                    nombre,
+                    apellido,
+                    dni,
+                    email = null,
+                    telefono = null,
+                    fechaNacimiento = null,
+                    condSocio = null,
+                    aptoFisico = null
+                ))
+            } while (cursor.moveToNext())
+        }
+
+        cursor.close()
+        db.close()
+        return lista
+    }
+
+    fun obtenerPorDNIoId(busqueda: String): List<Cliente> {
+        val query = """
+            SELECT Cliente.id_cliente, Cliente.nombre, Cliente.apellido, Cliente.dni
+            FROM Cliente WHERE Cliente.dni = ? OR Cliente.id_cliente = ?
+        """.trimIndent()
+
+
+        val lista = mutableListOf<Cliente>()
+        val db = readableDatabase
+        // Corrección: Usar la tabla 'Cliente' y la columna 'id_cliente'
+        val cursor = db.rawQuery(query, arrayOf(busqueda, busqueda))
+
+        if (cursor.moveToFirst()) {
+            do {
+                val id = cursor.getInt(cursor.getColumnIndexOrThrow("id_cliente")) // Obtener id_cliente
+                val nombre = cursor.getString(cursor.getColumnIndexOrThrow("nombre"))
+                val apellido = cursor.getString(cursor.getColumnIndexOrThrow("apellido"))
+                val dni = cursor.getString(cursor.getColumnIndexOrThrow("dni"))
+
+
+
+                lista.add(Cliente(
+                    id,
+                    nombre,
+                    apellido,
+                    dni,
+                    email = null,
+                    telefono = null,
+                    fechaNacimiento = null,
+                    condSocio = null,
+                    aptoFisico = null
+                ))
+            } while (cursor.moveToNext())
+        }
+
+        cursor.close()
+        db.close()
+        return lista
+    }
+
 
 }
 

@@ -77,20 +77,26 @@ class DetallePagoActivity : AppCompatActivity() {
 
         val btnIniciarPagar = findViewById<Button>(R.id.btnIniciarPagar)
         btnIniciarPagar.setOnClickListener {
-            val idPago = guardarPago()
-            if(idPago != 0){
-                val intent = Intent(this, DescargarComprobanteActivity::class.java).apply {
-                    putExtra("idCliente", idCliente)
-                    putExtra("nombre", nombre)
-                    putExtra("apellido", apellido)
-                    putExtra("dni", dni)
-                    putExtra("idPago", idPago)
-                    putExtra("tipoCliente", tipoCliente)
-                    putExtra("actividad", actividad)
-                }
-                startActivity(intent)
+            //Verifico que este cliente no tenga un pago en este periodo (la fecha de inicio no deberia estar entre la fecha de inicio y vencimiento de algun pago del mismo cliente)
+            if(db.verificarPagoFecha(idCliente!!, fechaInicio)){
+                Toast.makeText(this, "Este cliente ya tiene un pago en este periodo.", Toast.LENGTH_SHORT).show()
+
             } else {
-                Toast.makeText(this, "Error al registrar el pago.", Toast.LENGTH_LONG).show()
+                val idPago = guardarPago()
+                if (idPago != 0) {
+                    val intent = Intent(this, DescargarComprobanteActivity::class.java).apply {
+                        putExtra("idCliente", idCliente)
+                        putExtra("nombre", nombre)
+                        putExtra("apellido", apellido)
+                        putExtra("dni", dni)
+                        putExtra("idPago", idPago)
+                        putExtra("tipoCliente", tipoCliente)
+                        putExtra("actividad", actividad)
+                    }
+                    startActivity(intent)
+                } else {
+                    Toast.makeText(this, "Error al registrar el pago.", Toast.LENGTH_LONG).show()
+                }
             }
         }
 
