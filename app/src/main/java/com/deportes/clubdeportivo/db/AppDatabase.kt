@@ -5,6 +5,7 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.database.Cursor
+import com.deportes.clubdeportivo.models.Actividad
 import com.deportes.clubdeportivo.models.Cliente
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -293,6 +294,37 @@ class BDatos(contexto: Context) : SQLiteOpenHelper(contexto, BD_NOMBRE, null, BD
         db.close()
         return actividades
     }
+
+    fun obtenerTodasLasActividades(): List<Actividad> {
+        val lista = mutableListOf<Actividad>()
+        val db = readableDatabase
+        val cursor = db.rawQuery("SELECT id_actividad, nombre_actividad, precio_actividad, cupo_actividad, inscriptos FROM Actividades", null)
+
+        if (cursor.moveToFirst()) {
+            do {
+                val id_actividad = cursor.getInt(cursor.getColumnIndexOrThrow("id_actividad"))
+                val nombre_actividad = cursor.getString(cursor.getColumnIndexOrThrow("nombre_actividad"))
+                val precio_actividad = cursor.getDouble(cursor.getColumnIndexOrThrow("precio_actividad"))
+                val cupo_actividad = cursor.getInt(cursor.getColumnIndexOrThrow("cupo_actividad"))
+                val inscriptos = cursor.getInt(cursor.getColumnIndexOrThrow("inscriptos"))
+
+
+                lista.add(Actividad(
+                    id_actividad,
+                    nombre_actividad,
+                    precio_actividad,
+                    cupo_actividad,
+                    inscriptos
+                ))
+            } while (cursor.moveToNext())
+        }
+
+        cursor.close()
+        db.close()
+        return lista
+    }
+
+
 
     fun obtenerSocios(): List<Cliente> {
         val lista = mutableListOf<Cliente>()
