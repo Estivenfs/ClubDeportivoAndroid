@@ -148,11 +148,41 @@ class NuevoClienteActivity : AppCompatActivity() {
         val aptoFisico = textAptoFisicoSeleccionado.text.toString().trim()
 
         // Validación de campos
+        // --- 1. Validación de Campos Vacíos ---
         if (nombre.isEmpty() || apellido.isEmpty() || dni.isEmpty() || email.isEmpty()
             || telefono.isEmpty() || fechaNacimientoTexto.isEmpty()
             || tipoInscripcion.isEmpty() || aptoFisico.isEmpty()
         ) {
             return ResultadoBD.CamposIncompletos
+        }
+
+        // --- 2. Validaciones de Formato y Tamaño Mínimo ---
+        // Nombre y Apellido
+        if (nombre.length < 2) {
+            return ResultadoBD.Error("El nombre debe tener al menos 2 caracteres.")
+        }
+        if (apellido.length < 2) {
+            return ResultadoBD.Error("El apellido debe tener al menos 2 caracteres.")
+        }
+
+        // DNI (Ejemplo: 7 u 8 dígitos numéricos)
+        if (!dni.matches(Regex("^\\d{7,9}$"))) {
+            return ResultadoBD.Error("El DNI debe contener 7 u 8 dígitos numéricos.")
+        }
+
+        // Email (Validación básica de formato de email)
+        if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            return ResultadoBD.Error("El formato del email no es válido.")
+        }
+
+        // Teléfono (Ejemplo: Mínimo 7 dígitos, solo números, puedes ajustar la expresión regular)
+        if (!telefono.matches(Regex("^\\d{7,}$"))) {
+            return ResultadoBD.Error("El número de teléfono debe tener al menos 7 dígitos y solo números.")
+        }
+
+        // El cliente debe poseer apto fisico
+        if (aptoFisico != "Posee") {
+            return ResultadoBD.Error("El cliente debe poseer apto físico.")
         }
 
         val condSocio = tipoInscripcion == "Socio"
