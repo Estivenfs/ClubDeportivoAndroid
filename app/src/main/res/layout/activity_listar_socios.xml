@@ -107,7 +107,14 @@
                 android:paddingHorizontal="24dp"
                 tools:listitem="@layout/item_socio"
                 />
-
+            <TextView
+                android:id="@+id/textViewNoSociosMessage" android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="No hay socios registrados."
+                android:textColor="@android:color/white"
+                android:textSize="18sp"
+                android:visibility="gone" />
 
 
         </LinearLayout>

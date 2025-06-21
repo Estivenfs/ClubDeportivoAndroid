@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.deportes.clubdeportivo.db.BDatos
 import android.view.Gravity
 import android.widget.Button
+import android.view.View // Importar View para controlar la visibilidad
 import com.deportes.clubdeportivo.models.Cliente
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -22,7 +23,12 @@ import kotlin.math.min
 class ListarSociosActivity : AppCompatActivity() {
     private lateinit var db: BDatos
     private lateinit var recyclerView: RecyclerView
-    private lateinit var sinSociosText: TextView
+    private lateinit var sinSociosText: TextView // Declaramos aquí el TextView del mensaje
+
+    // Botones para controlar el estado visual y la lógica
+    private lateinit var btnTodos: Button
+    private lateinit var btnSinActividad: Button
+    private lateinit var btnProximos: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,38 +36,41 @@ class ListarSociosActivity : AppCompatActivity() {
 
         db = BDatos(this)
 
-        /*val btnProximos: Button = findViewById(R.id.btnProximos)
-        btnProximos.setOnClickListener {
-            val fechaBuscada = getFechaMesAnterior()
-            val socios = db.obtenerClientesConPagoMesAnterior(fechaBuscada)
-            mostrarSociosEnPantalla(socios)
-        }*/
-        var socios : List<Cliente> = listOf()
+        // Inicializar el RecyclerView y el TextView del mensaje
+        recyclerView = findViewById(R.id.recyclerSocios)
+        // Es crucial que 'sinSociosText' tenga un ID en tu XML
+        // y se encuentre en el mismo contenedor padre que tu RecyclerView
+        sinSociosText = findViewById(R.id.textViewNoSociosMessage) // Asumiendo este ID en tu XML
+        recyclerView.layoutManager = LinearLayoutManager(this) // Configurar el LayoutManager una sola vez
 
-        val btnTodos: Button = findViewById<Button>(R.id.btnTodos)
-        val btnSinActividad: Button = findViewById<Button>(R.id.btnSinActividad)
-        val btnProximos: Button = findViewById(R.id.btnProximos)
+        // Inicializar vistas de los botones
+        btnTodos = findViewById(R.id.btnTodos)
+        btnSinActividad = findViewById(R.id.btnSinActividad)
+        btnProximos = findViewById(R.id.btnProximos)
+
+        // Configurar listeners de los botones de filtro
         btnTodos.setOnClickListener {
-            socios = db.obtenerTodosSocios()
+            val socios = db.obtenerTodosSocios()
             mostrarSociosEnPantalla(socios)
+            // Actualizar la apariencia de los botones
             btnTodos.alpha = 1.0f
             btnSinActividad.alpha = 0.5f
             btnProximos.alpha = 0.5f
         }
 
-
         btnSinActividad.setOnClickListener {
-            socios = db.obtenerVencidos()
+            val socios = db.obtenerVencidos()
             mostrarSociosEnPantalla(socios)
+            // Actualizar la apariencia de los botones
             btnTodos.alpha = 0.5f
             btnSinActividad.alpha = 1.0f
             btnProximos.alpha = 0.5f
         }
 
-
         btnProximos.setOnClickListener {
-            socios = db.obtenerClientesConPagoMesAnterior()
+            val socios = db.obtenerClientesConPagoMesAnterior()
             mostrarSociosEnPantalla(socios)
+            // Actualizar la apariencia de los botones
             btnTodos.alpha = 0.5f
             btnSinActividad.alpha = 0.5f
             btnProximos.alpha = 1.0f
@@ -77,35 +86,28 @@ class ListarSociosActivity : AppCompatActivity() {
             finish()
         }
 
-
-        // Lógica para mostrar la lista de socios
-        socios = db.obtenerClientesConPagoMesAnterior()
-        mostrarSociosEnPantalla(socios)
-
-
+        // Cargar la lista inicial de socios (por ejemplo, "Próximos")
+        btnProximos.performClick() // Simula un clic en el botón "Próximos" para cargar inicialmente
     }
+
+    // --- Función para mostrar/ocultar el RecyclerView y el mensaje ---
     fun mostrarSociosEnPantalla(socios: List<Cliente>) {
-        db = BDatos(this)
-        recyclerView = findViewById(R.id.recyclerSocios)
-        //Reiniciar el layout
-        recyclerView.removeAllViews()
-        recyclerView.removeAllViewsInLayout()
-
-        sinSociosText = TextView(this).apply {
-            text = "No hay socios registrados"
-            setTextColor(Color.WHITE)
-            textSize = 18f
-            gravity = Gravity.CENTER
-        }
-
-
-
         if (socios.isEmpty()) {
-            (recyclerView.parent as ViewGroup).addView(sinSociosText)
+            // Si no hay socios, oculta el RecyclerView y muestra el mensaje
+            recyclerView.visibility = View.GONE
+            sinSociosText.visibility = View.VISIBLE
         } else {
-            recyclerView.layoutManager = LinearLayoutManager(this)
-            recyclerView.adapter = SocioAdapter(socios)
-        }
+            // Si hay socios, muestra el RecyclerView y oculta el mensaje
+            recyclerView.visibility = View.VISIBLE
+            sinSociosText.visibility = View.GONE
 
+            // Asigna un nuevo adaptador o actualiza el existente
+            // Si SocioAdapter tuviera un método para actualizar la lista (ej. updateData(newList)),
+            // sería más eficiente que crear uno nuevo cada vez.
+            // Por ejemplo: (recyclerView.adapter as? SocioAdapter)?.updateData(socios) ?: run { ... }
+            recyclerView.adapter = SocioAdapter(socios)
+            // Notificar al adaptador de los cambios para asegurar que la vista se actualice
+            recyclerView.adapter?.notifyDataSetChanged()
+        }
     }
 }
