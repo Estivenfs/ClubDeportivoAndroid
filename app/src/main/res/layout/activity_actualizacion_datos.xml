@@ -52,8 +52,8 @@
                 android:inputType="text"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
-                android:textColor="#FFFFFF"
-                android:textColorHint="#757575"
+                android:textColor="#EDEDED"
+                android:textColorHint="#EDEDED"
                 android:textSize="16sp" />
 
             <!-- Input Apellido -->
@@ -77,7 +77,7 @@
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
                 android:textColor="#FFFFFF"
-                android:textColorHint="#757575"
+                android:textColorHint="#EDEDED"
                 android:textSize="16sp" />
 
             <!-- Input DNI -->
@@ -101,7 +101,7 @@
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
                 android:textColor="#FFFFFF"
-                android:textColorHint="#757575"
+                android:textColorHint="#EDEDED"
                 android:textSize="16sp" />
 
             <!-- Input Email -->
@@ -125,7 +125,7 @@
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
                 android:textColor="#FFFFFF"
-                android:textColorHint="#757575"
+                android:textColorHint="#EDEDED"
                 android:textSize="16sp" />
 
             <!-- Selección fecha de nacimiento -->
@@ -154,11 +154,11 @@
                     android:id="@+id/inputFechaNacimiento"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
                     android:layout_weight="1"
                     android:text="15/05/1990"
-                    android:textSize="18sp"
-                    android:textColor="#757575"
-                    android:layout_gravity="center_vertical"/>
+                    android:textColor="#EDEDED"
+                    android:textSize="18sp" />
 
                 <ImageView
                     android:layout_width="wrap_content"
