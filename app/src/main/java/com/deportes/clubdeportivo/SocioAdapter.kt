@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.deportes.clubdeportivo.models.Cliente
 
-class SocioAdapter(private val socios: List<Cliente>) :
+class SocioAdapter(private val socios: MutableList<Cliente>) :
     RecyclerView.Adapter<SocioAdapter.SocioViewHolder>() {
 
     class SocioViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -30,4 +30,11 @@ class SocioAdapter(private val socios: List<Cliente>) :
     }
 
     override fun getItemCount(): Int = socios.size
+
+    fun actualizarLista(nuevosSocios: List<Cliente>) {
+        socios.clear()
+        socios.addAll(nuevosSocios)
+        notifyDataSetChanged()
+    }
+
 }

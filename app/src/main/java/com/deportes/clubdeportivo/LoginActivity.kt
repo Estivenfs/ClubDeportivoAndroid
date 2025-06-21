@@ -19,41 +19,33 @@ class LoginActivity : AppCompatActivity() {
         val inputEmail = findViewById<TextView>(R.id.etEmail)
         val inputPassword = findViewById<TextView>(R.id.etPassword)
 
-        // Instancia de la base de datos (la tabla Usuario debe existir)
         val db = BDatos(this)
 
         btnIniciarSesion.setOnClickListener {
             val email = inputEmail.text.toString().trim()
             val password = inputPassword.text.toString().trim()
-            startActivity(Intent(this, MenuPrincipalActivity::class.java))
-
 
             if (email.isEmpty() || password.isEmpty()) {
                 Toast.makeText(this, "Por favor, completa todos los campos", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            // Consulta SQL segura
             val query = "SELECT id, nombre FROM Usuario WHERE email = ? AND clave = ?"
             val resultado = db.ejecutarConsultaSelect(query, arrayOf(email, password))
 
-           // if (resultado.isNotEmpty()) {
-                // Login exitoso
-                //Obtengo el id del usuario
-
-
+            if (resultado.isNotEmpty()) {
                 val idUsuario = resultado[0]["id"] as Int
                 val nombreUsuario = resultado[0]["nombre"] as String
 
                 val intent = Intent(this, MenuPrincipalActivity::class.java).apply {
-                    //putExtra("idUsuario", idUsuario.toString())
-                    //putExtra("nombreUsuario", nombreUsuario)
+                    putExtra("idUsuario", idUsuario.toString())
+                    putExtra("nombreUsuario", nombreUsuario)
                 }
                 startActivity(intent)
-                finish() // evita volver al login al presionar "atrás"
-           // } else {
-            //    Toast.makeText(this, "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show()
-            //}
+                finish()
+            } else {
+                Toast.makeText(this, "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show()
+            }
         }
 
         registrateTextView.setOnClickListener {
