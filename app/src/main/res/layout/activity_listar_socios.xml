@@ -78,25 +78,28 @@
                     android:id="@+id/tvIdHeader"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="0.5"
                     android:text="ID"
-                    android:textColor="#D0BA12" />
+                    android:textColor="#D0BA12"
+                    android:paddingLeft="20dp"/>
 
                 <TextView
                     android:id="@+id/tvNombreHeader"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
+                    android:layout_weight="1"
                     android:text="Nombre"
-                    android:textColor="#D0BA12" />
+                    android:textColor="#D0BA12"
+                    android:paddingLeft="10dp"/>
 
                 <TextView
                     android:id="@+id/tvDniHeader"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1.5"
+                    android:layout_weight="1"
                     android:text="DNI"
-                    android:textColor="#D0BA12" />
+                    android:textColor="#D0BA12"
+                    android:paddingLeft="10dp"/>
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView

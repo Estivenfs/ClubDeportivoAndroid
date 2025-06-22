@@ -15,12 +15,14 @@ class MenuPrincipalActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu_principal)
         val bundle = intent.extras
+        val sharedPref = getSharedPreferences("miAppPrefs", MODE_PRIVATE)
         val idUsuario = bundle?.getString("idUsuario")
-        val nombreUsuario = bundle?.getString("nombreUsuario")
+        val nombreUsuario = sharedPref.getString("nombreUsuario", "Bienvenído")
 
         // Configurar el saludo del usuario
         val welcomeUser = findViewById<TextView>(R.id.textViewSaludo)
         val nombreCapitalizado = StringManager().capitalizeWords(nombreUsuario.toString())
+
         welcomeUser.text = "Hola, $nombreCapitalizado"
 
         try {

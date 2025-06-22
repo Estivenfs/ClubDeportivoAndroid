@@ -23,15 +23,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:gravity="center_horizontal"
-            android:padding="24dp">
+            android:gravity="center_horizontal"            >
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:layout_marginTop="32dp">
+                android:gravity="center_vertical"               >
 
                 <EditText
                     android:id="@+id/inputDNI"
