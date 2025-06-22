@@ -479,6 +479,8 @@ class BDatos(contexto: Context) : SQLiteOpenHelper(contexto, BD_NOMBRE, null, BD
         ) AS P ON C.id_cliente = P.id_cliente
         WHERE
             P.ultima_fecha_vencimiento < ?
+        AND 
+            C.cond_socio = 1
     """.trimIndent()
 
         val formatoFecha = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())

@@ -22,7 +22,8 @@
         app:layout_constraintBottom_toTopOf="@+id/barraInferiorFragment"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/barraSuperior">
+        app:layout_constraintTop_toBottomOf="@+id/barraSuperior"
+        android:paddingHorizontal="15dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -68,8 +69,9 @@
                     android:layout_width="30dp"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/inter_medium"
+                    android:layout_weight="0.2"
                     android:text="ID"
-                    android:textColor="#FFEB3B"
+                    android:textColor="#D0BA12"
                     android:textSize="14sp" />
 
                 <TextView
@@ -77,10 +79,10 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="@font/inter_medium"
-                    android:paddingStart="16dp"
                     android:text="Nombre"
-                    android:textColor="#FFEB3B"
-                    android:textSize="14sp" />
+                    android:textColor="#D0BA12"
+                    android:textSize="14sp"
+                    android:paddingLeft="10dp"/>
 
                 <TextView
                     android:layout_width="0dp"
@@ -88,12 +90,9 @@
                     android:layout_weight="1"
                     android:fontFamily="@font/inter_medium"
                     android:text="DNI"
-                    android:textColor="#FFEB3B"
+                    android:paddingLeft="15dp"
+                    android:textColor="#D0BA12"
                     android:textSize="14sp" />
-
-                <View
-                    android:layout_width="24dp"
-                    android:layout_height="wrap_content" />
 
             </LinearLayout>
 
@@ -102,7 +101,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:paddingHorizontal="24dp"
                 tools:listitem="@layout/item_socio"
                 />
             <TextView
